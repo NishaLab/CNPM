@@ -12,9 +12,17 @@ import java.util.Date;
  *
  * @author LEGION
  */
-public class CarStat extends Car implements Serializable{
+public class CarStat extends Car implements Serializable {
 
     public CarStat(int totalRentTime, int amount, Date bookingDate) {
+        super();
+        this.totalRentTime = totalRentTime;
+        this.amount = amount;
+        this.bookingDate = bookingDate;
+    }
+
+    public CarStat(Car car ,int totalRentTime, int amount, Date bookingDate) {
+        super(car);
         this.totalRentTime = totalRentTime;
         this.amount = amount;
         this.bookingDate = bookingDate;
@@ -48,6 +56,7 @@ public class CarStat extends Car implements Serializable{
     public String toString() {
         return "CarStat{" + "totalRentTime=" + totalRentTime + ", amount=" + amount + ", bookingDate=" + bookingDate + '}';
     }
-    private int  totalRentTime,amount;
+
+    private int totalRentTime, amount;
     private Date bookingDate;
 }
