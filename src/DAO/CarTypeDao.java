@@ -35,4 +35,20 @@ public class CarTypeDao extends DAO {
         return type;
 
     }
+
+    public boolean addCarType(CarType key) {
+        String warrant = "INSERT INTO tblcontract(name, desc) VALUES(?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(warrant);
+            ps.setString(1, key.getName());
+            ps.setString(2, key.getDesc());
+            ps.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+    }
 }

@@ -16,7 +16,7 @@ public class Car implements Serializable{
 
     public Car() {
     }
-
+    
     public Car(String name, String brand, String desc, int price, String state, CarType type, CarClassification classs) {
         this.name = name;
         this.brand = brand;
@@ -26,7 +26,15 @@ public class Car implements Serializable{
         this.type = type;
         this.classs = classs;
     }
-
+    public Car(Car car) {
+        this.name = car.getName();
+        this.brand = car.getBrand();
+        this.desc = car.getDesc();
+        this.price = car.getPrice();
+        this.state = car.getState();
+        this.type = car.getType();
+        this.classs = car.getClasss();
+    }
     public int getId() {
         return id;
     }
