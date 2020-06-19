@@ -21,7 +21,7 @@ public class CarDao extends DAO {
         ArrayList<Car> res = new ArrayList<Car>();
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
-        String sql = "Select * from tblcar where tblCarType_id = ? and tblCarClassification_id = ?  AND name LIKE ? "
+        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND state = 'Free' AND name LIKE ? "
                 + "AND id NOT IN(SELECT id FROM tblbookedcar WHERE receivedDate > ? AND returnDate < ?) ";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -52,4 +52,25 @@ public class CarDao extends DAO {
 
         return res;
     }
+
+    public boolean addCar(Car c, int key) {
+        String warrant = "INSERT INTO tblcontract(name,price,state,desc,tblCarType_id,tblCarClassification_id,tblStore_id) VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(warrant);
+            ps.setString(1, c.getName());
+            ps.setInt(2, c.getPrice());
+            ps.setString(3, c.getState());
+            ps.setString(4, c.getDesc());
+            ps.setInt(5, c.getType().getId());
+            ps.setInt(6, c.getClasss().getId());
+            ps.setInt(7, key);
+            ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+    }
 }
+

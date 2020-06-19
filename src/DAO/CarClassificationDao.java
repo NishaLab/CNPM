@@ -35,7 +35,7 @@ public class CarClassificationDao extends DAO {
         return classs;
     }
 
-    public boolean CarClassification(CarClassification key) {
+    public boolean addCarClassification(CarClassification key) {
         String warrant = "INSERT INTO tblcontract(name, desc) VALUES(?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(warrant);
