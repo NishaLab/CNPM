@@ -7,7 +7,6 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  *
@@ -23,7 +22,7 @@ public class DAO {
         String password = "0963063105";
         try {
             conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
