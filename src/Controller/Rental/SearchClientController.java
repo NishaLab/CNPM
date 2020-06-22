@@ -22,11 +22,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author LEGION
  */
-public class AddClientController {
+public class SearchClientController {
 
     public SearchClientViewFrm frame;
 
-    public AddClientController(SearchClientViewFrm frame) {
+    public SearchClientController(SearchClientViewFrm frame) {
         this.frame = frame;
     }
 

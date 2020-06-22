@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import Controller.Rental.AddClientController;
+import Controller.Rental.SearchClientController;
 import Model.Client;
 /**
  *
@@ -31,7 +31,7 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
      */
     public SearchClientViewFrm() {
         initComponents();
-        AddClientController a = new AddClientController(this);
+        SearchClientController a = new SearchClientController(this);
         a.init();
     }
 
