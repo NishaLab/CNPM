@@ -11,12 +11,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import Controller.Rental.AddClientController;
+import Model.Client;
 /**
  *
  * @author LEGION
  */
 public class AddClientViewFrm extends javax.swing.JFrame {
+    private Client client = new Client();
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
     /**
      * Creates new form NewJFrame
      */
@@ -43,6 +52,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
+        confirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +100,9 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         SearchButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         SearchButton.setText("Search");
 
+        confirmButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        confirmButton.setText("Confirm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +122,12 @@ public class AddClientViewFrm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SearchButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(SearchButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(confirmButton)))
                                 .addGap(58, 58, 58)
                                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -131,7 +147,9 @@ public class AddClientViewFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(SearchButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SearchButton)
+                            .addComponent(confirmButton)))
                     .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,6 +173,14 @@ public class AddClientViewFrm extends javax.swing.JFrame {
             searchField.setText("Client Name...");
         }
     }//GEN-LAST:event_searchFieldFocusLost
+
+    public JButton getConfirmButton() {
+        return confirmButton;
+    }
+
+    public void setConfirmButton(JButton confirmButton) {
+        this.confirmButton = confirmButton;
+    }
 
     /**
      * @param args the command line arguments
@@ -260,6 +286,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
     private javax.swing.JButton SearchButton;
     private javax.swing.JLabel addLabel;
     private javax.swing.JLabel backLabel;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField searchField;
