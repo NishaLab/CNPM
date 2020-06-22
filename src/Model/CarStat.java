@@ -14,49 +14,33 @@ import java.util.Date;
  */
 public class CarStat extends Car implements Serializable {
 
-    public CarStat(int totalRentTime, int amount, Date bookingDate) {
+    public CarStat() {
         super();
-        this.totalRentTime = totalRentTime;
+    }
+
+    public CarStat(int totalDay, float amount) {
+        this.totalDay = totalDay;
         this.amount = amount;
-        this.bookingDate = bookingDate;
     }
 
-    public CarStat(Car car ,int totalRentTime, int amount, Date bookingDate) {
-        super(car);
-        this.totalRentTime = totalRentTime;
-        this.amount = amount;
-        this.bookingDate = bookingDate;
+    public int getTotalDay() {
+        return totalDay;
     }
 
-    public int getTotalRentTime() {
-        return totalRentTime;
-    }
-
-    public void setTotalRentTime(int totalRentTime) {
-        this.totalRentTime = totalRentTime;
-    }
-
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setTotalDay(int totalDay) {
+        this.totalDay = totalDay;
+    }
+
+    public void setAmount(float amount) {
         this.amount = amount;
     }
-
-    public Date getBookingDate() {
-        return bookingDate;
-    }
-
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
-    @Override
-    public String toString() {
-        return "CarStat{" + "totalRentTime=" + totalRentTime + ", amount=" + amount + ", bookingDate=" + bookingDate + '}';
-    }
-
-    private int totalRentTime, amount;
-    private Date bookingDate;
+    
+    
+    
+    private int totalDay;
+    private float amount;
 }
