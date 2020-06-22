@@ -8,7 +8,7 @@ package Controller.Rental;
 import javax.swing.JFrame;
 import DAO.ClientDao;
 import Model.Client;
-import View.Rental.AddClientViewFrm;
+import View.Rental.SearchClientViewFrm;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +24,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddClientController {
 
-    public AddClientViewFrm frame;
+    public SearchClientViewFrm frame;
 
-    public AddClientController(AddClientViewFrm frame) {
+    public AddClientController(SearchClientViewFrm frame) {
         this.frame = frame;
     }
 
