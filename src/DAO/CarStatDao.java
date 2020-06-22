@@ -26,9 +26,9 @@ public class CarStatDao extends DAO{
 		String sql = "SELECT a.id, a.name, a.price, a.brand, a.desc, a.tblCarType_id, a.tblCarClassification_id, a.tblStore_id "
 				+ "(SELECT SUM(DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate, ?))) FROM tblBookedCar b "
 				+ "WHERE b.id = a.id AND b.returnDate > ? AND b.receivedDate < ? GROUP BY b.id) as days,"
-				+ " (SELECT SUM(DATEDIFF(LEAST(b.checkout, ?), GREATEST(b.checkin, ?))*b.totalprice) FROM tblBookedCar b "
-				+ "WHERE b.id = a.id AND b.checkout > ? AND b.checkin < ? GROUP BY b.id) as income "
-				+ " FROM tblRoom a ORDER BY income DESC, brand DESC";
+				+ " (SELECT SUM(DATEDIFF(LEAST(b.returnDate , ?), GREATEST(b.receivedDate, ?))*b.totalprice) FROM tblBookedCar b "
+				+ "WHERE b.id = a.id AND b.returnDate  > ? AND b.receivedDate < ? GROUP BY b.id) as income "
+				+ " FROM tblCar a ORDER BY income DESC, brand DESC";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		try {
