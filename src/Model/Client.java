@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author LEGION
  */
-public class Client implements Serializable{
+public class Client implements Serializable {
 
     public Client() {
     }
@@ -85,6 +85,10 @@ public class Client implements Serializable{
     public String toString() {
         return "Client{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", CCCD=" + CCCD + ", license=" + license + ", type=" + type + '}';
     }
+
+    public Object[] toObject() {
+        return new Object[]{this.id, this.name, this.CCCD, this.address,this.phone,this.license,this.type};
+    }
     private int id;
-    private String name,phone,address,CCCD,license,type;
+    private String name, phone, address, CCCD, license, type;
 }
