@@ -18,27 +18,29 @@ public class CarStat extends Car implements Serializable {
         super();
     }
 
-    public CarStat(int totalRentTime, int amount) {
-        super();
-        this.totalRentTime = totalRentTime;
+    public CarStat(int totalDay, float amount) {
+        this.totalDay = totalDay;
         this.amount = amount;
     }
 
-    public int getTotalRentTime() {
-        return totalRentTime;
+    public int getTotalDay() {
+        return totalDay;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setTotalRentTime(int totalRentTime) {
-        this.totalRentTime = totalRentTime;
+    public void setTotalDay(int totalDay) {
+        this.totalDay = totalDay;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
     
-    private int totalRentTime, amount;
+    
+    
+    private int totalDay;
+    private float amount;
 }
