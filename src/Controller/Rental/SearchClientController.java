@@ -94,6 +94,7 @@ public class SearchClientController {
 
     public void setAddClientAction() {
         JLabel add = this.frame.getAddLabel();
+        DefaultTableModel ctb = (DefaultTableModel) this.frame.getjTable1().getModel();
         add.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -117,6 +118,7 @@ public class SearchClientController {
                         client.setType(reg.getClientType().getSelectedItem().toString());
                         try {
                             dao.addClient(client);
+                            ctb.addRow(client.toObject());
                             reg.dispose();
                             frame.setVisible(true);
                         } catch (Exception f) {
