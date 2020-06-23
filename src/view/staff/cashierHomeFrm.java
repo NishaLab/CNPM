@@ -58,24 +58,29 @@ public class cashierHomeFrm extends javax.swing.JFrame implements ActionListener
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(381, 381, 381)
-                .addComponent(logstatlbl))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(titlelbl))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(recieveBtn))
+                .addGap(90, 90, 90)
+                .addComponent(titlelbl)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logstatlbl)
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(recieveBtn)
+                        .addGap(162, 162, 162))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(logstatlbl)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titlelbl)
                 .addGap(35, 35, 35)
-                .addComponent(recieveBtn))
+                .addComponent(recieveBtn)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,9 +93,9 @@ public class cashierHomeFrm extends javax.swing.JFrame implements ActionListener
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        //loginFrm myFrame = new cashierHomeFrm().setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        loginFrm myFrame = new cashierHomeFrm().setVisible(true);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel logstatlbl;

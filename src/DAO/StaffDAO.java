@@ -21,7 +21,7 @@ public class StaffDAO extends DAO {
 
     public boolean checkLogin(Staff s) {
         boolean result = false;
-        String sql = "SELECT name, position FROM staff WHERE username = ? AND password = ?";
+        String sql = "SELECT name, position FROM cnpm.tblstaff WHERE username = ? AND password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s.getUserName());

@@ -17,13 +17,15 @@ public class DAO {
     public static Connection conn;
 
     public DAO() {
-        String url = "jdbc:mysql://localhost:3306/cnpm?useSSL=false";
-        String username = "root";
-        String password = "0963063105";
-        try {
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (conn == null) {
+            String url = "jdbc:mysql://localhost:3306/cnpm?useSSL=false";
+            String username = "root";
+            String password = "123456";
+            try {
+                conn = DriverManager.getConnection(url, username, password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

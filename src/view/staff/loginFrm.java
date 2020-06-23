@@ -9,6 +9,7 @@ import Model.Staff;
 import DAO.StaffDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,9 +24,22 @@ public class loginFrm extends javax.swing.JFrame implements ActionListener {
     public loginFrm() {
         super("Login");
         initComponents();
+        usernametf.setText("Username");
         char passwordchar = passwordpf.getEchoChar();
         passwordpf.setEchoChar((char) 0);
         passwordpf.setText("Password");
+        usernametf.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                usernametf.setText("");
+            }
+        });
+        passwordpf.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                passwordpf.setText("");
+            }
+        });
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -62,7 +76,6 @@ public class loginFrm extends javax.swing.JFrame implements ActionListener {
 
         usernametf.setBackground(new java.awt.Color(255, 255, 255));
         usernametf.setForeground(new java.awt.Color(51, 51, 51));
-        usernametf.setText(" Username");
         usernametf.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         usernametf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -166,43 +179,45 @@ public class loginFrm extends javax.swing.JFrame implements ActionListener {
 
         StaffDAO sd = new StaffDAO();
         if (sd.checkLogin(s)) {
-            if (s.getPositon().equalsIgnoreCase("manager")) {
-                (new managerHomeFrm(s)).setVisible(true);
-                this.dispose();
-            } else if (s.getPositon().equalsIgnoreCase("cashier")) {
+            if (s.getPositon().equalsIgnoreCase("cashier")) {
                 (new cashierHomeFrm(s)).setVisible(true);
                 this.dispose();
-            } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
-                (new receptionistHomeFrm(s)).setVisible(true);
-                this.dispose();
+//            } else if (s.getPositon().equalsIgnoreCase("manager")) {
+//                (new managerHomeFrm(s)).setVisible(true);
+//                this.dispose();
+//            } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
+//                (new receptionistHomeFrm(s)).setVisible(true);
+//                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Function of the role" + s.getPositon() + "is under construction!");
             }
         } else
-            JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
+            JOptionPane.showMessageDialog(this,
+                    "Incorrect username and/or password!");
     }//GEN-LAST:event_loginbtnActionPerformed
 
     private void usernametfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernametfFocusGained
-        if (usernametf.getText().equals("Username")) {
-            usernametf.setText("");
-        }
+//        if (usernametf.getText().equals("Username")) {
+//            usernametf.setText("");
+//        }
     }//GEN-LAST:event_usernametfFocusGained
 
     private void usernametfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernametfFocusLost
-        if (usernametf.getText().equals("")) {
-            usernametf.setText("Username");
-        }
+//        if (usernametf.getText().equals("")) {
+//            usernametf.setText("Username");
+//        }
     }//GEN-LAST:event_usernametfFocusLost
 
     private void passwordpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordpfFocusGained
-        
-                
+
+
     }//GEN-LAST:event_passwordpfFocusGained
 
     private void passwordpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordpfFocusLost
-
+//        if (passwordpf.getText().equals("Password")) {
+//            passwordpf.setText("");
+//        }
     }//GEN-LAST:event_passwordpfFocusLost
-
     /**
      * @param args the command line arguments
      */
@@ -220,13 +235,17 @@ public class loginFrm extends javax.swing.JFrame implements ActionListener {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginFrm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginFrm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginFrm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginFrm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
