@@ -8,6 +8,7 @@ package View.Rental;
 import Model.BookedCar;
 import Model.Client;
 import Model.Staff;
+import Controller.Rental.ContractController;
 import Model.ContractWarrant;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -32,6 +33,17 @@ public class ContractViewFrm extends javax.swing.JFrame {
         this.cw = cw;
         this.client = client;
         this.staff = staff;
+        ContractController a = new ContractController(this);
+        a.init();
+    }
+
+    public ContractViewFrm(Client client, Staff staff, ArrayList<BookedCar> bc) {
+        initComponents();
+        this.bc = bc;
+        this.client = client;
+        this.staff = staff;
+        ContractController a = new ContractController(this);
+        a.init();
     }
 
     /**
@@ -52,7 +64,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
         titleLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
         carLabel = new javax.swing.JLabel();
         carScrollPane = new javax.swing.JScrollPane();
         carTable = new javax.swing.JTable();
@@ -65,11 +77,11 @@ public class ContractViewFrm extends javax.swing.JFrame {
         clientName = new javax.swing.JLabel();
         depositLabel = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
-        depositField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
         confirmLabel = new javax.swing.JLabel();
         backLabel = new javax.swing.JLabel();
         addLabel1 = new javax.swing.JLabel();
+        deposit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,8 +91,8 @@ public class ContractViewFrm extends javax.swing.JFrame {
         dateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dateLabel.setText("Booking Date:");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Date");
+        date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        date.setText("Date");
 
         carLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         carLabel.setText("Booked Car:");
@@ -92,7 +104,15 @@ public class ContractViewFrm extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Received Date", "Return Date", "Total Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         carScrollPane.setViewportView(carTable);
 
         warrantLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -103,10 +123,21 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Check In", "Check Out", "Type", "Value", "Description"
+                "Check In", "Check Out", "Type", "Value", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         warrantScrollPane.setViewportView(warrantTable);
+        if (warrantTable.getColumnModel().getColumnCount() > 0) {
+            warrantTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         staffName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         staffName.setText("Staff Name");
@@ -123,14 +154,8 @@ public class ContractViewFrm extends javax.swing.JFrame {
         depositLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         depositLabel.setText("Deposit Fee:");
 
-        total.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         total.setText("...");
-
-        depositField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositFieldActionPerformed(evt);
-            }
-        });
 
         totalLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         totalLabel.setText("Total:");
@@ -146,6 +171,9 @@ public class ContractViewFrm extends javax.swing.JFrame {
         addLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addLabel1.setText("Add Warrant");
 
+        deposit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deposit.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,23 +182,14 @@ public class ContractViewFrm extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel)
-                        .addGap(57, 57, 57)
-                        .addComponent(addLabel1)
-                        .addGap(35, 35, 35)
-                        .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(carLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(warrantScrollPane)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(warrantLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(warrantScrollPane))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(carLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(warrantLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(157, 157, 157))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -183,18 +202,30 @@ public class ContractViewFrm extends javax.swing.JFrame {
                                 .addComponent(staffLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                 .addComponent(staffName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(157, 157, 157))))
+                        .addGap(157, 157, 157))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(titleLabel)
+                                .addGap(57, 57, 57)
+                                .addComponent(addLabel1)
+                                .addGap(35, 35, 35)
+                                .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(523, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(depositLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(depositField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -209,7 +240,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staffLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +258,8 @@ public class ContractViewFrm extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(depositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(depositField, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(77, 77, 77)
+                    .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(total)
                     .addComponent(totalLabel))
@@ -237,10 +268,6 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void depositFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,12 +408,12 @@ public class ContractViewFrm extends javax.swing.JFrame {
         this.dateLabel = dateLabel;
     }
 
-    public JTextField getDepositField() {
-        return depositField;
+    public JLabel getDeposit() {
+        return deposit;
     }
 
-    public void setDepositField(JTextField depositField) {
-        this.depositField = depositField;
+    public void setDeposit(JLabel deposit) {
+        this.deposit = deposit;
     }
 
     public JLabel getDepositLabel() {
@@ -397,13 +424,15 @@ public class ContractViewFrm extends javax.swing.JFrame {
         this.depositLabel = depositLabel;
     }
 
-    public JLabel getjLabel1() {
-        return jLabel1;
+    public JLabel getDate() {
+        return date;
     }
 
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+    public void setDate(JLabel date) {
+        this.date = date;
     }
+
+
 
     public JLabel getStaffLabel1() {
         return staffLabel1;
@@ -478,10 +507,10 @@ public class ContractViewFrm extends javax.swing.JFrame {
     private javax.swing.JLabel clientLabel2;
     private javax.swing.JLabel clientName;
     private javax.swing.JLabel confirmLabel;
+    private javax.swing.JLabel date;
     private javax.swing.JLabel dateLabel;
-    private javax.swing.JTextField depositField;
+    private javax.swing.JLabel deposit;
     private javax.swing.JLabel depositLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel staffLabel1;
     private javax.swing.JLabel staffName;
     private javax.swing.JLabel titleLabel;
