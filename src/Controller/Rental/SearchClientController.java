@@ -84,6 +84,7 @@ public class SearchClientController {
                     client.setPhone(ctb.getValueAt(row, 4).toString());
                     client.setLicense(ctb.getValueAt(row, 5).toString());
                     client.setType(ctb.getValueAt(row, 6).toString());
+                    
                 } catch (Exception f) {
                     f.printStackTrace();
 
