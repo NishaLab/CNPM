@@ -42,6 +42,7 @@ public class CarDao extends DAO {
                 car.setBrand(rs.getString("brand"));
                 car.setDesc(rs.getString("desc"));
                 car.setState(rs.getString("state"));
+                car.setRegPlate(rs.getString("reg_plate"));
                 car.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));
                 car.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
                 res.add(car);
@@ -54,16 +55,17 @@ public class CarDao extends DAO {
     }
 
     public boolean addCar(Car c, int key) {
-        String warrant = "INSERT INTO tblcontract(name,price,state,desc,tblCarType_id,tblCarClassification_id,tblStore_id) VALUES(?,?,?,?,?,?,?)";
+        String warrant = "INSERT INTO tblcontract(name,price,state,desc,reg_plate,tblCarType_id,tblCarClassification_id,tblStore_id) VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(warrant);
             ps.setString(1, c.getName());
             ps.setInt(2, c.getPrice());
             ps.setString(3, c.getState());
             ps.setString(4, c.getDesc());
-            ps.setInt(5, c.getType().getId());
-            ps.setInt(6, c.getClasss().getId());
-            ps.setInt(7, key);
+            ps.setString(5, c.getRegPlate());
+            ps.setInt(6, c.getType().getId());
+            ps.setInt(7, c.getClasss().getId());
+            ps.setInt(8, key);
             ps.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,4 +75,3 @@ public class CarDao extends DAO {
 
     }
 }
-

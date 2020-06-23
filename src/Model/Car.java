@@ -101,12 +101,33 @@ public class Car implements Serializable{
 
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", desc=" + desc + ", price=" + price + ", state=" + state + ", type=" + type + ", classs=" + classs + '}';
+        return "Car{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", desc=" + desc + ", price=" + price + ", state=" + state + ", regPlate=" + regPlate + ", type=" + type + ", classs=" + classs + '}';
     }
+
+    public String getRegPlate() {
+        return regPlate;
+    }
+
+    public void setRegPlate(String regPlate) {
+        this.regPlate = regPlate;
+    }
+
+    public Car(String name, String brand, String desc, int price, String state, String regPlate, CarType type, CarClassification classs) {
+        this.name = name;
+        this.brand = brand;
+        this.desc = desc;
+        this.price = price;
+        this.state = state;
+        this.regPlate = regPlate;
+        this.type = type;
+        this.classs = classs;
+    }
+
+
     private int id;
     private String name,brand,desc;
     private int price;
-    private String state;
+    private String state,regPlate;
     private CarType type;
     private CarClassification classs;
     
