@@ -37,7 +37,8 @@ public class CarClassification implements Serializable{
         this.desc = desc;
     }
 
-    public CarClassification(String name, String desc) {
+    public CarClassification(int id,String name, String desc) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
     }
