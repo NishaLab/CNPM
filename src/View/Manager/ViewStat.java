@@ -4,6 +4,17 @@
  * and open the template in the editor.
  */
 package View.Manager;
+import Model.CarStat;
+import DAO.CarStatDao;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -58,6 +69,11 @@ public class ViewStat extends javax.swing.JFrame {
         jLabel3.setText("Login as");
 
         VBTN.setText("View Stat");
+        VBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VBTNActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +161,35 @@ public class ViewStat extends javax.swing.JFrame {
     private void EDJTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDJTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EDJTFActionPerformed
+
+    private void VBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VBTNActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Vector<String> name = new Vector();
+        name.add("brand");
+        name.add("total_days");
+        name.add("amount");
+        Vector<Vector<String> > data = new Vector<Vector<String> >();
+        Date sDate = new Date();
+        Date eDate = new Date();
+        try {
+            sDate = sdf.parse(SDJTF.getText());
+            eDate = sdf.parse(EDJTF.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewStat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        CarStatDao csd = new CarStatDao();
+        ArrayList<CarStat> arr = csd.getCarStat(sDate, eDate);
+        int i=0;
+        for(CarStat c : arr){
+            Vector<String> tmp = new Vector<String>();
+            tmp.add(c.getBrand());
+            tmp.add(""+c.getTotalDay());
+            tmp.add(""+c.getAmount());
+            data.add(tmp);
+        }
+        jTable1 = new JTable(data,name);
+    }//GEN-LAST:event_VBTNActionPerformed
 
     /**
      * @param args the command line arguments
