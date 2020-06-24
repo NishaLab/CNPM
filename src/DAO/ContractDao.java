@@ -11,6 +11,7 @@ import static DAO.DAO.conn;
 import Model.Contract;
 import Model.BookedCar;
 import Model.ContractWarrant;
+import com.mysql.jdbc.Statement;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
@@ -24,21 +25,21 @@ public class ContractDao extends DAO {
 
     public boolean addContract(Contract c) {
         String contract = "INSERT INTO tblcontract(bookingDate, state, tblStaff_id, tblClient_id) VALUES(?,?,?,?)";
-        String bookedRoom = "INSERT INTO tblbookedroom(receivedDate,returnDate,penAmount,tblCar_id,tblContract_id)VALUES(?,?,?,?,?)";
+        String bookedRoom = "INSERT INTO tblbookedcar(receivedDate,returnDate,penAmount,tblCar_id,tblContract_id)VALUES(?,?,?,?,?)";
         String conWarrant = "INSERT INTO tblcontractwarrant(checkin,checkout,tblWarrant_id,tblContract_id) VALUES(?,?,?,?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(contract);
+            PreparedStatement ps = conn.prepareStatement(contract,Statement.RETURN_GENERATED_KEYS);
             java.sql.Date sqldate = new Date(c.getBookingDate().getTime());
             ps.setDate(1, sqldate);
             ps.setBoolean(2, c.isState());
             ps.setInt(3, c.getStaff().getId());
-            ps.setInt(3, c.getClient().getId());
-            ps.executeQuery();
+            ps.setInt(4, c.getClient().getId());
+            ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             if (generatedKeys.next()) {
                 c.setId(generatedKeys.getInt(1));
                 for (BookedCar bc : c.getCar()) {
-                    ps = conn.prepareStatement(contract);
+                    ps = conn.prepareStatement(bookedRoom,Statement.RETURN_GENERATED_KEYS);
                     java.sql.Date sqlreceived = new Date(bc.getReceivedDate().getTime());
                     java.sql.Date sqlreturn = new Date(bc.getReturnDate().getTime());
                     ps.setDate(1, sqlreceived);
@@ -52,7 +53,7 @@ public class ContractDao extends DAO {
                         bc.setId(generatedKeys.getInt(1));
                     }
                     for (ContractWarrant cw : c.getConWarrant()) {
-                        ps = conn.prepareStatement(contract);
+                        ps = conn.prepareStatement(conWarrant,Statement.RETURN_GENERATED_KEYS);
                         java.sql.Date sqlcheckin = new Date(cw.getCheckIn().getTime());
                         java.sql.Date sqlcheckout = new Date(cw.getCheckOut().getTime());
                         ps.setDate(1, sqlcheckin);
