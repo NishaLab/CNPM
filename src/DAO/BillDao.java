@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class BillDao extends DAO {
 
-    public boolean addWarrant(Bill bill) {
+    public boolean addBill(Bill bill) {
         String sql = "INSERT INTO `tblbill` (`amount`, `paymentType`, `paymentDate`, `note`,tblContract_id,tblStaff_id) VALUES (?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
