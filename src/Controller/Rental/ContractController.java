@@ -34,19 +34,19 @@ import javax.swing.table.DefaultTableModel;
  * @author LEGION
  */
 public class ContractController {
-
+    
     private ContractViewFrm frame;
-
+    
     public ContractController(ContractViewFrm frame) {
         this.frame = frame;
     }
-
+    
     public void init() {
         initUI();
         addWarrantAction();
         addConfirmLabelAction();
     }
-
+    
     public void initUI() {
         DecimalFormat formatter = new DecimalFormat("#,###");
         DefaultTableModel ctb = (DefaultTableModel) this.frame.getCarTable().getModel();
@@ -86,11 +86,12 @@ public class ContractController {
         Date date = new Date();
         this.frame.getDate().setText(date.toString());
     }
-
+    
     public void addWarrantAction() {
         JLabel add = this.frame.getAddLabel1();
         DefaultTableModel cwtb = (DefaultTableModel) this.frame.getWarrantTable().getModel();
         Client client = this.frame.getClient();
+        ArrayList<ContractWarrant> cw = this.frame.getCw();
         add.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -115,6 +116,8 @@ public class ContractController {
                         a.setClient(client);
                         con.setWarrant(a);
                         con.setCheckIn(new Date());
+                        con.setCheckOut(new Date());
+                        cw.add(con);
                         Object[] tmp;
                         tmp = new Object[]{con.getCheckIn(), con.getCheckOut(), con.getWarrant().getType(),
                             con.getWarrant().getValue(), con.getWarrant().getDesc()};
@@ -123,11 +126,11 @@ public class ContractController {
                         frame.setVisible(true);
                     }
                 });
-
+                
             }
         });
     }
-
+    
     public void addConfirmLabelAction() {
         JLabel confirm = this.frame.getConfirmLabel();
         confirm.addMouseListener(new MouseAdapter() {
@@ -142,10 +145,10 @@ public class ContractController {
                 contract.setClient(frame.getClient());
                 contract.setStaff(frame.getStaff());
                 frame.dispose();
-                BillViewFrm bill = new BillViewFrm(contract);
+                BillViewFrm bill = new BillViewFrm(contract, frame.getStaff());
                 bill.setVisible(true);
             }
         });
     }
-
+    
 }

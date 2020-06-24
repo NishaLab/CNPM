@@ -19,9 +19,11 @@ public class CarTypeDao extends DAO {
         CarType type = new CarType();
         String sql = "Select * from tblcartype where id = ?";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, key);
             ResultSet rs = ps.executeQuery();
+            conn.commit();
             if (rs.next()) {
                 type.setId(rs.getInt("id"));
                 type.setName(rs.getString("name"));
@@ -30,6 +32,11 @@ public class CarTypeDao extends DAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
 
         return type;

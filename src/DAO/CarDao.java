@@ -24,6 +24,7 @@ public class CarDao extends DAO {
         String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND state = 'Free' AND name LIKE ? "
                 + "AND id NOT IN(SELECT id FROM tblbookedcar WHERE receivedDate > ? AND returnDate < ?) ";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);
             java.sql.Date sqlcheckin = new java.sql.Date(receivedDate.getTime());
             java.sql.Date sqlcheckout = new java.sql.Date(returnDate.getTime());
@@ -33,6 +34,7 @@ public class CarDao extends DAO {
             ps.setDate(4, sqlcheckin);
             ps.setDate(5, sqlcheckout);
             ResultSet rs = ps.executeQuery();
+            conn.commit();
 
             while (rs.next()) {
                 Car car = new Car();

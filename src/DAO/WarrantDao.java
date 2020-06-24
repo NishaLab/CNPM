@@ -44,12 +44,13 @@ public class WarrantDao extends DAO {
 
     public ArrayList<Warrant> getAllWarrantByClient(Client key) {
         ArrayList<Warrant> res = new ArrayList<>();
-        String sql = "Select * from tblwarrant where id = ?";
+        String sql = "Select * from tblwarrant where tblClient_id = ?";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, key.getId());
             ResultSet rs = ps.executeQuery();
-
+            conn.commit();
             while (rs.next()) {
                 Warrant warrant = new Warrant();
                 warrant.setId(rs.getInt("id"));
@@ -61,6 +62,11 @@ public class WarrantDao extends DAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
         return res;
     }
