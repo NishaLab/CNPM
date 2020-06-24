@@ -94,6 +94,7 @@ public class SearchClientController {
                     client.setLicense(ctb.getValueAt(row, 5).toString());
                     client.setType(ctb.getValueAt(row, 6).toString());
                     Staff staff = new Staff("hung", "hung", "Hung", "Receptionist");
+                    staff.setId(1);
                     CarType type = new CarType(1, "Xe Dua", "Desc");
                     CarClassification classs = new CarClassification(1, "A", "Desc");
                     Car car = new Car("Volvo", "Volvo", "Xe moi", 1000000, "free", type, classs);

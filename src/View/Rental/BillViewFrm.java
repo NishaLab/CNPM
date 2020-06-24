@@ -4,24 +4,31 @@
  * and open the template in the editor.
  */
 package View.Rental;
+
 import Model.Contract;
 import Controller.Rental.BillController;
+import Model.Staff;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 /**
  *
  * @author LEGION
  */
 public class BillViewFrm extends javax.swing.JFrame {
-    private Contract contract;
 
-    public BillViewFrm(Contract contract) {
+    private Contract contract;
+    private Staff staff;
+
+    public BillViewFrm(Contract contract,Staff staff) {
         initComponents();
         this.contract = contract;
+        this.staff = staff;
         BillController a = new BillController(this);
         a.init();
     }
+
     /**
      * Creates new form BillViewFrm
      */
@@ -235,6 +242,14 @@ public class BillViewFrm extends javax.swing.JFrame {
                 new BillViewFrm().setVisible(true);
             }
         });
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public Contract getContract() {
