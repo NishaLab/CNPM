@@ -19,17 +19,25 @@ public class CarClassificationDao extends DAO {
         CarClassification classs = new CarClassification();
         String sql = "Select * from tblcarclassification where id = ?";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, key);
             ResultSet rs = ps.executeQuery();
+            conn.commit();
             if (rs.next()) {
                 classs.setId(rs.getInt("id"));
                 classs.setName(rs.getString("name"));
                 classs.setDesc(rs.getString("desc"));
                 return classs;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
 
         return classs;

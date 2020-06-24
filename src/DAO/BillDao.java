@@ -21,6 +21,7 @@ public class BillDao extends DAO {
     public boolean addBill(Bill bill) {
         String sql = "INSERT INTO `tblbill` (`amount`, `paymentType`, `paymentDate`, `note`,tblContract_id,tblStaff_id) VALUES (?, ?, ?, ?, ?, ?);";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setFloat(1, bill.getAmount());
             ps.setString(2, bill.getPaymentType());
@@ -36,6 +37,7 @@ public class BillDao extends DAO {
             if (generatedKeys.next()) {
                 bill.setId(generatedKeys.getInt(1));
             }
+            conn.commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

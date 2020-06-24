@@ -28,6 +28,7 @@ public class ContractDao extends DAO {
         String bookedRoom = "INSERT INTO tblbookedcar(receivedDate,returnDate,penAmount,tblCar_id,tblContract_id)VALUES(?,?,?,?,?)";
         String conWarrant = "INSERT INTO tblcontractwarrant(checkin,checkout,tblWarrant_id,tblContract_id) VALUES(?,?,?,?)";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(contract, Statement.RETURN_GENERATED_KEYS);
             java.sql.Date sqldate = new Date(c.getBookingDate().getTime());
             ps.setDate(1, sqldate);
@@ -35,6 +36,7 @@ public class ContractDao extends DAO {
             ps.setInt(3, c.getStaff().getId());
             ps.setInt(4, c.getClient().getId());
             ps.executeUpdate();
+            conn.commit();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             if (generatedKeys.next()) {
                 c.setId(generatedKeys.getInt(1));
@@ -48,6 +50,7 @@ public class ContractDao extends DAO {
                     ps.setInt(4, bc.getCar().getId());
                     ps.setInt(5, c.getId());
                     ps.executeUpdate();
+                    conn.commit();
                     generatedKeys = ps.getGeneratedKeys();
                     if (generatedKeys.next()) {
                         bc.setId(generatedKeys.getInt(1));
@@ -61,6 +64,7 @@ public class ContractDao extends DAO {
                         ps.setInt(3, cw.getWarrant().getId());
                         ps.setInt(4, c.getId());
                         ps.executeUpdate();
+                        conn.commit();
                     }
                 }
             }
