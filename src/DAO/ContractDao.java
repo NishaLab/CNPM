@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -41,21 +42,34 @@ public class ContractDao extends DAO {
             if (generatedKeys.next()) {
                 c.setId(generatedKeys.getInt(1));
                 for (BookedCar bc : c.getCar()) {
-                    ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
-                    java.sql.Date sqlreceived = new Date(bc.getReceivedDate().getTime());
-                    java.sql.Date sqlreturn = new Date(bc.getReturnDate().getTime());
-                    ps.setDate(1, sqlreceived);
-                    ps.setDate(2, sqlreturn);
-                    ps.setFloat(3, bc.getPenAmount());
-                    ps.setInt(4, bc.getCar().getId());
-                    ps.setInt(5, c.getId());
-                    ps.executeUpdate();
-                    conn.commit();
-                    generatedKeys = ps.getGeneratedKeys();
-                    if (generatedKeys.next()) {
-                        bc.setId(generatedKeys.getInt(1));
+                    try {
+                        ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
+                        java.sql.Date sqlreceived = new Date(bc.getReceivedDate().getTime());
+                        java.sql.Date sqlreturn = new Date(bc.getReturnDate().getTime());
+                        ps.setDate(1, sqlreceived);
+                        ps.setDate(2, sqlreturn);
+                        ps.setFloat(3, bc.getPenAmount());
+                        ps.setInt(4, bc.getCar().getId());
+                        ps.setInt(5, c.getId());
+                        ps.executeUpdate();
+                        conn.commit();
+                        generatedKeys = ps.getGeneratedKeys();
+                        if (generatedKeys.next()) {
+                            bc.setId(generatedKeys.getInt(1));
+                        }
+                    } catch (Exception f) {
+                        f.printStackTrace();
+                        try {
+                            conn.rollback();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return false;
+                        }
                     }
-                    for (ContractWarrant cw : c.getConWarrant()) {
+
+                }
+                for (ContractWarrant cw : c.getConWarrant()) {
+                    try {
                         ps = conn.prepareStatement(conWarrant);
                         java.sql.Date sqlcheckin = new Date(cw.getCheckIn().getTime());
                         java.sql.Date sqlcheckout = new Date(cw.getCheckOut().getTime());
@@ -65,7 +79,15 @@ public class ContractDao extends DAO {
                         ps.setInt(4, c.getId());
                         ps.executeUpdate();
                         conn.commit();
+                    } catch (Exception f) {
+                        f.printStackTrace();
+                        try {
+                            conn.rollback();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+
                 }
             }
         } catch (Exception e) {
