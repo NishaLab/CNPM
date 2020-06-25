@@ -6,10 +6,22 @@
 package View.Rental;
 
 import View.Rental.Component.*;
+import Model.Car;
+import Model.CarClassification;
+import Model.CarType;
+import Controller.Rental.SearchCarController;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import org.jdatepicker.JDatePicker;
 
 /**
  *
@@ -17,12 +29,15 @@ import javax.swing.BoxLayout;
  */
 public class SearchCarViewFrm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ReceptionistViewFrm
-     */
+    private ArrayList<Car> car = new ArrayList<>();
+    private ArrayList<CarType> typeList = new ArrayList<>();
+    private ArrayList<CarClassification> classList = new ArrayList<>();
+
     public SearchCarViewFrm() {
 
         initComponents();
+        SearchCarController ctrl = new SearchCarController(this);
+        ctrl.init();
         CarCatalogComponent a1 = new CarCatalogComponent();
         CarCatalogComponent a2 = new CarCatalogComponent();
         CarCatalogComponent a3 = new CarCatalogComponent();
@@ -103,6 +118,13 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         confirmBtt = new javax.swing.JButton();
         searchBtt = new javax.swing.JButton();
         backLabel = new javax.swing.JLabel();
+        receivedDate = new org.jdatepicker.JDatePicker();
+        returnDate = new org.jdatepicker.JDatePicker();
+        forwardBtt = new javax.swing.JButton();
+        backwardBtt = new javax.swing.JButton();
+        pageLabel = new javax.swing.JLabel();
+        jumpBtt = new javax.swing.JButton();
+        pageField = new javax.swing.JTextField();
         mainPanel = new javax.swing.JPanel();
         carCatalogPanel = new javax.swing.JPanel();
         cartScrollPane = new javax.swing.JScrollPane();
@@ -126,8 +148,10 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         classLabel.setText("Class");
 
         carType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        carType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         carClass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        carClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nameLabel.setText("Name");
@@ -143,6 +167,38 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backLabel.setText("Go Back");
 
+        receivedDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receivedDateActionPerformed(evt);
+            }
+        });
+
+        returnDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnDateActionPerformed(evt);
+            }
+        });
+
+        forwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        forwardBtt.setText(">");
+        forwardBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forwardBttActionPerformed(evt);
+            }
+        });
+
+        backwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        backwardBtt.setText("<");
+
+        pageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageLabel.setText("0/0");
+
+        jumpBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jumpBtt.setText("Jump");
+
+        pageField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
@@ -154,27 +210,43 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                 .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(receivedDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(returnDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(151, 151, 151)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(returnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(receivedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(classLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(carClass, 0, 148, Short.MAX_VALUE)
+                    .addComponent(carType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
                 .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(titlePanelLayout.createSequentialGroup()
-                        .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
                         .addComponent(searchBtt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(confirmBtt))
                     .addGroup(titlePanelLayout.createSequentialGroup()
-                        .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(104, 104, 104)
+                .addGap(18, 18, 18)
                 .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
+            .addGroup(titlePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(backwardBtt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(forwardBtt)
+                .addGap(18, 18, 18)
+                .addComponent(jumpBtt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pageField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,26 +254,47 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(titlePanelLayout.createSequentialGroup()
-                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(typeLabel)
-                            .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameLabel)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(classLabel)
-                            .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirmBtt)
-                            .addComponent(searchBtt)))
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(titlePanelLayout.createSequentialGroup()
                         .addComponent(receivedDateLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(returnDateLabel))
+                        .addGap(121, 121, 121)
+                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(forwardBtt, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jumpBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addGroup(titlePanelLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(titlePanelLayout.createSequentialGroup()
+                                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(typeLabel)
+                                    .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(classLabel)
+                                    .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(titlePanelLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(titlePanelLayout.createSequentialGroup()
+                                    .addComponent(receivedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(returnDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(returnDateLabel)
+                                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(titlePanelLayout.createSequentialGroup()
+                                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nameLabel)
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(confirmBtt)
+                                    .addComponent(searchBtt))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backwardBtt)
+                            .addComponent(pageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         mainPanel.setPreferredSize(new java.awt.Dimension(1178, 490));
@@ -229,7 +322,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         cartPanel.setLayout(cartPanelLayout);
         cartPanelLayout.setHorizontalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
         cartPanelLayout.setVerticalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +362,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,12 +370,24 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void receivedDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivedDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receivedDateActionPerformed
+
+    private void returnDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_returnDateActionPerformed
+
+    private void forwardBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forwardBttActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,8 +425,225 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getBackLabel() {
+        return backLabel;
+    }
+
+    public void setBackLabel(JLabel backLabel) {
+        this.backLabel = backLabel;
+    }
+
+    public JButton getBackwardBtt() {
+        return backwardBtt;
+    }
+
+    public void setBackwardBtt(JButton backwardBtt) {
+        this.backwardBtt = backwardBtt;
+    }
+
+    public JPanel getCarCatalogPanel() {
+        return carCatalogPanel;
+    }
+
+    public void setCarCatalogPanel(JPanel carCatalogPanel) {
+        this.carCatalogPanel = carCatalogPanel;
+    }
+
+    public JComboBox<String> getCarClass() {
+        return carClass;
+    }
+
+    public void setCarClass(JComboBox<String> carClass) {
+        this.carClass = carClass;
+    }
+
+    public JComboBox<String> getCarType() {
+        return carType;
+    }
+
+    public void setCarType(JComboBox<String> carType) {
+        this.carType = carType;
+    }
+
+    public JPanel getCartPanel() {
+        return cartPanel;
+    }
+
+    public void setCartPanel(JPanel cartPanel) {
+        this.cartPanel = cartPanel;
+    }
+
+    public JScrollPane getCartScrollPane() {
+        return cartScrollPane;
+    }
+
+    public void setCartScrollPane(JScrollPane cartScrollPane) {
+        this.cartScrollPane = cartScrollPane;
+    }
+
+    public JLabel getClassLabel() {
+        return classLabel;
+    }
+
+    public void setClassLabel(JLabel classLabel) {
+        this.classLabel = classLabel;
+    }
+
+    public JButton getConfirmBtt() {
+        return confirmBtt;
+    }
+
+    public void setConfirmBtt(JButton confirmBtt) {
+        this.confirmBtt = confirmBtt;
+    }
+
+    public JButton getForwardBtt() {
+        return forwardBtt;
+    }
+
+    public void setForwardBtt(JButton forwardBtt) {
+        this.forwardBtt = forwardBtt;
+    }
+
+    public JButton getJumpBtt() {
+        return jumpBtt;
+    }
+
+    public void setJumpBtt(JButton jumpBtt) {
+        this.jumpBtt = jumpBtt;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void setMainPanel(JPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public void setNameField(JTextField nameField) {
+        this.nameField = nameField;
+    }
+
+    public JLabel getNameLabel() {
+        return nameLabel;
+    }
+
+    public void setNameLabel(JLabel nameLabel) {
+        this.nameLabel = nameLabel;
+    }
+
+    public JTextField getPageField() {
+        return pageField;
+    }
+
+    public void setPageField(JTextField pageField) {
+        this.pageField = pageField;
+    }
+
+    public JLabel getPageLabel() {
+        return pageLabel;
+    }
+
+    public void setPageLabel(JLabel pageLabel) {
+        this.pageLabel = pageLabel;
+    }
+
+    public JDatePicker getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(JDatePicker receivedDate) {
+        this.receivedDate = receivedDate;
+    }
+
+    public JLabel getReceivedDateLabel() {
+        return receivedDateLabel;
+    }
+
+    public void setReceivedDateLabel(JLabel receivedDateLabel) {
+        this.receivedDateLabel = receivedDateLabel;
+    }
+
+    public JDatePicker getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(JDatePicker returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public JLabel getReturnDateLabel() {
+        return returnDateLabel;
+    }
+
+    public void setReturnDateLabel(JLabel returnDateLabel) {
+        this.returnDateLabel = returnDateLabel;
+    }
+
+    public JButton getSearchBtt() {
+        return searchBtt;
+    }
+
+    public void setSearchBtt(JButton searchBtt) {
+        this.searchBtt = searchBtt;
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public void setTitleLabel(JLabel titleLabel) {
+        this.titleLabel = titleLabel;
+    }
+
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
+
+    public JLabel getTypeLabel() {
+        return typeLabel;
+    }
+
+    public void setTypeLabel(JLabel typeLabel) {
+        this.typeLabel = typeLabel;
+    }
+
+    public ArrayList<Car> getCar() {
+        return car;
+    }
+
+    public void setCar(ArrayList<Car> car) {
+        this.car = car;
+    }
+
+    public ArrayList<CarType> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(ArrayList<CarType> typeList) {
+        this.typeList = typeList;
+    }
+
+    public ArrayList<CarClassification> getClassList() {
+        return classList;
+    }
+
+    public void setClassList(ArrayList<CarClassification> classList) {
+        this.classList = classList;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
+    private javax.swing.JButton backwardBtt;
     private javax.swing.JPanel carCatalogPanel;
     private javax.swing.JComboBox<String> carClass;
     private javax.swing.JComboBox<String> carType;
@@ -329,10 +651,16 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     private javax.swing.JScrollPane cartScrollPane;
     private javax.swing.JLabel classLabel;
     private javax.swing.JButton confirmBtt;
+    private javax.swing.JButton forwardBtt;
+    private javax.swing.JButton jumpBtt;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField pageField;
+    private javax.swing.JLabel pageLabel;
+    private org.jdatepicker.JDatePicker receivedDate;
     private javax.swing.JLabel receivedDateLabel;
+    private org.jdatepicker.JDatePicker returnDate;
     private javax.swing.JLabel returnDateLabel;
     private javax.swing.JButton searchBtt;
     private javax.swing.JLabel titleLabel;
