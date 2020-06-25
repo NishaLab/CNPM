@@ -5,18 +5,16 @@
  */
 package DAO;
 
+import Model.CarBrand;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Model.CarClassification;
-
 /**
  *
  * @author LEGION
  */
-public class CarClassificationDao extends DAO {
-
-    public CarClassification getCarClassById(int key) {
-        CarClassification classs = new CarClassification();
+public class CarBrandDao extends DAO {
+        public CarBrand getCarBrandById(int key) {
+        CarBrand brand = new CarBrand();
         String sql = "Select * from tblcarclassification where id = ?";
         try {
             conn.setAutoCommit(false);
@@ -25,10 +23,10 @@ public class CarClassificationDao extends DAO {
             ResultSet rs = ps.executeQuery();
             conn.commit();
             if (rs.next()) {
-                classs.setId(rs.getInt("id"));
-                classs.setName(rs.getString("name"));
-                classs.setDesc(rs.getString("desc"));
-                return classs;
+                brand.setId(rs.getInt("id"));
+                brand.setName(rs.getString("name"));
+                brand.setDesc(rs.getString("desc"));
+                return brand;
             }
 
         } catch (Exception e) {
@@ -40,11 +38,11 @@ public class CarClassificationDao extends DAO {
             }
         }
 
-        return classs;
+        return brand;
     }
 
-    public boolean addCarClassification(CarClassification key) {
-        String warrant = "INSERT INTO tblcarclassification(name, desc) VALUES(?,?)";
+    public boolean addCarBrand(CarBrand key) {
+        String warrant = "INSERT INTO tblcontract(name, desc) VALUES(?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(warrant);
             ps.setString(1, key.getName());

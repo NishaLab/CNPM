@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import DAO.ClientDao;
 import Model.BookedCar;
 import Model.Car;
+import Model.CarBrand;
 import Model.CarClassification;
 import Model.CarType;
 import Model.Client;
@@ -93,21 +94,13 @@ public class SearchClientController {
                     client.setPhone(ctb.getValueAt(row, 4).toString());
                     client.setLicense(ctb.getValueAt(row, 5).toString());
                     client.setType(ctb.getValueAt(row, 6).toString());
-                    Staff staff = new Staff("hung", "hung", "Hung", "Receptionist");
-                    staff.setId(1);
-                    CarType type = new CarType(1, "Xe Dua", "Desc");
-                    CarClassification classs = new CarClassification(1, "A", "Desc");
-                    Car car = new Car("Volvo", "Volvo", "Xe moi", 1000000, "free", type, classs);
-                    car.setId(1);
-                    ArrayList<Penalty> pen = new ArrayList<>();
-                    Date a = new Date();
-                    BookedCar book;
-                    book = new BookedCar(a, a, car.getPrice(), 0, pen, car);
-                    ArrayList<BookedCar> bc = new ArrayList<>();
-                    bc.add(book);
-                    ContractViewFrm contract = new ContractViewFrm(client, staff, bc);
+//                    Staff staff = new Staff("hung", "hung", "Hung", "Receptionist");
+//                    staff.setId(1);
+//                    CarType type = new CarType(1, "Xe Dua", "Desc");
+//                    CarBrand brand = new CarBrand(1, "Xe Dua", "Desc");
+//                    ContractViewFrm contract = new ContractViewFrm(client, staff, );
                     frame.dispose();
-                    contract.setVisible(true);
+//                    contract.setVisible(true);
                 } catch (Exception f) {
                     f.printStackTrace();
 

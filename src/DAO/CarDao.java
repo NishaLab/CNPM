@@ -21,6 +21,7 @@ public class CarDao extends DAO {
         ArrayList<Car> res = new ArrayList<Car>();
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
+        CarBrandDao brandDao = new CarBrandDao();
         String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND state = 'Free' AND name LIKE ? "
                 + "AND id NOT IN(SELECT id FROM tblbookedcar WHERE receivedDate > ? AND returnDate < ?) ";
         try {
@@ -41,7 +42,7 @@ public class CarDao extends DAO {
                 car.setId(rs.getInt("id"));
                 car.setName(rs.getString("name"));
                 car.setPrice(rs.getInt("price"));
-                car.setBrand(rs.getString("brand"));
+                car.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
                 car.setDesc(rs.getString("desc"));
                 car.setState(rs.getString("state"));
                 car.setRegPlate(rs.getString("reg_plate"));
