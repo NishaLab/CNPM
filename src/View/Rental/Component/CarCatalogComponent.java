@@ -28,9 +28,9 @@ public class CarCatalogComponent extends javax.swing.JPanel {
         initComponents();
         this.nameLabel.setText(car.getName());
         this.priceLabel.setText(car.getPrice() + "");
-        File file = new File("src/View/Rental/CarImage/" + car.getId() + ".png");
+        File file = new File("src/View/Rental/CarImage/" + car.getId() + ".jpg");
         if (file.exists()) {
-            ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".png");
+            ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".jpg");
             Image image = icon.getImage();
             Image newimg = image.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
             ImageIcon real = new ImageIcon(newimg);

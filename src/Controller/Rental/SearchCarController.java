@@ -38,6 +38,8 @@ public class SearchCarController {
     public void init() {
         setUp();
         setSearchAction();
+        setBackwardAction();
+        setForwardAction();
     }
 
     public void setUp() {
@@ -63,7 +65,7 @@ public class SearchCarController {
         JButton search = this.frame.getSearchBtt();
         ArrayList<CarType> ct = this.frame.getTypeList();
         ArrayList<CarClassification> cc = this.frame.getClassList();
-        JLabel page = new JLabel();
+        JLabel page = this.frame.getPageLabel();
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,8 +73,6 @@ public class SearchCarController {
                 GregorianCalendar returnn = (GregorianCalendar) frame.getReturnDate().getModel().getValue();
                 Date receivedDate = received.getGregorianChange();
                 Date returnDate = returnn.getGregorianChange();
-                System.out.println(receivedDate);
-                System.out.println(returnDate);
                 String name = frame.getNameField().getText().trim();
                 String carType = frame.getCarType().getSelectedItem().toString();
                 String carClass = frame.getCarClass().getSelectedItem().toString();
@@ -97,19 +97,72 @@ public class SearchCarController {
                     try {
                         frame.setCar(dao.searchCar(receivedDate, returnDate, name, typeId, classId));
                         ArrayList<Car> car = frame.getCar();
-                        page.setText("1" + "/" + Math.ceil(car.size() / 6));
+                        page.setText("1" + "/" + (int) Math.ceil((double) car.size() / 6));
                         frame.getCarCatalogPanel().removeAll();
-                        for (Car car1 : car) {
-                            frame.getCarCatalogPanel().add(new CarCatalogComponent(car1));
+                        for (int i = 0, j = 0; i < 6 && j < car.size(); i++, j++) {
+                            frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
                         }
                         frame.getCarCatalogPanel().revalidate();
                         frame.getCarCatalogPanel().repaint();
+                        for (Car car1 : car) {
+                            System.out.println(car1);
+                        }
                     } catch (Exception f) {
                         f.printStackTrace();
                     }
 
                 }
 
+            }
+        });
+    }
+
+    public void setForwardAction() {
+        JButton forward = this.frame.getForwardBtt();
+        JLabel pageLabel = this.frame.getPageLabel();
+        forward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Car> car = frame.getCar();
+                String[] tmp = pageLabel.getText().split("/");
+                int page = Integer.parseInt(tmp[0]) + 1;
+                int totalpage = Integer.parseInt(tmp[1]);
+                if (page > totalpage) {
+                    return;
+                }
+                pageLabel.setText(page + "/" + tmp[1]);
+                int offset = (page - 1) * 6;
+                frame.getCarCatalogPanel().removeAll();
+                for (int i = offset; i < offset + 6 && i < car.size(); i++) {
+                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
+                }
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
+    }
+
+    public void setBackwardAction() {
+        JButton backward = this.frame.getBackwardBtt();
+        JLabel pageLabel = this.frame.getPageLabel();
+        backward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Car> car = frame.getCar();
+                String[] tmp = pageLabel.getText().split("/");
+                int page = Integer.parseInt(tmp[0]) - 1;
+                int totalpage = Integer.parseInt(tmp[1]);
+                if (page < 1) {
+                    return;
+                }
+                pageLabel.setText(page + "/" + tmp[1]);
+                int offset = (page - 1) * 6;
+                frame.getCarCatalogPanel().removeAll();
+                for (int i = offset; i < offset + 6 && i < car.size(); i++) {
+                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
+                }
+                frame.revalidate();
+                frame.repaint();
             }
         });
     }
