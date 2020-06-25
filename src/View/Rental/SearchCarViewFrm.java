@@ -5,6 +5,12 @@
  */
 package View.Rental;
 
+import View.Rental.Component.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+
 /**
  *
  * @author LEGION
@@ -15,7 +21,64 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
      * Creates new form ReceptionistViewFrm
      */
     public SearchCarViewFrm() {
+
         initComponents();
+        CarCatalogComponent a1 = new CarCatalogComponent();
+        CarCatalogComponent a2 = new CarCatalogComponent();
+        CarCatalogComponent a3 = new CarCatalogComponent();
+        CarCatalogComponent a4 = new CarCatalogComponent();
+        CarCatalogComponent a5 = new CarCatalogComponent();
+        CarCatalogComponent a6 = new CarCatalogComponent();
+        CarCatalogComponent a7 = new CarCatalogComponent();
+        CarCatalogComponent a8 = new CarCatalogComponent();
+        mainPanel.setLayout(new BorderLayout());
+        carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
+        carCatalogPanel.setSize(851, 470);
+        carCatalogPanel.add(a1);
+        carCatalogPanel.add(a2);
+        carCatalogPanel.add(a3);
+        carCatalogPanel.add(a4);
+        carCatalogPanel.add(a5);
+        carCatalogPanel.add(a6);
+        carCatalogPanel.add(a7);
+        carCatalogPanel.add(a8);
+        carCatalogPanel.revalidate();
+        carCatalogPanel.repaint();
+        CartComponent b1 = new CartComponent();
+        CartComponent b2 = new CartComponent();
+        CartComponent b3 = new CartComponent();
+        CartComponent b4 = new CartComponent();
+        CartComponent b5 = new CartComponent();
+        CartComponent b6 = new CartComponent();
+        CartComponent b7 = new CartComponent();
+        CartComponent b8 = new CartComponent();
+        CartComponent b9 = new CartComponent();
+        CartComponent b10 = new CartComponent();
+        CartComponent b11 = new CartComponent();
+        CartComponent b12 = new CartComponent();
+        CartComponent b13 = new CartComponent();
+        CartComponent b14 = new CartComponent();
+        CartComponent b15 = new CartComponent();
+        CartComponent b16 = new CartComponent();
+        cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.PAGE_AXIS));
+        cartPanel.add(b1);
+        cartPanel.add(b2);
+        cartPanel.add(b3);
+        cartPanel.add(b4);
+        cartPanel.add(b5);
+        cartPanel.add(b6);
+        cartPanel.add(b7);
+        cartPanel.add(b8);
+        cartPanel.add(b9);
+        cartPanel.add(b10);
+        cartPanel.add(b11);
+        cartPanel.add(b12);
+        cartPanel.add(b13);
+        cartPanel.add(b14);
+        cartPanel.add(b15);
+        cartPanel.add(b16);
+        cartPanel.revalidate();
+        cartPanel.repaint();
     }
 
     /**
@@ -28,7 +91,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         titlePanel = new javax.swing.JPanel();
-        cartPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         receivedDateLabel = new javax.swing.JLabel();
         returnDateLabel = new javax.swing.JLabel();
@@ -41,20 +103,12 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         confirmBtt = new javax.swing.JButton();
         searchBtt = new javax.swing.JButton();
         backLabel = new javax.swing.JLabel();
-        carPanel = new javax.swing.JScrollPane();
+        mainPanel = new javax.swing.JPanel();
+        carCatalogPanel = new javax.swing.JPanel();
+        cartScrollPane = new javax.swing.JScrollPane();
+        cartPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
-        titlePanel.setLayout(titlePanelLayout);
-        titlePanelLayout.setHorizontalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
-        );
-        titlePanelLayout.setVerticalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
-        );
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         titleLabel.setText("Search Car ");
@@ -89,30 +143,30 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backLabel.setText("Go Back");
 
-        javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
-        cartPanel.setLayout(cartPanelLayout);
-        cartPanelLayout.setHorizontalGroup(
-            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cartPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
+        titlePanel.setLayout(titlePanelLayout);
+        titlePanelLayout.setHorizontalGroup(
+            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(receivedDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(returnDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(151, 151, 151)
-                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(classLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cartPanelLayout.createSequentialGroup()
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(titlePanelLayout.createSequentialGroup()
                         .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(searchBtt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(confirmBtt))
-                    .addGroup(cartPanelLayout.createSequentialGroup()
+                    .addGroup(titlePanelLayout.createSequentialGroup()
                         .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,64 +176,108 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                 .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
         );
-        cartPanelLayout.setVerticalGroup(
-            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cartPanelLayout.createSequentialGroup()
+        titlePanelLayout.setVerticalGroup(
+            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cartPanelLayout.createSequentialGroup()
-                        .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(titlePanelLayout.createSequentialGroup()
+                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(typeLabel)
                             .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameLabel)
                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
-                        .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(classLabel)
                             .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmBtt)
                             .addComponent(searchBtt)))
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(cartPanelLayout.createSequentialGroup()
+                    .addGroup(titlePanelLayout.createSequentialGroup()
                         .addComponent(receivedDateLabel)
                         .addGap(18, 18, 18)
                         .addComponent(returnDateLabel))
-                    .addGroup(cartPanelLayout.createSequentialGroup()
+                    .addGroup(titlePanelLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
 
-        carPanel.setMinimumSize(new java.awt.Dimension(281, 470));
-        carPanel.setPreferredSize(new java.awt.Dimension(281, 470));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1178, 490));
+
+        carCatalogPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        carCatalogPanel.setMaximumSize(new java.awt.Dimension(851, 470));
+        carCatalogPanel.setMinimumSize(new java.awt.Dimension(851, 470));
+
+        javax.swing.GroupLayout carCatalogPanelLayout = new javax.swing.GroupLayout(carCatalogPanel);
+        carCatalogPanel.setLayout(carCatalogPanelLayout);
+        carCatalogPanelLayout.setHorizontalGroup(
+            carCatalogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        carCatalogPanelLayout.setVerticalGroup(
+            carCatalogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+
+        cartScrollPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cartScrollPane.setMinimumSize(new java.awt.Dimension(281, 470));
+        cartScrollPane.setPreferredSize(new java.awt.Dimension(281, 470));
+
+        javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
+        cartPanel.setLayout(cartPanelLayout);
+        cartPanelLayout.setHorizontalGroup(
+            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+        cartPanelLayout.setVerticalGroup(
+            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 466, Short.MAX_VALUE)
+        );
+
+        cartScrollPane.setViewportView(cartPanel);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(carCatalogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cartScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cartScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carCatalogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(carPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addComponent(cartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(carPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -224,12 +322,14 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
+    private javax.swing.JPanel carCatalogPanel;
     private javax.swing.JComboBox<String> carClass;
-    private javax.swing.JScrollPane carPanel;
     private javax.swing.JComboBox<String> carType;
     private javax.swing.JPanel cartPanel;
+    private javax.swing.JScrollPane cartScrollPane;
     private javax.swing.JLabel classLabel;
     private javax.swing.JButton confirmBtt;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel receivedDateLabel;

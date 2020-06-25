@@ -28,17 +28,13 @@ public class CarCatalogComponent extends javax.swing.JPanel {
         initComponents();
         this.nameLabel.setText(car.getName());
         this.priceLabel.setText(car.getPrice() + "");
-        try {
-            File file = new File("src/View/SinhVien/ProfilePicture/" + car.getId() + ".png");
-            if (file.exists()) {
-                ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".png");
-                Image image = icon.getImage();
-                Image newimg = image.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon real = new ImageIcon(newimg);
-                this.imageLabel.setIcon(real);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        File file = new File("src/View/Rental/CarImage/" + car.getId() + ".png");
+        if (file.exists()) {
+            ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".png");
+            Image image = icon.getImage();
+            Image newimg = image.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon real = new ImageIcon(newimg);
+            this.imageLabel.setIcon(real);
         }
 
     }
@@ -55,6 +51,9 @@ public class CarCatalogComponent extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+
+        setBorder(new javax.swing.border.MatteBorder(null));
+        setInheritsPopupMenu(true);
 
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/CarImage/defaultcar.jpg"))); // NOI18N
@@ -77,10 +76,9 @@ public class CarCatalogComponent extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                        .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

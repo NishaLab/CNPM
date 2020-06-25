@@ -6,6 +6,8 @@
 package View.Rental.Component;
 
 import Model.Car;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -21,12 +23,17 @@ public class CartComponent extends javax.swing.JPanel {
      */
     public CartComponent() {
         initComponents();
+        ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/defaultcar.jpg");
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(93, 59, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon real = new ImageIcon(newimg);
+        this.imageLabel.setIcon(real);
     }
 
     public CartComponent(Car car) {
         initComponents();
         this.nameLabel.setText(car.getName());
-        this.priceLabel.setText(car.getPrice()+"");
+        this.priceLabel.setText(car.getPrice() + "");
     }
 
     /**
@@ -43,18 +50,17 @@ public class CartComponent extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(32767, 470));
-        setPreferredSize(new java.awt.Dimension(470, 30));
+        setPreferredSize(new java.awt.Dimension(343, 60));
 
-        nameLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Price");
 
-        priceLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("Name");
 
         imageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        imageLabel.setText("Image");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,22 +68,21 @@ public class CartComponent extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceLabel)
+                    .addComponent(nameLabel)))
+            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
