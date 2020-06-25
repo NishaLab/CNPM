@@ -50,7 +50,6 @@ public class SearchClientController {
 
     public void init() {
         setActionSearch();
-        setActionConfirm();
         setAddClientAction();
     }
 
@@ -78,36 +77,7 @@ public class SearchClientController {
         });
     }
 
-    public void setActionConfirm() {
-        JButton confirm = this.frame.getConfirmButton();
-        JTable ctb = this.frame.getjTable1();
-        Client client = this.frame.getClient();
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int row = ctb.getSelectedRow();
-                    client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
-                    client.setName(ctb.getValueAt(row, 1).toString());
-                    client.setCCCD(ctb.getValueAt(row, 2).toString());
-                    client.setAddress(ctb.getValueAt(row, 3).toString());
-                    client.setPhone(ctb.getValueAt(row, 4).toString());
-                    client.setLicense(ctb.getValueAt(row, 5).toString());
-                    client.setType(ctb.getValueAt(row, 6).toString());
-//                    Staff staff = new Staff("hung", "hung", "Hung", "Receptionist");
-//                    staff.setId(1);
-//                    CarType type = new CarType(1, "Xe Dua", "Desc");
-//                    CarBrand brand = new CarBrand(1, "Xe Dua", "Desc");
-//                    ContractViewFrm contract = new ContractViewFrm(client, staff, );
-                    frame.dispose();
-//                    contract.setVisible(true);
-                } catch (Exception f) {
-                    f.printStackTrace();
 
-                }
-            }
-        });
-    }
 
     public void setAddClientAction() {
         JLabel add = this.frame.getAddLabel();

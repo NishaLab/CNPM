@@ -10,6 +10,7 @@ import Model.Bill;
 import DAO.ContractDao;
 import DAO.BillDao;
 import View.Rental.BillViewFrm;
+import View.Rental.SearchCarViewFrm;
 import View.Rental.ReceptionistViewFrm;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -70,7 +71,7 @@ public class BillController {
                     contractDao.addContract(contract);
                     billDao.addBill(bill);
                     JOptionPane.showMessageDialog(null, "Rent Car Success", "Success", 1);
-                    ReceptionistViewFrm rep = new ReceptionistViewFrm();
+                    ReceptionistViewFrm rep = new ReceptionistViewFrm(frame.getStaff());
                     frame.dispose();
                     rep.setVisible(true);
 

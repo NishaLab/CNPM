@@ -8,6 +8,7 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Model.CarType;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,6 +41,27 @@ public class CarTypeDao extends DAO {
         }
 
         return type;
+
+    }
+
+    public ArrayList<CarType> getAllCarType() {
+        ArrayList<CarType> res = new ArrayList();
+        String sql = "Select * from tblcartype";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                CarType type = new CarType();
+                type.setId(rs.getInt("id"));
+                type.setName(rs.getString("name"));
+                type.setDesc(rs.getString("desc"));
+                res.add(type);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return res;
 
     }
 
