@@ -6,6 +6,9 @@
 package View.Rental.Component;
 
 import Model.Car;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -24,7 +27,20 @@ public class CarCatalogComponent extends javax.swing.JPanel {
     public CarCatalogComponent(Car car) {
         initComponents();
         this.nameLabel.setText(car.getName());
-        this.priceLabel.setText(car.getPrice()+"");
+        this.priceLabel.setText(car.getPrice() + "");
+        try {
+            File file = new File("src/View/SinhVien/ProfilePicture/" + car.getId() + ".png");
+            if (file.exists()) {
+                ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".png");
+                Image image = icon.getImage();
+                Image newimg = image.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon real = new ImageIcon(newimg);
+                this.imageLabel.setIcon(real);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

@@ -20,10 +20,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="imageLabel" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="nameLabel" pref="174" max="32767" attributes="0"/>
-                      <Component id="priceLabel" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="nameLabel" max="32767" attributes="0"/>
+                  <Component id="priceLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>

@@ -29,10 +29,21 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
 
         titlePanel = new javax.swing.JPanel();
         cartPanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        receivedDateLabel = new javax.swing.JLabel();
+        returnDateLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
+        classLabel = new javax.swing.JLabel();
+        carType = new javax.swing.JComboBox<>();
+        carClass = new javax.swing.JComboBox<>();
+        nameLabel = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        confirmBtt = new javax.swing.JButton();
+        searchBtt = new javax.swing.JButton();
+        backLabel = new javax.swing.JLabel();
         carPanel = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 600));
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -45,15 +56,98 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
             .addGap(0, 466, Short.MAX_VALUE)
         );
 
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        titleLabel.setText("Search Car ");
+
+        receivedDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        receivedDateLabel.setText("Received Date");
+
+        returnDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        returnDateLabel.setText("Return Date");
+
+        typeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        typeLabel.setText("Type");
+
+        classLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        classLabel.setText("Class");
+
+        carType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        carClass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        nameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        nameLabel.setText("Name");
+
+        nameField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        confirmBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        confirmBtt.setText("Confirm");
+
+        searchBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        searchBtt.setText("Search");
+
+        backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        backLabel.setText("Go Back");
+
         javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
         cartPanel.setLayout(cartPanelLayout);
         cartPanelLayout.setHorizontalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1011, Short.MAX_VALUE)
+            .addGroup(cartPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(receivedDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(151, 151, 151)
+                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(classLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cartPanelLayout.createSequentialGroup()
+                        .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(searchBtt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmBtt))
+                    .addGroup(cartPanelLayout.createSequentialGroup()
+                        .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(104, 104, 104)
+                .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
         cartPanelLayout.setVerticalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(cartPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cartPanelLayout.createSequentialGroup()
+                        .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(typeLabel)
+                            .addComponent(carClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabel)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(classLabel)
+                            .addComponent(carType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmBtt)
+                            .addComponent(searchBtt)))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(cartPanelLayout.createSequentialGroup()
+                        .addComponent(receivedDateLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(returnDateLabel))
+                    .addGroup(cartPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
 
         carPanel.setMinimumSize(new java.awt.Dimension(281, 470));
@@ -129,8 +223,20 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLabel;
+    private javax.swing.JComboBox<String> carClass;
     private javax.swing.JScrollPane carPanel;
+    private javax.swing.JComboBox<String> carType;
     private javax.swing.JPanel cartPanel;
+    private javax.swing.JLabel classLabel;
+    private javax.swing.JButton confirmBtt;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel receivedDateLabel;
+    private javax.swing.JLabel returnDateLabel;
+    private javax.swing.JButton searchBtt;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }
