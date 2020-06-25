@@ -6,6 +6,8 @@
 package View.Rental.Component;
 
 import Model.Car;
+import View.Rental.SearchCarViewFrm;
+import Controller.Rental.CarCatalogComponentController;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -17,6 +19,9 @@ import javax.swing.JLabel;
  */
 public class CarCatalogComponent extends javax.swing.JPanel {
 
+    private SearchCarViewFrm frame;
+    private Car car = new Car();
+
     /**
      * Creates new form CarCatalogComponent
      */
@@ -24,8 +29,12 @@ public class CarCatalogComponent extends javax.swing.JPanel {
         initComponents();
     }
 
-    public CarCatalogComponent(Car car) {
+    public CarCatalogComponent(Car car, SearchCarViewFrm frame) {
         initComponents();
+        this.frame = frame;
+        this.car = car;
+        CarCatalogComponentController a = new CarCatalogComponentController(this);
+        a.init();
         this.nameLabel.setText(car.getName());
         this.priceLabel.setText(car.getPrice() + "");
         File file = new File("src/View/Rental/CarImage/" + car.getId() + ".jpg");
@@ -116,7 +125,23 @@ public class CarCatalogComponent extends javax.swing.JPanel {
     public void setPriceLabel(JLabel priceLabel) {
         this.priceLabel = priceLabel;
     }
-    private Car car = new Car();
+
+    public SearchCarViewFrm getFrame() {
+        return frame;
+    }
+
+    public void setFrame(SearchCarViewFrm frame) {
+        this.frame = frame;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel nameLabel;

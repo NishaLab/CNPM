@@ -10,6 +10,9 @@ import Model.Car;
 import Model.CarClassification;
 import Model.CarType;
 import Controller.Rental.SearchCarController;
+import Model.BookedCar;
+import Model.Client;
+import Model.Staff;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -32,69 +35,74 @@ import org.jdatepicker.UtilDateModel;
 public class SearchCarViewFrm extends javax.swing.JFrame {
 
     private ArrayList<Car> car = new ArrayList<>();
-    private ArrayList<Car> bookedCar = new ArrayList<>();
+    private ArrayList<Car> chosen = new ArrayList<>();
+    private ArrayList<BookedCar> bookedCar = new ArrayList<>();
     private ArrayList<CarType> typeList = new ArrayList<>();
     private ArrayList<CarClassification> classList = new ArrayList<>();
+    private Client client;
+    private Staff staff;
 
     public SearchCarViewFrm() {
 
         initComponents();
         SearchCarController ctrl = new SearchCarController(this);
         ctrl.init();
-        CarCatalogComponent a1 = new CarCatalogComponent();
-        CarCatalogComponent a2 = new CarCatalogComponent();
-        CarCatalogComponent a3 = new CarCatalogComponent();
-        CarCatalogComponent a4 = new CarCatalogComponent();
-        CarCatalogComponent a5 = new CarCatalogComponent();
-        CarCatalogComponent a6 = new CarCatalogComponent();
-        CarCatalogComponent a7 = new CarCatalogComponent();
-        CarCatalogComponent a8 = new CarCatalogComponent();
+        staff = new Staff("Hung", "12435", "Nguyen Duc Hung", "Receptionist");
+        staff.setId(1);
+//        CarCatalogComponent a1 = new CarCatalogComponent();
+//        CarCatalogComponent a2 = new CarCatalogComponent();
+//        CarCatalogComponent a3 = new CarCatalogComponent();
+//        CarCatalogComponent a4 = new CarCatalogComponent();
+//        CarCatalogComponent a5 = new CarCatalogComponent();
+//        CarCatalogComponent a6 = new CarCatalogComponent();
+//        CarCatalogComponent a7 = new CarCatalogComponent();
+//        CarCatalogComponent a8 = new CarCatalogComponent();
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         carCatalogPanel.setSize(851, 470);
-        carCatalogPanel.add(a1);
-        carCatalogPanel.add(a2);
-        carCatalogPanel.add(a3);
-        carCatalogPanel.add(a4);
-        carCatalogPanel.add(a5);
-        carCatalogPanel.add(a6);
-        carCatalogPanel.add(a7);
-        carCatalogPanel.add(a8);
-        carCatalogPanel.revalidate();
-        carCatalogPanel.repaint();
+//        carCatalogPanel.add(a1);
+//        carCatalogPanel.add(a2);
+//        carCatalogPanel.add(a3);
+//        carCatalogPanel.add(a4);
+//        carCatalogPanel.add(a5);
+//        carCatalogPanel.add(a6);
+//        carCatalogPanel.add(a7);
+//        carCatalogPanel.add(a8);
+//        carCatalogPanel.revalidate();
+//        carCatalogPanel.repaint();
         CartComponent b1 = new CartComponent();
-        CartComponent b2 = new CartComponent();
-        CartComponent b3 = new CartComponent();
-        CartComponent b4 = new CartComponent();
-        CartComponent b5 = new CartComponent();
-        CartComponent b6 = new CartComponent();
-        CartComponent b7 = new CartComponent();
-        CartComponent b8 = new CartComponent();
-        CartComponent b9 = new CartComponent();
-        CartComponent b10 = new CartComponent();
-        CartComponent b11 = new CartComponent();
-        CartComponent b12 = new CartComponent();
-        CartComponent b13 = new CartComponent();
-        CartComponent b14 = new CartComponent();
-        CartComponent b15 = new CartComponent();
-        CartComponent b16 = new CartComponent();
+//        CartComponent b2 = new CartComponent();
+//        CartComponent b3 = new CartComponent();
+//        CartComponent b4 = new CartComponent();
+//        CartComponent b5 = new CartComponent();
+//        CartComponent b6 = new CartComponent();
+//        CartComponent b7 = new CartComponent();
+//        CartComponent b8 = new CartComponent();
+//        CartComponent b9 = new CartComponent();
+//        CartComponent b10 = new CartComponent();
+//        CartComponent b11 = new CartComponent();
+//        CartComponent b12 = new CartComponent();
+//        CartComponent b13 = new CartComponent();
+//        CartComponent b14 = new CartComponent();
+//        CartComponent b15 = new CartComponent();
+//        CartComponent b16 = new CartComponent();
         cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.PAGE_AXIS));
         cartPanel.add(b1);
-        cartPanel.add(b2);
-        cartPanel.add(b3);
-        cartPanel.add(b4);
-        cartPanel.add(b5);
-        cartPanel.add(b6);
-        cartPanel.add(b7);
-        cartPanel.add(b8);
-        cartPanel.add(b9);
-        cartPanel.add(b10);
-        cartPanel.add(b11);
-        cartPanel.add(b12);
-        cartPanel.add(b13);
-        cartPanel.add(b14);
-        cartPanel.add(b15);
-        cartPanel.add(b16);
+//        cartPanel.add(b2);
+//        cartPanel.add(b3);
+//        cartPanel.add(b4);
+//        cartPanel.add(b5);
+//        cartPanel.add(b6);
+//        cartPanel.add(b7);
+//        cartPanel.add(b8);
+//        cartPanel.add(b9);
+//        cartPanel.add(b10);
+//        cartPanel.add(b11);
+//        cartPanel.add(b12);
+//        cartPanel.add(b13);
+//        cartPanel.add(b14);
+//        cartPanel.add(b15);
+//        cartPanel.add(b16);
         cartPanel.revalidate();
         cartPanel.repaint();
     }
@@ -232,7 +240,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(confirmBtt))
                     .addGroup(titlePanelLayout.createSequentialGroup()
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -325,7 +333,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         cartPanel.setLayout(cartPanelLayout);
         cartPanelLayout.setHorizontalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 346, Short.MAX_VALUE)
         );
         cartPanelLayout.setVerticalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,8 +350,8 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(carCatalogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cartScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addComponent(cartScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +373,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1199, Short.MAX_VALUE)))
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1257, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -644,12 +652,36 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         this.classList = classList;
     }
 
-    public ArrayList<Car> getBookedCar() {
+    public ArrayList<BookedCar> getBookedCar() {
         return bookedCar;
     }
 
-    public void setBookedCar(ArrayList<Car> bookedCar) {
+    public void setBookedCar(ArrayList<BookedCar> bookedCar) {
         this.bookedCar = bookedCar;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public ArrayList<Car> getChosen() {
+        return chosen;
+    }
+
+    public void setChosen(ArrayList<Car> chosen) {
+        this.chosen = chosen;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

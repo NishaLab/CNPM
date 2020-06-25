@@ -10,9 +10,13 @@ import Model.CarType;
 import Model.CarClassification;
 import View.Rental.SearchCarViewFrm;
 import View.Rental.Component.*;
+import View.Rental.SearchClientViewFrm;
+import View.Rental.ContractViewFrm;
 import DAO.CarDao;
 import DAO.CarTypeDao;
 import DAO.CarClassificationDao;
+import Model.BookedCar;
+import Model.Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -40,6 +46,8 @@ public class SearchCarController {
         setSearchAction();
         setBackwardAction();
         setForwardAction();
+        setJumpAction();
+        setConfirmAction();
     }
 
     public void setUp() {
@@ -71,6 +79,10 @@ public class SearchCarController {
             public void actionPerformed(ActionEvent e) {
                 GregorianCalendar received = (GregorianCalendar) frame.getReceivedDate().getModel().getValue();
                 GregorianCalendar returnn = (GregorianCalendar) frame.getReturnDate().getModel().getValue();
+                if (received == null || returnn == null) {
+                    JOptionPane.showMessageDialog(null, "Please Select Received Date and Return Date", "Try Again", 1);
+                    return;
+                }
                 Date receivedDate = received.getGregorianChange();
                 Date returnDate = returnn.getGregorianChange();
                 String name = frame.getNameField().getText().trim();
@@ -90,29 +102,20 @@ public class SearchCarController {
                         break;
                     }
                 }
-                if (receivedDate == null || returnDate == null) {
-                    JOptionPane.showMessageDialog(null, "Please Select Received Date and Return Date", "Try Again", 1);
-                } else {
-                    CarDao dao = new CarDao();
-                    try {
-                        frame.setCar(dao.searchCar(receivedDate, returnDate, name, typeId, classId));
-                        ArrayList<Car> car = frame.getCar();
-                        page.setText("1" + "/" + (int) Math.ceil((double) car.size() / 6));
-                        frame.getCarCatalogPanel().removeAll();
-                        for (int i = 0, j = 0; i < 6 && j < car.size(); i++, j++) {
-                            frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
-                        }
-                        frame.getCarCatalogPanel().revalidate();
-                        frame.getCarCatalogPanel().repaint();
-                        for (Car car1 : car) {
-                            System.out.println(car1);
-                        }
-                    } catch (Exception f) {
-                        f.printStackTrace();
+                CarDao dao = new CarDao();
+                try {
+                    frame.setCar(dao.searchCar(receivedDate, returnDate, name, typeId, classId));
+                    ArrayList<Car> car = frame.getCar();
+                    page.setText("1" + "/" + (int) Math.ceil((double) car.size() / 6));
+                    frame.getCarCatalogPanel().removeAll();
+                    for (int i = 0, j = 0; i < 6 && j < car.size(); i++, j++) {
+                        frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i), frame));
                     }
-
+                    frame.getCarCatalogPanel().revalidate();
+                    frame.getCarCatalogPanel().repaint();
+                } catch (Exception f) {
+                    f.printStackTrace();
                 }
-
             }
         });
     }
@@ -134,7 +137,7 @@ public class SearchCarController {
                 int offset = (page - 1) * 6;
                 frame.getCarCatalogPanel().removeAll();
                 for (int i = offset; i < offset + 6 && i < car.size(); i++) {
-                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
+                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i), frame));
                 }
                 frame.revalidate();
                 frame.repaint();
@@ -159,10 +162,84 @@ public class SearchCarController {
                 int offset = (page - 1) * 6;
                 frame.getCarCatalogPanel().removeAll();
                 for (int i = offset; i < offset + 6 && i < car.size(); i++) {
-                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i)));
+                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i), frame));
                 }
                 frame.revalidate();
                 frame.repaint();
+            }
+        });
+    }
+
+    public void setJumpAction() {
+        JButton jump = this.frame.getJumpBtt();
+        JTextField page = this.frame.getPageField();
+        JLabel pageLabel = this.frame.getPageLabel();
+        jump.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Car> car = frame.getCar();
+                int pageNum = 0;
+                try {
+                    pageNum = Integer.parseInt(page.getText());
+                } catch (Exception f) {
+                    JOptionPane.showMessageDialog(null, "Wrong Page Number", "Try Again", 1);
+                    return;
+                }
+                String[] tmp = pageLabel.getText().split("/");
+                int totalpage = Integer.parseInt(tmp[1]);
+                if (pageNum < 1) {
+                    pageNum = 0;
+                } else if (pageNum > totalpage) {
+                    pageNum = totalpage;
+                }
+                pageLabel.setText(pageNum + "/" + totalpage);
+                int offset = (pageNum - 1) * 6;
+                frame.getCarCatalogPanel().removeAll();
+                for (int i = offset; i < offset + 6 && i < car.size(); i++) {
+                    frame.getCarCatalogPanel().add(new CarCatalogComponent(car.get(i), frame));
+                }
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
+    }
+
+    public void setConfirmAction() {
+        JButton confirmBtt = this.frame.getConfirmBtt();
+        confirmBtt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchClientViewFrm scvf = new SearchClientViewFrm();
+                JButton confirm = scvf.getConfirmButton();
+                JTable ctb = scvf.getjTable1();
+                Client client = new Client();
+                frame.setVisible(false);
+                scvf.setVisible(true);
+                confirm.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            int row = ctb.getSelectedRow();
+                            client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
+                            client.setName(ctb.getValueAt(row, 1).toString());
+                            client.setCCCD(ctb.getValueAt(row, 2).toString());
+                            client.setAddress(ctb.getValueAt(row, 3).toString());
+                            client.setPhone(ctb.getValueAt(row, 4).toString());
+                            client.setLicense(ctb.getValueAt(row, 5).toString());
+                            client.setType(ctb.getValueAt(row, 6).toString());
+                            scvf.dispose();
+                            for (BookedCar bookedCar : frame.getBookedCar()) {
+                                System.out.println(bookedCar);
+                            }
+                            ContractViewFrm contract = new ContractViewFrm(client, frame.getStaff(), frame.getBookedCar());
+                            frame.dispose();
+                            contract.setVisible(true);
+                        } catch (Exception f) {
+                            JOptionPane.showMessageDialog(null, "Choose a client", "Try Again", 1);
+                            return;
+                        }
+                    }
+                });
             }
         });
     }
