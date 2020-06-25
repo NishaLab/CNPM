@@ -34,19 +34,19 @@ import javax.swing.table.DefaultTableModel;
  * @author LEGION
  */
 public class ContractController {
-    
+
     private ContractViewFrm frame;
-    
+
     public ContractController(ContractViewFrm frame) {
         this.frame = frame;
     }
-    
+
     public void init() {
         initUI();
         addWarrantAction();
         addConfirmLabelAction();
     }
-    
+
     public void initUI() {
         DecimalFormat formatter = new DecimalFormat("#,###");
         DefaultTableModel ctb = (DefaultTableModel) this.frame.getCarTable().getModel();
@@ -66,9 +66,8 @@ public class ContractController {
         long total = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (BookedCar bookedCar : bc) {
-            long days = (bookedCar.getReturnDate().getTime() - bookedCar.getReceivedDate().getTime()) / (60 * 60 * 24 * 1000) + 1;
-            System.out.println(days);
-            long amount = bookedCar.getCar().getPrice() * days;
+            long amount = 0;
+            amount += bookedCar.getTotalPrice();
             total += amount;
             Object[] tmp;
             tmp = new Object[]{bookedCar.getCar().getId(), bookedCar.getCar().getName(), sdf.format(bookedCar.getReceivedDate()),
@@ -86,7 +85,7 @@ public class ContractController {
         Date date = new Date();
         this.frame.getDate().setText(date.toString());
     }
-    
+
     public void addWarrantAction() {
         JLabel add = this.frame.getAddLabel1();
         DefaultTableModel cwtb = (DefaultTableModel) this.frame.getWarrantTable().getModel();
@@ -126,11 +125,11 @@ public class ContractController {
                         frame.setVisible(true);
                     }
                 });
-                
+
             }
         });
     }
-    
+
     public void addConfirmLabelAction() {
         JLabel confirm = this.frame.getConfirmLabel();
         confirm.addMouseListener(new MouseAdapter() {
@@ -150,5 +149,5 @@ public class ContractController {
             }
         });
     }
-    
+
 }
