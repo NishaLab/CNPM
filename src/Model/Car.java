@@ -17,15 +17,7 @@ public class Car implements Serializable{
     public Car() {
     }
     
-    public Car(String name, String brand, String desc, int price, String state, CarType type, CarClassification classs) {
-        this.name = name;
-        this.brand = brand;
-        this.desc = desc;
-        this.price = price;
-        this.state = state;
-        this.type = type;
-        this.classs = classs;
-    }
+
     public Car(Car car) {
         this.name = car.getName();
         this.brand = car.getBrand();
@@ -51,13 +43,7 @@ public class Car implements Serializable{
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
-    }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
 
     public String getDesc() {
         return desc;
@@ -99,10 +85,7 @@ public class Car implements Serializable{
         this.classs = classs;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", desc=" + desc + ", price=" + price + ", state=" + state + ", regPlate=" + regPlate + ", type=" + type + ", classs=" + classs + '}';
-    }
+
 
     public String getRegPlate() {
         return regPlate;
@@ -112,24 +95,39 @@ public class Car implements Serializable{
         this.regPlate = regPlate;
     }
 
-    public Car(String name, String brand, String desc, int price, String state, String regPlate, CarType type, CarClassification classs) {
-        this.name = name;
+    public CarBrand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(CarBrand brand) {
         this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" + "id=" + id + ", name=" + name + ", desc=" + desc + ", price=" + price + ", state=" + state + ", regPlate=" + regPlate + ", type=" + type + ", classs=" + classs + ", brand=" + brand + '}';
+    }
+
+    public Car(String name, String desc, int price, String state, String regPlate, CarType type, CarClassification classs, CarBrand brand) {
+        this.name = name;
         this.desc = desc;
         this.price = price;
         this.state = state;
         this.regPlate = regPlate;
         this.type = type;
         this.classs = classs;
+        this.brand = brand;
     }
 
 
+
     private int id;
-    private String name,brand,desc;
+    private String name,desc;
     private int price;
     private String state,regPlate;
     private CarType type;
     private CarClassification classs;
+    private CarBrand brand;
     
     
 }
