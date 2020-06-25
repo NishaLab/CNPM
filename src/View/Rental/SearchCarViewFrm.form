@@ -30,7 +30,7 @@
                       <Component id="titlePanel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="mainPanel" pref="1179" max="32767" attributes="0"/>
+                  <Component id="mainPanel" pref="1199" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>

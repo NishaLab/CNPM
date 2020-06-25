@@ -30,6 +30,7 @@ import org.jdatepicker.JDatePicker;
 public class SearchCarViewFrm extends javax.swing.JFrame {
 
     private ArrayList<Car> car = new ArrayList<>();
+    private ArrayList<Car> bookedCar = new ArrayList<>();
     private ArrayList<CarType> typeList = new ArrayList<>();
     private ArrayList<CarClassification> classList = new ArrayList<>();
 
@@ -400,7 +401,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -639,6 +640,14 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
 
     public void setClassList(ArrayList<CarClassification> classList) {
         this.classList = classList;
+    }
+
+    public ArrayList<Car> getBookedCar() {
+        return bookedCar;
+    }
+
+    public void setBookedCar(ArrayList<Car> bookedCar) {
+        this.bookedCar = bookedCar;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
