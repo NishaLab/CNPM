@@ -28,6 +28,7 @@ public class ContractDao extends DAO {
         String contract = "INSERT INTO tblcontract(bookingDate, state, tblStaff_id, tblClient_id) VALUES(?,?,?,?)";
         String bookedRoom = "INSERT INTO tblbookedcar(receivedDate,returnDate,penAmount,tblCar_id,tblContract_id)VALUES(?,?,?,?,?)";
         String conWarrant = "INSERT INTO tblcontractwarrant(checkin,checkout,tblWarrant_id,tblContract_id) VALUES(?,?,?,?)";
+        String updateCar = "UPDATE `tblcar` SET `state` = 'Rented' WHERE (`id` = ?)";
         try {
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(contract, Statement.RETURN_GENERATED_KEYS);
@@ -55,6 +56,9 @@ public class ContractDao extends DAO {
                         if (generatedKeys.next()) {
                             bc.setId(generatedKeys.getInt(1));
                         }
+                        ps = conn.prepareStatement(updateCar);
+                        ps.setInt(bc.getCar().getId(), 1);
+                        ps.executeUpdate();
                     } catch (Exception f) {
                         f.printStackTrace();
                         try {
