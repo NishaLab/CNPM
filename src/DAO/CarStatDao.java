@@ -118,5 +118,58 @@ public class CarStatDao extends DAO{
             }
             return result;       
         }
+        public ArrayList<CarStat> getDetailsCarStat(Date startDate,Date endDate, int carid){
+            ArrayList<CarStat> result = new ArrayList<CarStat>();
+            
+            CarBrandDao cb = new CarBrandDao();
+            CarTypeDao ct = new CarTypeDao();
+            CarDao cd = new CarDao();
+            
+            String sql = "select	X.carid, X.brandid, X.cartypeid, e.name as clientname, ifnull(X.days,0) as days, ifnull(X.income,0) as income"
+                        +"from	(SELECT b.tblCar_id as carid, a.brand as brandid, a.tblCarType_id as cartypeid, b.tblContract_id as contractid,"
+                        +"		(SELECT DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate,?)) FROM tblBookedCar b"
+                        +"			WHERE b.returnDate > ? AND b.receivedDate < ? and b.tblCar_id=a.id  ) as days,"
+                        +"		(SELECT datediff(least(b.returnDate,?),greatest(b.receivedDate,?))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
+                        +"			WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ? ) as income"
+                        +"from tblcar a, tblbookedcar b"
+                        +"where b.tblCar_id=\"5\" and b.tblCar_id=a.id ) as X, tblcar a, tblbookedcar b, tblcontract d, tblclient e, tblcarbrand f, tblcartype g"
+                        +"where  X.carid=a.id and X.contractid=d.id and d.tblClient_id=e.id"
+                        +"group by X.carid"
+                        +"order by income desc" ;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try{
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1,sdf.format(endDate));
+                ps.setString(2,sdf.format(startDate));
+                ps.setString(3,sdf.format(startDate));
+                ps.setString(4,sdf.format(endDate));
+                ps.setString(5,sdf.format(endDate));
+                ps.setString(6,sdf.format(startDate));
+                ps.setString(7,sdf.format(startDate));
+                ps.setString(8,sdf.format(endDate));
+                ps.setString(9,""+carid);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    CarStat cs = new CarStat();
+                    Car car = cd.getCar(carid);
+                    CarBrand brand = cb.getCarBrandById(rs.getInt("brandid"));
+                    CarType type = ct.getCarTypeById(rs.getInt("cartypeid"));
+                    
+                    cs.setId(car.getId());
+                    cs.setName(car.getName());
+                    cs.setBrand(brand);
+                    cs.setType(type);
+                    cs.setClientName(rs.getString("clientname"));
+                    cs.setRegPlate(car.getRegPlate());
+                    cs.setTotalDay(rs.getInt("days"));
+                    cs.setAmount(rs.getFloat("income"));
+                    
+                    result.add(cs);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return result;
+        }
      
 }
