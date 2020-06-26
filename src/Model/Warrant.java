@@ -81,6 +81,8 @@ public class Warrant implements Serializable {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return new Object[]{this.id, this.type, this.desc, formatter.format(this.value)};
     }
+
+
     private int id;
     private String type, desc;
     private int value;

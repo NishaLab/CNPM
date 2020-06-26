@@ -32,12 +32,12 @@ CREATE TABLE `tblbill` (
   `note` varchar(45) DEFAULT NULL,
   `tblContract_id` int(11) NOT NULL,
   `tblStaff_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`tblContract_id`,`tblStaff_id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
+  `tblStaff_tblStore_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`tblContract_id`,`tblStaff_id`,`tblStaff_tblStore_id`),
   KEY `fk_tblBill_tblContract1_idx` (`tblContract_id`),
-  KEY `fk_tblBill_tblStaff1_idx` (`tblStaff_id`),
+  KEY `fk_tblBill_tblStaff1_idx` (`tblStaff_id`,`tblStaff_tblStore_id`),
   CONSTRAINT `fk_tblBill_tblContract1` FOREIGN KEY (`tblContract_id`) REFERENCES `tblcontract` (`id`),
-  CONSTRAINT `fk_tblBill_tblStaff1` FOREIGN KEY (`tblStaff_id`) REFERENCES `tblstaff` (`id`)
+  CONSTRAINT `fk_tblBill_tblStaff1` FOREIGN KEY (`tblStaff_id`, `tblStaff_tblStore_id`) REFERENCES `tblstaff` (`id`, `tblStore_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,7 +66,6 @@ CREATE TABLE `tblbookedcar` (
   `tblCar_id` int(11) NOT NULL,
   `tblContract_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`tblCar_id`,`tblContract_id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_tblBookedCar_tblCar1_idx` (`tblCar_id`),
   KEY `fk_tblBookedCar_tblContract1_idx` (`tblContract_id`),
   CONSTRAINT `fk_tblBookedCar_tblCar1` FOREIGN KEY (`tblCar_id`) REFERENCES `tblcar` (`id`),
@@ -96,12 +95,10 @@ CREATE TABLE `tblcar` (
   `price` float DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `desc` varchar(45) DEFAULT NULL,
-  `reg_plate` varchar(9) DEFAULT NULL,
   `tblCarType_id` int(11) NOT NULL,
   `tblCarClassification_id` int(11) NOT NULL,
   `tblStore_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`tblCarType_id`,`tblCarClassification_id`,`tblStore_id`),
-  UNIQUE KEY `reg_plate_UNIQUE` (`reg_plate`),
   KEY `fk_tblCar_tblCarType_idx` (`tblCarType_id`),
   KEY `fk_tblCar_tblCarClassification1_idx` (`tblCarClassification_id`),
   KEY `fk_tblCar_tblStore1_idx` (`tblStore_id`),
@@ -117,7 +114,7 @@ CREATE TABLE `tblcar` (
 
 LOCK TABLES `tblcar` WRITE;
 /*!40000 ALTER TABLE `tblcar` DISABLE KEYS */;
-INSERT INTO `tblcar` VALUES (1,'KIA Morning',300000,'free','kia',NULL,1,1,1);
+INSERT INTO `tblcar` VALUES (1,'KIA Morning',300000,'free','kia',1,1,1);
 /*!40000 ALTER TABLE `tblcar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,9 +129,7 @@ CREATE TABLE `tblcarclassification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `desc` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -159,8 +154,7 @@ CREATE TABLE `tblcartype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `desc` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -189,9 +183,8 @@ CREATE TABLE `tblclient` (
   `phone` varchar(45) DEFAULT NULL,
   `license` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cccd_UNIQUE` (`cccd`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +193,6 @@ CREATE TABLE `tblclient` (
 
 LOCK TABLES `tblclient` WRITE;
 /*!40000 ALTER TABLE `tblclient` DISABLE KEYS */;
-INSERT INTO `tblclient` VALUES (1,'hung','1','2','3','B','VIP'),(2,'hung 2','234','Gia lam','0963063105','B','VIP'),(3,'DUC','12345454','Ha dong','12312312','B2','VIP'),(4,'Nam','123123','Tran','1231231','B3','SVIP');
 /*!40000 ALTER TABLE `tblclient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,13 +208,13 @@ CREATE TABLE `tblcontract` (
   `bookingDate` date DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `tblStaff_id` int(11) NOT NULL,
+  `tblStaff_tblStore_id` int(11) NOT NULL,
   `tblClient_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`tblStaff_id`,`tblClient_id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
+  PRIMARY KEY (`id`,`tblStaff_id`,`tblStaff_tblStore_id`,`tblClient_id`),
+  KEY `fk_tblContract_tblStaff1_idx` (`tblStaff_id`,`tblStaff_tblStore_id`),
   KEY `fk_tblContract_tblClient1_idx` (`tblClient_id`),
-  KEY `fk_tblContract_tblStaff1_idx` (`tblStaff_id`),
   CONSTRAINT `fk_tblContract_tblClient1` FOREIGN KEY (`tblClient_id`) REFERENCES `tblclient` (`id`),
-  CONSTRAINT `fk_tblContract_tblStaff1` FOREIGN KEY (`tblStaff_id`) REFERENCES `tblstaff` (`id`)
+  CONSTRAINT `fk_tblContract_tblStaff1` FOREIGN KEY (`tblStaff_id`, `tblStaff_tblStore_id`) REFERENCES `tblstaff` (`id`, `tblStore_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -275,9 +267,7 @@ CREATE TABLE `tbldamagecatalog` (
   `type` varchar(45) DEFAULT NULL,
   `fee` varchar(45) DEFAULT NULL,
   `desc` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `desc_UNIQUE` (`desc`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -335,8 +325,6 @@ CREATE TABLE `tblstaff` (
   `address` varchar(45) DEFAULT NULL,
   `tblStore_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`tblStore_id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
   KEY `fk_tblStaff_tblStore1_idx` (`tblStore_id`),
   CONSTRAINT `fk_tblStaff_tblStore1` FOREIGN KEY (`tblStore_id`) REFERENCES `tblstore` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -364,8 +352,7 @@ CREATE TABLE `tblstore` (
   `adddress` varchar(45) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `desc` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `adddress_UNIQUE` (`adddress`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -393,7 +380,6 @@ CREATE TABLE `tblwarrant` (
   `desc` varchar(45) DEFAULT NULL,
   `tblClient_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`tblClient_id`),
-  UNIQUE KEY `desc_UNIQUE` (`desc`),
   KEY `fk_tblWarrant_tblClient1_idx` (`tblClient_id`),
   CONSTRAINT `fk_tblWarrant_tblClient1` FOREIGN KEY (`tblClient_id`) REFERENCES `tblclient` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -421,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-23 18:17:24
+-- Dump completed on 2020-06-19 11:12:56
