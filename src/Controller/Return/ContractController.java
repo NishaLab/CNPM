@@ -67,5 +67,7 @@ public class ContractController {
         Date date = new Date();
         this.frame.getDate().setText(date.toString());
     }
-
+    public void setBackAction(){
+        
+    }
 }
