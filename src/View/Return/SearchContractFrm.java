@@ -9,7 +9,7 @@ import DAO.ContractDao;
 import Model.Contract;
 import Model.Staff;
 import View.Return.ContractViewFrm;
-import View.login.CashierHomeFrm;
+import View.Return.CashierHomeFrm;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
@@ -146,6 +146,7 @@ public class SearchContractFrm extends javax.swing.JFrame {
         try {
             Contract c = cd.getContractById(Integer.parseInt(searchField.getText()));
             new ContractViewFrm(c.getClient(), c.getStaff(), c.getCar(), c.getConWarrant()).setVisible(true);
+            System.out.println(c.toString());
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Ma hop dong khong ton tai");
