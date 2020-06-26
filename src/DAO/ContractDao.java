@@ -11,6 +11,7 @@ import static DAO.DAO.conn;
 import Model.Contract;
 import Model.BookedCar;
 import Model.ContractWarrant;
+import Model.*;
 import com.mysql.jdbc.Statement;
 import java.sql.Date;
 import java.sql.PreparedStatement;
