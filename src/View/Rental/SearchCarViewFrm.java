@@ -44,68 +44,26 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     private Staff staff;
 
     public SearchCarViewFrm() {
-
         initComponents();
         SearchCarController ctrl = new SearchCarController(this);
         ctrl.init();
         staff = new Staff("Hung", "12435", "Nguyen Duc Hung", "Receptionist");
         staff.setId(1);
-//        CarCatalogComponent a1 = new CarCatalogComponent();
-//        CarCatalogComponent a2 = new CarCatalogComponent();
-//        CarCatalogComponent a3 = new CarCatalogComponent();
-//        CarCatalogComponent a4 = new CarCatalogComponent();
-//        CarCatalogComponent a5 = new CarCatalogComponent();
-//        CarCatalogComponent a6 = new CarCatalogComponent();
-//        CarCatalogComponent a7 = new CarCatalogComponent();
-//        CarCatalogComponent a8 = new CarCatalogComponent();
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         carCatalogPanel.setSize(851, 470);
-//        carCatalogPanel.add(a1);
-//        carCatalogPanel.add(a2);
-//        carCatalogPanel.add(a3);
-//        carCatalogPanel.add(a4);
-//        carCatalogPanel.add(a5);
-//        carCatalogPanel.add(a6);
-//        carCatalogPanel.add(a7);
-//        carCatalogPanel.add(a8);
-//        carCatalogPanel.revalidate();
-//        carCatalogPanel.repaint();
-        CartComponent b1 = new CartComponent();
-//        CartComponent b2 = new CartComponent();
-//        CartComponent b3 = new CartComponent();
-//        CartComponent b4 = new CartComponent();
-//        CartComponent b5 = new CartComponent();
-//        CartComponent b6 = new CartComponent();
-//        CartComponent b7 = new CartComponent();
-//        CartComponent b8 = new CartComponent();
-//        CartComponent b9 = new CartComponent();
-//        CartComponent b10 = new CartComponent();
-//        CartComponent b11 = new CartComponent();
-//        CartComponent b12 = new CartComponent();
-//        CartComponent b13 = new CartComponent();
-//        CartComponent b14 = new CartComponent();
-//        CartComponent b15 = new CartComponent();
-//        CartComponent b16 = new CartComponent();
-        cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.PAGE_AXIS));
-        cartPanel.add(b1);
-//        cartPanel.add(b2);
-//        cartPanel.add(b3);
-//        cartPanel.add(b4);
-//        cartPanel.add(b5);
-//        cartPanel.add(b6);
-//        cartPanel.add(b7);
-//        cartPanel.add(b8);
-//        cartPanel.add(b9);
-//        cartPanel.add(b10);
-//        cartPanel.add(b11);
-//        cartPanel.add(b12);
-//        cartPanel.add(b13);
-//        cartPanel.add(b14);
-//        cartPanel.add(b15);
-//        cartPanel.add(b16);
-        cartPanel.revalidate();
-        cartPanel.repaint();
+    }
+
+    public SearchCarViewFrm(Staff staff,ArrayList<BookedCar> bc) {
+        initComponents();
+        SearchCarController ctrl = new SearchCarController(this);
+        this.staff = staff;
+        this.bookedCar =bc;
+        ctrl.init();
+        mainPanel.setLayout(new BorderLayout());
+        carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
+        carCatalogPanel.setSize(851, 470);
+
     }
 
     /**
@@ -545,8 +503,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         this.pageLabel = pageLabel;
     }
 
-
-
     public JLabel getReceivedDateLabel() {
         return receivedDateLabel;
     }
@@ -554,8 +510,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     public void setReceivedDateLabel(JLabel receivedDateLabel) {
         this.receivedDateLabel = receivedDateLabel;
     }
-
-
 
     public JLabel getReturnDateLabel() {
         return returnDateLabel;

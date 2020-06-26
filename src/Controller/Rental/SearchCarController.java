@@ -17,8 +17,11 @@ import DAO.CarTypeDao;
 import DAO.CarClassificationDao;
 import Model.BookedCar;
 import Model.Client;
+import View.Rental.ReceptionistViewFrm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -26,10 +29,12 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -52,6 +57,7 @@ public class SearchCarController {
         setForwardAction();
         setJumpAction();
         setConfirmAction();
+        setBackLabelAction();
     }
 
     public void setUp() {
@@ -71,6 +77,19 @@ public class SearchCarController {
         }
         this.frame.setTypeList(carType);
         this.frame.setClassList(carClass);
+        ArrayList<BookedCar> bc = this.frame.getBookedCar();
+        CartComponent b1 = new CartComponent();
+        this.frame.getCartPanel().setLayout(new BoxLayout(this.frame.getCartPanel(), BoxLayout.PAGE_AXIS));
+        this.frame.getCartPanel().add(b1);
+        this.frame.getCartPanel().revalidate();
+        this.frame.getCartPanel().repaint();
+        JPanel cart = this.frame.getCartPanel();
+        for (BookedCar bookedCar : bc) {
+            cart.add(new CartComponent(bookedCar.getCar(), frame));
+        }
+        cart.revalidate();
+        cart.repaint();
+
     }
 
     public void setSearchAction() {
@@ -227,6 +246,14 @@ public class SearchCarController {
                 Client client = new Client();
                 frame.setVisible(false);
                 scvf.setVisible(true);
+                JLabel back = scvf.getBackLabel();
+                back.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        frame.setVisible(true);
+                        scvf.dispose();
+                    }
+                });
                 confirm.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -250,6 +277,22 @@ public class SearchCarController {
                     }
                 });
             }
+        });
+    }
+
+    public void setBackLabelAction() {
+        JLabel back = this.frame.getBackLabel();
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Do you want to go back to main frame?\n Current Data will be lost ",
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                    ReceptionistViewFrm rvf = new ReceptionistViewFrm(frame.getStaff());
+                    frame.dispose();
+                    rvf.setVisible(true);
+                }
+            }
+
         });
     }
 }

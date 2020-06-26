@@ -46,7 +46,7 @@ public class CarCatalogComponentController {
                 ArrayList<BookedCar> bc = panel.getFrame().getBookedCar();
 
                 if (JOptionPane.showConfirmDialog(null, "Do you want to rent " + car.getName(),
-                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == 0) {
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
                     for (Car car1 : listCar) {
                         if (car.getId() == car1.getId()) {
                             JOptionPane.showMessageDialog(null, "You have already selected this car!", "Try Again", 1);
