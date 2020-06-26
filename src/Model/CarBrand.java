@@ -14,10 +14,10 @@ public class CarBrand {
     public CarBrand() {
     }
 
-    public CarBrand(int id, String name, String des) {
+    public CarBrand(int id, String name, String desc) {
         this.id = id;
         this.name = name;
-        this.des = des;
+        this.desc = desc;
     }
 
     public int getId() {
@@ -28,8 +28,8 @@ public class CarBrand {
         return name;
     }
 
-    public String getDes() {
-        return des;
+    public String getDesc() {
+        return desc;
     }
 
     public void setId(int id) {
@@ -40,10 +40,10 @@ public class CarBrand {
         this.name = name;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
     
     private int id;
-    private String name,des;
+    private String name,desc;
 }
