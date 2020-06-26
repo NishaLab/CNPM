@@ -24,7 +24,6 @@ public class ClientDao extends DAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 Client client = new Client();
                 client.setId(rs.getInt("id"));
@@ -38,6 +37,11 @@ public class ClientDao extends DAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
         return result;
     }

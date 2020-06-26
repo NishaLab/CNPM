@@ -22,6 +22,7 @@ public class CarStatDao extends DAO{
 	public ArrayList<CarStat> getCarStat(Date startDate, Date endDate){
                  CarClassificationDao classDao = new CarClassificationDao();
                  CarTypeDao typeDao = new CarTypeDao();
+                 CarBrandDao brandDao = new CarBrandDao();
 		ArrayList<CarStat> result = new ArrayList<CarStat>();
 		String sql = "SELECT a.id, a.name, a.price, a.brand, a.desc, a.tblCarType_id, a.tblCarClassification_id, a.tblStore_id "
 				+ "(SELECT SUM(DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate, ?))) FROM tblBookedCar b "
@@ -47,7 +48,7 @@ public class CarStatDao extends DAO{
 				CarStat r = new CarStat();
 				r.setId(rs.getInt("id"));
 				r.setName(rs.getString("name"));
-                                  r.setBrand(rs.getString("brand"));
+                                  r.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
                                   r.setDesc(rs.getString("desc"));
 				r.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
                                   r.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));

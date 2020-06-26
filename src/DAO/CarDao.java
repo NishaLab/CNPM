@@ -21,17 +21,28 @@ public class CarDao extends DAO {
         ArrayList<Car> res = new ArrayList<Car>();
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
-        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND state = 'Free' AND name LIKE ? "
-                + "AND id NOT IN(SELECT id FROM tblbookedcar WHERE receivedDate > ? AND returnDate < ?) ";
+        CarBrandDao brandDao = new CarBrandDao();
+        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
+                + "Select tblcar_id from tblbookedcar\n"
+                + "WHERE (receivedDate > ? AND returnDate > ?) \n"
+                + "OR(receivedDate < ? AND returnDate < ?)\n"
+                + "OR(receivedDate > ? AND returnDate < ?)\n"
+                + "OR(receivedDate < ? AND returnDate > ?)) ";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            java.sql.Date sqlcheckin = new java.sql.Date(receivedDate.getTime());
-            java.sql.Date sqlcheckout = new java.sql.Date(returnDate.getTime());
+            java.sql.Timestamp sqlcheckin = new java.sql.Timestamp(receivedDate.getTime());
+            java.sql.Timestamp sqlcheckout = new java.sql.Timestamp(returnDate.getTime());
             ps.setInt(1, type);
             ps.setInt(2, brand);
             ps.setString(3, "%" + key + "%");
-            ps.setDate(4, sqlcheckin);
-            ps.setDate(5, sqlcheckout);
+            ps.setTimestamp(4, sqlcheckin);
+            ps.setTimestamp(5, sqlcheckout);
+            ps.setTimestamp(6, sqlcheckin);
+            ps.setTimestamp(7, sqlcheckout);
+            ps.setTimestamp(8, sqlcheckin);
+            ps.setTimestamp(9, sqlcheckout);
+            ps.setTimestamp(10, sqlcheckin);
+            ps.setTimestamp(11, sqlcheckout);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -39,7 +50,7 @@ public class CarDao extends DAO {
                 car.setId(rs.getInt("id"));
                 car.setName(rs.getString("name"));
                 car.setPrice(rs.getInt("price"));
-                car.setBrand(rs.getString("brand"));
+                car.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
                 car.setDesc(rs.getString("desc"));
                 car.setState(rs.getString("state"));
                 car.setRegPlate(rs.getString("reg_plate"));

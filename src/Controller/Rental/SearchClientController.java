@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import DAO.ClientDao;
 import Model.BookedCar;
 import Model.Car;
+import Model.CarBrand;
 import Model.CarClassification;
 import Model.CarType;
 import Model.Client;
@@ -49,7 +50,6 @@ public class SearchClientController {
 
     public void init() {
         setActionSearch();
-        setActionConfirm();
         setAddClientAction();
     }
 
@@ -77,43 +77,7 @@ public class SearchClientController {
         });
     }
 
-    public void setActionConfirm() {
-        JButton confirm = this.frame.getConfirmButton();
-        JTable ctb = this.frame.getjTable1();
-        Client client = this.frame.getClient();
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int row = ctb.getSelectedRow();
-                    client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
-                    client.setName(ctb.getValueAt(row, 1).toString());
-                    client.setCCCD(ctb.getValueAt(row, 2).toString());
-                    client.setAddress(ctb.getValueAt(row, 3).toString());
-                    client.setPhone(ctb.getValueAt(row, 4).toString());
-                    client.setLicense(ctb.getValueAt(row, 5).toString());
-                    client.setType(ctb.getValueAt(row, 6).toString());
-                    Staff staff = new Staff("hung", "hung", "Hung", "Receptionist");
-                    CarType type = new CarType(1, "Xe Dua", "Desc");
-                    CarClassification classs = new CarClassification(1, "A", "Desc");
-                    Car car = new Car("Volvo", "Volvo", "Xe moi", 1000000, "free", type, classs);
-                    car.setId(1);
-                    ArrayList<Penalty> pen = new ArrayList<>();
-                    Date a = new Date();
-                    BookedCar book;
-                    book = new BookedCar(a, a, car.getPrice(), 0, pen, car);
-                    ArrayList<BookedCar> bc = new ArrayList<>();
-                    bc.add(book);
-                    ContractViewFrm contract = new ContractViewFrm(client, staff, bc);
-                    frame.dispose();
-                    contract.setVisible(true);
-                } catch (Exception f) {
-                    f.printStackTrace();
 
-                }
-            }
-        });
-    }
 
     public void setAddClientAction() {
         JLabel add = this.frame.getAddLabel();
