@@ -5,16 +5,15 @@
  */
 package view.Return;
 
+import Controller.Return.SearchContractController;
 import DAO.ContractDao;
 import Model.Contract;
 import Model.Staff;
 import View.Return.ContractViewFrm;
-import View.Return.CashierHomeFrm;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,6 +33,8 @@ public class SearchContractFrm extends javax.swing.JFrame {
         logUser.setText("Logged as " + s.getName());
         setResizable(false);
         setLocationRelativeTo(null);
+        SearchContractController a = new SearchContractController(this);
+        a.init();
     }
 
     /**
@@ -48,11 +49,19 @@ public class SearchContractFrm extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        searchField = new javax.swing.JTextField();
-        getById = new javax.swing.JButton();
+        panelTitle = new javax.swing.JLabel();
         logUser = new javax.swing.JLabel();
         backLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        clientName = new javax.swing.JTextField();
+        searchByName = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        clientTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        contractId = new javax.swing.JTextField();
+        getById = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        contractTable = new javax.swing.JTable();
 
         jInternalFrame1.setVisible(true);
 
@@ -82,16 +91,67 @@ public class SearchContractFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Search contract");
+        panelTitle.setText("Search contract");
+        panelTitle.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
-        searchField.setText("Enter contract ID");
-        searchField.addFocusListener(new java.awt.event.FocusAdapter() {
+        logUser.setText("Logged as");
+
+        backLabel.setText("back");
+
+        clientName.setText("Enter client's name");
+
+        searchByName.setText("Search");
+        searchByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByNameActionPerformed(evt);
+            }
+        });
+
+        clientTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Client Name", "CCCD", "Address", "Phone", "License"
+            }
+        ));
+        jScrollPane1.setViewportView(clientTable);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clientName, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(searchByName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(searchByName, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        contractId.setText("Enter contract ID");
+        contractId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                searchFieldFocusGained(evt);
+                contractIdFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                searchFieldFocusLost(evt);
+                contractIdFocusLost(evt);
             }
         });
 
@@ -102,40 +162,78 @@ public class SearchContractFrm extends javax.swing.JFrame {
             }
         });
 
-        logUser.setText("Logged as");
+        contractTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        backLabel.setText("back");
+            },
+            new String [] {
+                "ID", "Checkin", "State", "Staff", "Client"
+            }
+        ));
+        jScrollPane3.setViewportView(contractTable);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(contractId, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getById, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(contractId, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(getById, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(logUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backLabel))
-                    .addComponent(getById, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchField))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTitle))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(logUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backLabel)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logUser)
-                    .addComponent(backLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(backLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logUser)
+                        .addGap(18, 18, 18)))
+                .addComponent(panelTitle)
                 .addGap(18, 18, 18)
-                .addComponent(getById)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -144,7 +242,7 @@ public class SearchContractFrm extends javax.swing.JFrame {
     private void getByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getByIdActionPerformed
         ContractDao cd = new ContractDao();
         try {
-            Contract c = cd.getContractById(Integer.parseInt(searchField.getText()));
+            Contract c = cd.getContractById(Integer.parseInt(contractId.getText()));
             new ContractViewFrm(c.getClient(), c.getStaff(), c.getCar(), c.getConWarrant()).setVisible(true);
             System.out.println(c.toString());
         } catch (Exception e) {
@@ -153,31 +251,92 @@ public class SearchContractFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_getByIdActionPerformed
 
-    private void searchFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusGained
-        if (searchField.getText().trim().equals("Enter contract ID")) {
-            searchField.setText("");
+    private void contractIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contractIdFocusGained
+        if (contractId.getText().trim().equals("Enter contract ID")) {
+            contractId.setText("");
         }
 
-    }//GEN-LAST:event_searchFieldFocusGained
+    }//GEN-LAST:event_contractIdFocusGained
 
-    private void searchFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusLost
-        if (searchField.getText().trim().toLowerCase().equals("Enter contract ID")
-                || searchField.getText().trim().toLowerCase().equals("")) {
-            searchField.setText("Enter contract ID");
+    private void contractIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contractIdFocusLost
+        if (contractId.getText().trim().toLowerCase().equals("Enter contract ID")
+                || contractId.getText().trim().toLowerCase().equals("")) {
+            contractId.setText("Enter contract ID");
         }
-    }//GEN-LAST:event_searchFieldFocusLost
+    }//GEN-LAST:event_contractIdFocusLost
+
+    private void searchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByNameActionPerformed
+        
+    }//GEN-LAST:event_searchByNameActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
+    public JTextField getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(JTextField clientName) {
+        this.clientName = clientName;
+    }
+
+    public JTable getClientTable() {
+        return clientTable;
+    }
+
+    public void setClientTable(JTable clientTable) {
+        this.clientTable = clientTable;
+    }
+
+    public JTextField getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(JTextField contractId) {
+        this.contractId = contractId;
+    }
+
+    public JTable getContractTable() {
+        return contractTable;
+    }
+
+    public void setContractTable(JTable contractTable) {
+        this.contractTable = contractTable;
+    }
+
+    public JButton getGetById() {
+        return getById;
+    }
+
+    public void setGetById(JButton getById) {
+        this.getById = getById;
+    }
+
+    public JButton getSearchByName() {
+        return searchByName;
+    }
+
+    public void setSearchByName(JButton searchByName) {
+        this.searchByName = searchByName;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
+    private javax.swing.JTextField clientName;
+    private javax.swing.JTable clientTable;
+    private javax.swing.JTextField contractId;
+    private javax.swing.JTable contractTable;
     private javax.swing.JButton getById;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel logUser;
-    private javax.swing.JTextField searchField;
+    private javax.swing.JLabel panelTitle;
+    private javax.swing.JButton searchByName;
     // End of variables declaration//GEN-END:variables
 }
