@@ -149,17 +149,21 @@ public class ContractController {
         confirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Contract contract = new Contract();
-                contract.setBookingDate(frame.getBookingDate());
-                contract.setCar(frame.getBc());
-                contract.setConWarrant(frame.getCw());
-                contract.setAmount(Integer.parseInt(frame.getTotal().getText().replaceAll(",", "")));
-                contract.setState(true);
-                contract.setClient(frame.getClient());
-                contract.setStaff(frame.getStaff());
-                frame.dispose();
-                BillViewFrm bill = new BillViewFrm(contract, frame.getStaff());
-                bill.setVisible(true);
+                if (JOptionPane.showConfirmDialog(null, "Create Contract? ",
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                    Contract contract = new Contract();
+                    contract.setBookingDate(frame.getBookingDate());
+                    contract.setCar(frame.getBc());
+                    contract.setConWarrant(frame.getCw());
+                    contract.setAmount(Integer.parseInt(frame.getTotal().getText().replaceAll(",", "")));
+                    contract.setState(true);
+                    contract.setClient(frame.getClient());
+                    contract.setStaff(frame.getStaff());
+                    frame.dispose();
+                    BillViewFrm bill = new BillViewFrm(contract, frame.getStaff());
+                    bill.setVisible(true);
+                }
+
             }
         });
     }
