@@ -90,12 +90,8 @@ public class SearchCarController {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date receivedDate = Date.from(received.toInstant(ZoneOffset.UTC));
                 Date returnDate = Date.from(returnn.toInstant(ZoneOffset.UTC));
-                System.out.println(receivedDate);
-                System.out.println(returnDate);
                 java.sql.Timestamp sqlreceived = new java.sql.Timestamp(receivedDate.getTime());
                 java.sql.Timestamp sqlreturn = new java.sql.Timestamp(returnDate.getTime());
-                System.out.println(sqlreceived);
-                System.out.println(sqlreturn);
 
                 if (receivedDate.compareTo(returnDate) != -1) {
                     JOptionPane.showMessageDialog(null, "Return date must be greater than Received date", "Try Again", 1);
@@ -244,9 +240,6 @@ public class SearchCarController {
                             client.setLicense(ctb.getValueAt(row, 5).toString());
                             client.setType(ctb.getValueAt(row, 6).toString());
                             scvf.dispose();
-                            for (BookedCar bookedCar : frame.getBookedCar()) {
-                                System.out.println(bookedCar);
-                            }
                             ContractViewFrm contract = new ContractViewFrm(client, frame.getStaff(), frame.getBookedCar());
                             frame.dispose();
                             contract.setVisible(true);
