@@ -5,12 +5,13 @@
  */
 package View.Rental;
 
+import DAO.BillDao;
 import Model.Staff;
 import Model.Contract;
+import Model.Bill;
 import java.awt.HeadlessException;
 import DAO.ContractDao;
 import java.util.ArrayList;
-
 
 /**
  *
@@ -26,13 +27,30 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
     public ReceptionistViewFrm() {
         initComponents();
         ContractDao dao = new ContractDao();
+        BillDao billdao = new BillDao();
         ArrayList<Contract> con = dao.getContractByStaffId(1);
-        System.out.println(con);
+        for (Contract contract : con) {
+            System.out.println(contract);
+        }
+        ArrayList<Bill> bill = billdao.getAllBillByStaffId(1);
+        for (Bill bill1 : bill) {
+            System.out.println(bill1);
+        }
     }
 
-    public ReceptionistViewFrm(Staff staff){
+    public ReceptionistViewFrm(Staff staff) {
         initComponents();
         this.staff = staff;
+        ContractDao dao = new ContractDao();
+        BillDao billdao = new BillDao();
+        ArrayList<Contract> con = dao.getContractByStaffId(1);
+        for (Contract contract : con) {
+            System.out.println(contract);
+        }
+        ArrayList<Bill> bill = billdao.getAllBillByStaffId(1);
+        for (Bill bill1 : bill) {
+            System.out.println(bill1);
+        }
     }
 
     /**
