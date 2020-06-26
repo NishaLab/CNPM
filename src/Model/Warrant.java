@@ -6,20 +6,23 @@
 package Model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  *
  * @author LEGION
  */
-public class Warrant implements Serializable{
+public class Warrant implements Serializable {
 
     public Warrant() {
     }
 
-    public Warrant(String type, String desc, int value) {
+    public Warrant(int id, String type, String desc, int value, Client client) {
+        this.id = id;
         this.type = type;
         this.desc = desc;
         this.value = value;
+        this.client = client;
     }
 
     public int getId() {
@@ -54,11 +57,32 @@ public class Warrant implements Serializable{
         this.value = value;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
-        return "Warrant{" + "id=" + id + ", type=" + type + ", desc=" + desc + ", value=" + value + '}';
+        return "Warrant{" + "id=" + id + ", type=" + type + ", desc=" + desc + ", value=" + value + ", client=" + client + '}';
+    }
+
+    public Warrant(String type, String desc, int value, Client client) {
+        this.type = type;
+        this.desc = desc;
+        this.value = value;
+        this.client = client;
+    }
+
+    public Object[] toObject() {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return new Object[]{this.id, this.type, this.desc, formatter.format(this.value)};
     }
     private int id;
-    private String type,desc;
+    private String type, desc;
     private int value;
+    private Client client;
 }
