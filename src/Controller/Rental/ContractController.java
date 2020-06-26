@@ -8,6 +8,7 @@ package Controller.Rental;
 import View.Rental.ContractViewFrm;
 import View.Rental.AddWarrantViewFrm;
 import View.Rental.BillViewFrm;
+import View.Rental.SearchCarViewFrm;
 import Model.Contract;
 import Model.ContractWarrant;
 import Model.BookedCar;
@@ -24,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -45,6 +47,7 @@ public class ContractController {
         initUI();
         addWarrantAction();
         addConfirmLabelAction();
+        setBackLabelAction();
     }
 
     public void initUI() {
@@ -101,6 +104,17 @@ public class ContractController {
                 AddWarrantViewFrm reg = new AddWarrantViewFrm(client);
                 reg.setVisible(true);
                 JLabel confirm = reg.getConfirmLabel();
+                JLabel back = reg.getBackLabel();
+                back.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (JOptionPane.showConfirmDialog(null, "Do you want to go back to previous frame?\n Current Data will be lost ",
+                                "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                            frame.setVisible(true);
+                            reg.dispose();
+                        }
+                    }
+                });
                 confirm.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -148,6 +162,23 @@ public class ContractController {
                 bill.setVisible(true);
             }
         });
+    }
+
+    public void setBackLabelAction() {
+        JLabel back = this.frame.getBackLabel();
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Do you want to go back to search car frame?\n Current Data will be lost ",
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                    SearchCarViewFrm scvf = new SearchCarViewFrm(frame.getStaff(), frame.getBc());
+                    frame.dispose();
+                    scvf.setVisible(true);
+                }
+            }
+
+        });
+
     }
 
 }

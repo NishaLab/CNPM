@@ -17,8 +17,11 @@ import DAO.CarTypeDao;
 import DAO.CarClassificationDao;
 import Model.BookedCar;
 import Model.Client;
+import View.Rental.ReceptionistViewFrm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -30,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -52,6 +56,7 @@ public class SearchCarController {
         setForwardAction();
         setJumpAction();
         setConfirmAction();
+        setBackLabelAction();
     }
 
     public void setUp() {
@@ -71,6 +76,14 @@ public class SearchCarController {
         }
         this.frame.setTypeList(carType);
         this.frame.setClassList(carClass);
+        ArrayList<BookedCar> bc = this.frame.getBookedCar();
+        JPanel cart = this.frame.getCartPanel();
+        for (BookedCar bookedCar : bc) {
+            cart.add(new CartComponent(bookedCar.getCar(), frame));
+        }
+        cart.revalidate();
+        cart.repaint();
+
     }
 
     public void setSearchAction() {
@@ -250,6 +263,22 @@ public class SearchCarController {
                     }
                 });
             }
+        });
+    }
+
+    public void setBackLabelAction() {
+        JLabel back = this.frame.getBackLabel();
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Do you want to go back to main frame?\n Current Data will be lost ",
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                    ReceptionistViewFrm rvf = new ReceptionistViewFrm(frame.getStaff());
+                    frame.dispose();
+                    rvf.setVisible(true);
+                }
+            }
+
         });
     }
 }
