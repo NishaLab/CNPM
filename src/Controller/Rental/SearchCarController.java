@@ -19,6 +19,10 @@ import Model.BookedCar;
 import Model.Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -77,14 +81,26 @@ public class SearchCarController {
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GregorianCalendar received = (GregorianCalendar) frame.getReceivedDate().getModel().getValue();
-                GregorianCalendar returnn = (GregorianCalendar) frame.getReturnDate().getModel().getValue();
+                LocalDateTime received = frame.getReceivedDate().getDateTimeStrict();
+                LocalDateTime returnn = frame.getReturnDate().getDateTimeStrict();
                 if (received == null || returnn == null) {
                     JOptionPane.showMessageDialog(null, "Please Select Received Date and Return Date", "Try Again", 1);
                     return;
                 }
-                Date receivedDate = received.getGregorianChange();
-                Date returnDate = returnn.getGregorianChange();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date receivedDate = Date.from(received.toInstant(ZoneOffset.UTC));
+                Date returnDate = Date.from(returnn.toInstant(ZoneOffset.UTC));
+                System.out.println(receivedDate);
+                System.out.println(returnDate);
+                java.sql.Timestamp sqlreceived = new java.sql.Timestamp(receivedDate.getTime());
+                java.sql.Timestamp sqlreturn = new java.sql.Timestamp(returnDate.getTime());
+                System.out.println(sqlreceived);
+                System.out.println(sqlreturn);
+
+                if (receivedDate.compareTo(returnDate) != -1) {
+                    JOptionPane.showMessageDialog(null, "Return date must be greater than Received date", "Try Again", 1);
+                    return;
+                }
                 String name = frame.getNameField().getText().trim();
                 String carType = frame.getCarType().getSelectedItem().toString();
                 String carClass = frame.getCarClass().getSelectedItem().toString();

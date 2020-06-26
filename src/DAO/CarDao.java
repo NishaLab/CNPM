@@ -22,7 +22,7 @@ public class CarDao extends DAO {
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
         CarBrandDao brandDao = new CarBrandDao();
-        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND state = 'Free' AND name LIKE ? "
+        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND NOT (state = 'Maintained') AND name LIKE ? "
                 + "AND id NOT IN(SELECT id FROM tblbookedcar WHERE receivedDate > ? AND returnDate < ?) ";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);

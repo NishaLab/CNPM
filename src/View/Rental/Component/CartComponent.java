@@ -10,7 +10,8 @@ import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+import View.Rental.SearchCarViewFrm;
+import Controller.Rental.CartComponentController;
 /**
  *
  * @author LEGION
@@ -18,6 +19,7 @@ import javax.swing.JLabel;
 public class CartComponent extends javax.swing.JPanel {
 
     private Car car = new Car();
+    private SearchCarViewFrm frame;
 
     /**
      * Creates new form CartComponent
@@ -26,11 +28,15 @@ public class CartComponent extends javax.swing.JPanel {
         initComponents();
     }
 
-    public CartComponent(Car car) {
+    public CartComponent(Car car, SearchCarViewFrm frame) {
         initComponents();
+        this.frame = frame;
+        this.car = car;
         this.nameLabel.setText(car.getName());
         this.priceLabel.setText(car.getPrice() + "");
         this.imageLabel.setText("");
+        CartComponentController a = new CartComponentController(this);
+        a.init();
         File file = new File("src/View/Rental/CarImage/" + car.getId() + ".jpg");
         if (file.exists()) {
             ImageIcon icon = new ImageIcon("src/View/Rental/CarImage/" + car.getId() + ".jpg");
@@ -45,6 +51,20 @@ public class CartComponent extends javax.swing.JPanel {
             ImageIcon real = new ImageIcon(newimg);
             this.imageLabel.setIcon(real);
         }
+        ImageIcon icon = new ImageIcon("src/View/Rental/Icon/x.png");
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(40, 30, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon real = new ImageIcon(newimg);
+        this.exitLabel.setIcon(real);
+
+    }
+
+    public SearchCarViewFrm getFrame() {
+        return frame;
+    }
+
+    public void setFrame(SearchCarViewFrm frame) {
+        this.frame = frame;
     }
 
     /**
@@ -59,9 +79,10 @@ public class CartComponent extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
+        exitLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(32767, 470));
-        setPreferredSize(new java.awt.Dimension(343, 60));
+        setPreferredSize(new java.awt.Dimension(413, 60));
 
         nameLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(51, 0, 204));
@@ -76,6 +97,8 @@ public class CartComponent extends javax.swing.JPanel {
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imageLabel.setText("Image");
 
+        exitLabel.setPreferredSize(new java.awt.Dimension(50, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,16 +109,22 @@ public class CartComponent extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(exitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel)
-                    .addComponent(priceLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameLabel)
+                        .addComponent(priceLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(exitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(1, 1, 1))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -124,7 +153,24 @@ public class CartComponent extends javax.swing.JPanel {
         this.priceLabel = priceLabel;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public JLabel getExitLabel() {
+        return exitLabel;
+    }
+
+    public void setExitLabel(JLabel exitLabel) {
+        this.exitLabel = exitLabel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel exitLabel;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel priceLabel;

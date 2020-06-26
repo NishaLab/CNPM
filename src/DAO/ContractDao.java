@@ -44,10 +44,10 @@ public class ContractDao extends DAO {
                 for (BookedCar bc : c.getCar()) {
                     try {
                         ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
-                        java.sql.Date sqlreceived = new Date(bc.getReceivedDate().getTime());
-                        java.sql.Date sqlreturn = new Date(bc.getReturnDate().getTime());
-                        ps.setDate(1, sqlreceived);
-                        ps.setDate(2, sqlreturn);
+                        java.sql.Timestamp sqlreceived = new java.sql.Timestamp(bc.getReceivedDate().getTime());
+                        java.sql.Timestamp sqlreturn = new java.sql.Timestamp(bc.getReturnDate().getTime());
+                        ps.setTimestamp(1, sqlreceived);
+                        ps.setTimestamp(2, sqlreturn);
                         ps.setFloat(3, bc.getPenAmount());
                         ps.setFloat(4, bc.getTotalPrice());
                         ps.setInt(5, bc.getCar().getId());

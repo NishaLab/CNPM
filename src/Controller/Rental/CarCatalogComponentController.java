@@ -12,6 +12,8 @@ import View.Rental.Component.CarCatalogComponent;
 import View.Rental.Component.CartComponent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -51,20 +53,20 @@ public class CarCatalogComponentController {
                             return;
                         }
                     }
-                    GregorianCalendar received = (GregorianCalendar) panel.getFrame().getReceivedDate().getModel().getValue();
-                    GregorianCalendar returnn = (GregorianCalendar) panel.getFrame().getReturnDate().getModel().getValue();
-                    Date receivedDate = received.getTime();
-                    Date returnDate = returnn.getTime();
+                    LocalDateTime received = panel.getFrame().getReceivedDate().getDateTimeStrict();
+                    LocalDateTime returnn = panel.getFrame().getReturnDate().getDateTimeStrict();
+                    Date receivedDate = Date.from(received.toInstant(ZoneOffset.UTC));
+                    Date returnDate = Date.from(returnn.toInstant(ZoneOffset.UTC));
                     BookedCar bookedCar = new BookedCar();
                     bookedCar.setCar(car);
                     bookedCar.setReceivedDate(receivedDate);
                     bookedCar.setReturnDate(returnDate);
                     bookedCar.setPenAmount(0);
                     long days = (bookedCar.getReturnDate().getTime() - bookedCar.getReceivedDate().getTime()) / (60 * 60 * 24 * 1000) + 1;
-                    bookedCar.setTotalPrice(days*bookedCar.getCar().getPrice());
+                    bookedCar.setTotalPrice(days * bookedCar.getCar().getPrice());
                     bc.add(bookedCar);
                     listCar.add(car);
-                    panel.getFrame().getCartPanel().add(new CartComponent(car));
+                    panel.getFrame().getCartPanel().add(new CartComponent(car,panel.getFrame()));
                     panel.getFrame().getCartPanel().revalidate();
                     panel.getFrame().getCartPanel().repaint();
                 }
