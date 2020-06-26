@@ -5,11 +5,13 @@
  */
 package Controller.Rental;
 
+import Model.BookedCar;
 import View.Rental.Component.CartComponent;
 import View.Rental.SearchCarViewFrm;
 import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -41,6 +43,13 @@ public class CartComponentController {
                     frame.getCartPanel().remove(panel);
                     frame.getCartPanel().revalidate();
                     frame.getCartPanel().repaint();
+                    ArrayList<BookedCar> bc = frame.getBookedCar();
+                    for (BookedCar bookedCar : bc) {
+                        if (bookedCar.getCar().getId() == panel.getCar().getId()) {
+                            bc.remove(bookedCar);
+                            return;
+                        }
+                    }
 
                 }
             }
