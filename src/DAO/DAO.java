@@ -16,11 +16,11 @@ import java.sql.SQLException;
 public class DAO {
 
     public static Connection conn;
-
+//jdbc:mysql://127.0.0.1:3306/?user=root
     public DAO() {
-        String url = "jdbc:mysql://localhost:3306/cnpm?useSSL=false";
+        String url = "jdbc:mysql://127.0.0.1:3306/cnpm?useSSL=false";
         String username = "root";
-        String password = "12346";
+        String password = "123456";
         try {
             conn = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {

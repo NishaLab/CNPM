@@ -3,28 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.staff;
+package View.login;
 
 import Model.Staff;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.Return.SearchContractFrm;
 
 /**
  *
  * @author Lemony
  */
-public class cashierHomeFrm extends javax.swing.JFrame implements ActionListener{
+public class CashierHomeFrm extends javax.swing.JFrame implements ActionListener{
     private final Staff s; 
     /**
      * Creates new form cashierHomeFrm
      * @param s
      */
-    public cashierHomeFrm(Staff s) {
+    public CashierHomeFrm(Staff s) {
         super("Cashier Home");
         initComponents();
         this.s = s;
         logstatlbl.setText("Logged as " + s.getName());
-        
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,9 +37,14 @@ public class cashierHomeFrm extends javax.swing.JFrame implements ActionListener
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         titlelbl = new javax.swing.JLabel();
         logstatlbl = new javax.swing.JLabel();
         recieveBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
+        logoutLabel = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,51 +60,76 @@ public class cashierHomeFrm extends javax.swing.JFrame implements ActionListener
             }
         });
 
+        logoutBtn.setText("logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
+        logoutLabel.setText("logout");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(titlelbl)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(170, 170, 170)
+                .addGap(25, 25, 25)
+                .addComponent(logstatlbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoutLabel)
+                .addGap(26, 26, 26)
+                .addComponent(logoutBtn)
+                .addGap(17, 17, 17))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(logstatlbl)
-                        .addGap(57, 57, 57))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(recieveBtn)
-                        .addGap(162, 162, 162))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(recieveBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(titlelbl)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(logstatlbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logstatlbl)
+                    .addComponent(logoutBtn)
+                    .addComponent(logoutLabel))
+                .addGap(29, 29, 29)
                 .addComponent(titlelbl)
-                .addGap(35, 35, 35)
+                .addGap(44, 44, 44)
                 .addComponent(recieveBtn)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void recieveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recieveBtnActionPerformed
-        //new searchContractFrm().setVisible(true);
+        new SearchContractFrm(s).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_recieveBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
 //    public static void main(String[] args) {
-//        loginFrm myFrame = new cashierHomeFrm().setVisible(true);
+//        Login myFrame = new CashierHomeFrm().setVisible(true);
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JLabel logoutLabel;
     private javax.swing.JLabel logstatlbl;
     private javax.swing.JButton recieveBtn;
     private javax.swing.JLabel titlelbl;

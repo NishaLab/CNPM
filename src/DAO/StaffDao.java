@@ -13,15 +13,15 @@ import java.sql.ResultSet;
  *
  * @author Lemony
  */
-public class StaffDAO extends DAO {
+public class StaffDao extends DAO {
 
-    public StaffDAO() {
+    public StaffDao() {
         super();
     }
 
     public boolean checkLogin(Staff s) {
         boolean result = false;
-        String sql = "SELECT name, position FROM cnpm.tblstaff WHERE username = ? AND password = ?";
+        String sql = "SELECT name, position FROM tblstaff WHERE username = ? AND password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s.getUserName());

@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.Rental;
+package View.Return;
 
 import Model.BookedCar;
 import Model.Client;
 import Model.Staff;
-import Controller.Rental.ContractController;
+import Controller.Return.ContractController;
+import Model.Contract;
 import Model.ContractWarrant;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
 /**
  *
  * @author LEGION
@@ -28,6 +30,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
     public ContractViewFrm(Client client, Staff staff, ArrayList<BookedCar> bc, ArrayList<ContractWarrant> cw) {
         initComponents();
+        setLocationRelativeTo(null);
         this.bc = bc;
         this.cw = cw;
         this.client = client;
@@ -38,6 +41,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
     public ContractViewFrm(Client client, Staff staff, ArrayList<BookedCar> bc) {
         initComponents();
+        setLocationRelativeTo(null);
         this.bc = bc;
         this.client = client;
         this.staff = staff;
@@ -50,6 +54,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
      */
     public ContractViewFrm() {
         initComponents();
+        
     }
 
     /**
@@ -78,15 +83,14 @@ public class ContractViewFrm extends javax.swing.JFrame {
         depositLabel = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
-        confirmLabel = new javax.swing.JLabel();
-        backLabel = new javax.swing.JLabel();
-        addLabel1 = new javax.swing.JLabel();
         deposit = new javax.swing.JLabel();
+        backLabel = new javax.swing.JLabel();
+        viewBillLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        titleLabel.setText("Draft Contract");
+        titleLabel.setText("View Contract");
 
         dateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dateLabel.setText("Booking Date:");
@@ -95,7 +99,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
         date.setText("Date");
 
         carLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        carLabel.setText("Booked Car:");
+        carLabel.setText("Booked Car List:");
 
         carTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,7 +120,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
         carScrollPane.setViewportView(carTable);
 
         warrantLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        warrantLabel.setText("Warrant:");
+        warrantLabel.setText("Warrant List:");
 
         warrantTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,7 +156,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
         clientName.setText("Client Name");
 
         depositLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        depositLabel.setText("Deposit Fee:");
+        depositLabel.setText("Deposit:");
 
         total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         total.setText("...");
@@ -160,19 +164,12 @@ public class ContractViewFrm extends javax.swing.JFrame {
         totalLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         totalLabel.setText("Total:");
 
-        confirmLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        confirmLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        confirmLabel.setText("Confirm");
-
-        backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        backLabel.setText("Go Back");
-
-        addLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        addLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addLabel1.setText("Add Warrant");
-
         deposit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deposit.setText("...");
+
+        backLabel.setText("Back");
+
+        viewBillLabel.setText("View Bill");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,98 +179,94 @@ public class ContractViewFrm extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(warrantScrollPane)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(carLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(warrantLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(157, 157, 157))
+                        .addComponent(warrantLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(carScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(clientLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(171, 171, 171)
+                                .addGap(146, 146, 146)
                                 .addComponent(staffLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                                .addComponent(staffName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(157, 157, 157))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(staffName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(warrantScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(depositLabel)
+                                            .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                                                .addComponent(viewBillLabel))))
+                                    .addComponent(carLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(20, 20, 20)))
+                        .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(titleLabel)
-                                .addGap(57, 57, 57)
-                                .addComponent(addLabel1)
-                                .addGap(35, 35, 35)
-                                .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(titleLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(523, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(depositLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(backLabel)
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(staffLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(staffName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(carLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(carScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(warrantLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(warrantScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(depositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(total)
-                    .addComponent(totalLabel))
-                .addGap(19, 19, 19))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(warrantScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(depositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewBillLabel)
+                        .addGap(43, 43, 43))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return
      */
- 
-
     public ArrayList<BookedCar> getBc() {
         return bc;
     }
@@ -304,22 +297,6 @@ public class ContractViewFrm extends javax.swing.JFrame {
 
     public void setStaff(Staff staff) {
         this.staff = staff;
-    }
-
-    public JLabel getAddLabel1() {
-        return addLabel1;
-    }
-
-    public void setAddLabel1(JLabel addLabel1) {
-        this.addLabel1 = addLabel1;
-    }
-
-    public JLabel getBackLabel() {
-        return backLabel;
-    }
-
-    public void setBackLabel(JLabel backLabel) {
-        this.backLabel = backLabel;
     }
 
     public JLabel getCarLabel() {
@@ -362,12 +339,12 @@ public class ContractViewFrm extends javax.swing.JFrame {
         this.clientName = clientName;
     }
 
-    public JLabel getConfirmLabel() {
-        return confirmLabel;
+    public JLabel getViewBillLabel() {
+        return viewBillLabel;
     }
 
-    public void setConfirmLabel(JLabel confirmLabel) {
-        this.confirmLabel = confirmLabel;
+    public void getViewBillLabel(JLabel viewBillLabel) {
+        this.viewBillLabel = viewBillLabel;
     }
 
     public JLabel getDateLabel() {
@@ -401,8 +378,6 @@ public class ContractViewFrm extends javax.swing.JFrame {
     public void setDate(JLabel date) {
         this.date = date;
     }
-
-
 
     public JLabel getStaffLabel1() {
         return staffLabel1;
@@ -469,14 +444,12 @@ public class ContractViewFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addLabel1;
     private javax.swing.JLabel backLabel;
     private javax.swing.JLabel carLabel;
     private javax.swing.JScrollPane carScrollPane;
     private javax.swing.JTable carTable;
     private javax.swing.JLabel clientLabel2;
     private javax.swing.JLabel clientName;
-    private javax.swing.JLabel confirmLabel;
     private javax.swing.JLabel date;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel deposit;
@@ -487,6 +460,7 @@ public class ContractViewFrm extends javax.swing.JFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel total;
     private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel viewBillLabel;
     private javax.swing.JLabel warrantLabel;
     private javax.swing.JScrollPane warrantScrollPane;
     private javax.swing.JTable warrantTable;

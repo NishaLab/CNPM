@@ -95,6 +95,14 @@ public class Contract {
     public String toString() {
         return "Contract{" + "id=" + id + ", bookingDate=" + bookingDate + ", amount=" + amount + ", state=" + state + ", conWarrant=" + conWarrant + ", car=" + car + ", staff=" + staff + ", client=" + client + '}';
     }
+
+//    public Object[] toObject() {
+//        System.out.println("Hello wtf");
+//        System.out.println(this.id + "\n" + this.bookingDate + "\n" + this.amount + "\n" + this.state + "\n" + this.conWarrant.toString() + "\n" + this.car + "\n" + this.staff.getName() + "\n" + this.client.getName());
+//        System.out.println("Hello wtf");
+//        return new Object[]{this.id, this.bookingDate, this.amount, this.state, this.conWarrant.toString(), this.car.toString(), this};
+//    }
+
     private int id;
     private Date bookingDate;
     private float amount;
@@ -103,5 +111,5 @@ public class Contract {
     private ArrayList<BookedCar> car;
     private Staff staff;
     private Client client;
-    
+
 }
