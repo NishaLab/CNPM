@@ -75,7 +75,7 @@ public class SearchContractController {
                     int key = (int) table.getModel().getValueAt(row, 0);
                     ArrayList<Contract> listContract = cd.getContractByClientId(key);
                     for (Contract contract1 : listContract) {
-                        dtm.addRow(new Object[]{contract1.getId(),contract1.getBookingDate(), contract1.isState(), contract1.getStaff().getName(), contract1.getClient().getName()});
+                        dtm.addRow(new Object[]{contract1.getId(), contract1.getBookingDate(), contract1.isState(), contract1.getStaff().getName(), contract1.getClient().getName()});
                     }
 
                 } catch (Exception exc) {
@@ -86,21 +86,21 @@ public class SearchContractController {
     }
 
     public void setActionGetContract() {
-        JTable table = this.frame.getContractTable();
-
+        JTable table = this.frame.getClientTable();
+        JTextField contractId = this.frame.getContractId();
         ContractDao cd = new ContractDao();
-        table.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent mouseEvt) {
-                JTable table = (JTable) mouseEvt.getSource();
-                Point point = mouseEvt.getPoint();
-                int row = table.rowAtPoint(point);
-                if (mouseEvt.getClickCount() == 2 && table.getSelectedRow() != -1) {
-//                    Contract c = cd.getContractById(key);
-//                    new ContractViewFrm(c.getClient(), c.getStaff(), c.getCar(), c.getConWarrant()).setVisible(true);
-                    System.out.println("hello clgt");
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                try {
+                    int row = table.getSelectedRow();
+                    int key = (int) table.getModel().getValueAt(row, 0);
+                    contractId.setText(key+"");
+
+                } catch (Exception exc) {
+                    exc.printStackTrace();
                 }
             }
         });
-        this.frame.dispose();
     }
 }
