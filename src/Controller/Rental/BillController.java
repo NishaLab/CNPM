@@ -67,10 +67,12 @@ public class BillController {
                     bill.setAmount(Float.parseFloat(frame.getTotal().getText().replaceAll(",", "")));
                     bill.setPenaltyAmount(0);
                     bill.setStaff(frame.getStaff());
+                    System.out.println(bill);
                     ContractDao contractDao = new ContractDao();
                     contractDao.addContract(contract);
-                    billDao.addBill(bill);
-                    JOptionPane.showMessageDialog(null, "Rent Car Success", "Success", 1);
+                    if (billDao.addBill(bill)) {
+                        JOptionPane.showMessageDialog(null, "Rent Car Success", "Success", 1);
+                    }
                     ReceptionistViewFrm rep = new ReceptionistViewFrm(frame.getStaff());
                     frame.dispose();
                     rep.setVisible(true);

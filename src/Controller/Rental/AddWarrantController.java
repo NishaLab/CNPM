@@ -37,7 +37,6 @@ public class AddWarrantController {
         wtb.setRowCount(0);
         WarrantDao dao = new WarrantDao();
         ArrayList<Warrant> warrant = dao.getAllWarrantByClient(this.frame.getClient());
-        System.out.println(warrant.size());
         for (Warrant warrant1 : warrant) {
             wtb.addRow(warrant1.toObject());
         }
