@@ -171,7 +171,8 @@ public class ContractController {
             public void mouseClicked(MouseEvent e) {
                 if (JOptionPane.showConfirmDialog(null, "Do you want to go back to search car frame?\n Current Data will be lost ",
                         "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
-                    SearchCarViewFrm scvf = new SearchCarViewFrm(frame.getStaff(), frame.getBc());
+                    ArrayList<BookedCar> bc = frame.getBc();
+                    SearchCarViewFrm scvf = new SearchCarViewFrm(frame.getStaff(), bc);
                     frame.dispose();
                     scvf.setVisible(true);
                 }

@@ -52,27 +52,18 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         carCatalogPanel.setSize(851, 470);
-        CartComponent b1 = new CartComponent();
-        cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.PAGE_AXIS));
-        cartPanel.add(b1);
-        cartPanel.revalidate();
-        cartPanel.repaint();
     }
 
     public SearchCarViewFrm(Staff staff,ArrayList<BookedCar> bc) {
         initComponents();
         SearchCarController ctrl = new SearchCarController(this);
-        ctrl.init();
         this.staff = staff;
         this.bookedCar =bc;
+        ctrl.init();
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         carCatalogPanel.setSize(851, 470);
-        CartComponent b1 = new CartComponent();
-        cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.PAGE_AXIS));
-        cartPanel.add(b1);
-        cartPanel.revalidate();
-        cartPanel.repaint();
+
     }
 
     /**

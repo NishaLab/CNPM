@@ -29,6 +29,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -77,6 +78,11 @@ public class SearchCarController {
         this.frame.setTypeList(carType);
         this.frame.setClassList(carClass);
         ArrayList<BookedCar> bc = this.frame.getBookedCar();
+        CartComponent b1 = new CartComponent();
+        this.frame.getCartPanel().setLayout(new BoxLayout(this.frame.getCartPanel(), BoxLayout.PAGE_AXIS));
+        this.frame.getCartPanel().add(b1);
+        this.frame.getCartPanel().revalidate();
+        this.frame.getCartPanel().repaint();
         JPanel cart = this.frame.getCartPanel();
         for (BookedCar bookedCar : bc) {
             cart.add(new CartComponent(bookedCar.getCar(), frame));
@@ -240,6 +246,14 @@ public class SearchCarController {
                 Client client = new Client();
                 frame.setVisible(false);
                 scvf.setVisible(true);
+                JLabel back = scvf.getBackLabel();
+                back.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        frame.setVisible(true);
+                        scvf.dispose();
+                    }
+                });
                 confirm.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
