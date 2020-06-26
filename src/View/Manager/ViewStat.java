@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package View.Manager;
+
+import DAO.CarBrandDao;
+import DAO.CarDao;
 import Model.CarStat;
 import DAO.CarStatDao;
+import Model.CarBrandStat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +19,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Model.Staff;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import DAO.CarStatDao;
+import DAO.CarTypeDao;
+import Model.CarBrand;
 
 /**
  *
@@ -22,11 +37,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewStat extends javax.swing.JFrame {
 
+    public static Staff user;
+    private JTable jtable;
+//    private ArrayList<CarStat> brandDetails = new ArrayList<>();
+
+//    public ArrayList<CarStat> getBrandDetails() {
+//        return brandDetails;
+//    }
+//
+//    public void setBrandDetails(ArrayList<CarStat> brandDetails) {
+//        this.brandDetails = brandDetails;
+//    }
+
     /**
      * Creates new form ViewStat
      */
-    public ViewStat() {
+    public ViewStat(Staff user) {
         initComponents();
+        this.user = user;
+        CarStatDao a = new CarStatDao();
+//        this.brandDetails = a.getDetailsBrandStat(new Date(), new Date(), 1);
+//        UserNameJTF.setText(user.getName());
     }
 
     /**
@@ -43,7 +74,7 @@ public class ViewStat extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        NameJTF = new javax.swing.JTextField();
+        UserNameJTF = new javax.swing.JTextField();
         VBTN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         ExitBTN = new javax.swing.JButton();
@@ -95,8 +126,8 @@ public class ViewStat extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(ExitBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -123,7 +154,7 @@ public class ViewStat extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(NameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(ExitBTN))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -154,34 +185,129 @@ public class ViewStat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EDJTFActionPerformed
 
+    public JButton getVBTN() {
+        return VBTN;
+    }
+
+    public void setVBTN(JButton VBTN) {
+        this.VBTN = VBTN;
+    }
+
     private void VBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VBTNActionPerformed
         // TODO add your handling code here:
         jPanel1.removeAll();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Vector<String> name = new Vector();
-        name.add("brand");
-        name.add("total_days");
-        name.add("amount");
-        Vector<Vector<String> > data = new Vector<Vector<String> >();
-        Date sDate = new Date();
-        Date eDate = new Date();
-        try {
-            sDate = sdf.parse(SDJTF.getText());
-            eDate = sdf.parse(EDJTF.getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(ViewStat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        JTable table = new JTable();
         CarStatDao csd = new CarStatDao();
-        ArrayList<CarStat> arr = csd.getCarStat(sDate, eDate);
-        int i=0;
-        for(CarStat c : arr){
+        Date startDate = new Date();
+        Date endDate = new Date();
+
+        try {
+            startDate = sdf.parse(SDJTF.getText());
+            endDate = sdf.parse(EDJTF.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ArrayList<CarBrandStat> result = new ArrayList<CarBrandStat>();
+        result = csd.getCarBrandStat(startDate, endDate);
+        Vector<String> collumNames = new Vector<String>();
+        collumNames.add("Id");
+        collumNames.add("Name");
+        collumNames.add("Desc");
+        collumNames.add("Income");
+        collumNames.add("Days");
+        Vector<Vector<String>> data = new Vector<Vector<String>>();
+        for (CarBrandStat cbs : result) {
             Vector<String> tmp = new Vector<String>();
-            tmp.add(c.getBrand());
-            tmp.add(""+c.getTotalDay());
-            tmp.add(""+c.getAmount());
+            tmp.add("" + cbs.getId());
+            tmp.add(cbs.getName());
+            tmp.add(cbs.getDesc());
+            tmp.add("" + cbs.getIncome());
+            tmp.add("" + cbs.getTotalDay());
             data.add(tmp);
         }
-        jTable = new JTable(data,name);
+        jtable = new JTable(data, collumNames);
+        jtable.add(new JScrollPane());
+        jPanel1.add(jtable);
+        jtable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int brandid = Integer.parseInt(jtable.getValueAt(jtable.getSelectedRow(), 0).toString());
+                Date startDate = new Date();
+                Date endDate = new Date();
+                try {
+                    startDate = sdf.parse(SDJTF.getText());
+                    endDate = sdf.parse(EDJTF.getText());
+                } catch (Exception f) {
+                    f.printStackTrace();
+                }
+                ArrayList<CarStat> brandDetails = csd.getDetailsBrandStat(startDate, endDate, brandid);
+                
+                collumNames.clear();
+                data.clear();
+                
+                collumNames.add("id");
+                collumNames.add("carname");
+                collumNames.add("carbrand");
+                collumNames.add("regplate");
+                collumNames.add("days");
+                collumNames.add("income");
+                for(CarStat cs : brandDetails){
+                    Vector<String> tmp = new Vector<>();
+                    tmp.add(""+cs.getId());
+                    tmp.add(cs.getName());
+                    tmp.add(cs.getBrand().getName());
+                    tmp.add(cs.getRegPlate());
+                    tmp.add(""+cs.getTotalDay());
+                    tmp.add(""+cs.getAmount());
+                    data.add(tmp);
+                }
+                JTable jtable1 = new JTable(data,collumNames);
+                jtable1.add(new JScrollPane());
+                jPanel1.add(jtable1);
+                jtable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                         int carid = Integer.parseInt(jtable.getValueAt(jtable.getSelectedRow(), 0).toString());
+                         Date startDate = new Date();
+                         Date endDate = new Date();
+                         try {
+                            startDate = sdf.parse(SDJTF.getText());
+                            endDate = sdf.parse(EDJTF.getText());
+                         } catch (Exception f) {
+                            f.printStackTrace();
+                         }
+                         ArrayList<CarStat> carDetails = csd.getDetailsCarStat(startDate, endDate, carid);
+                         collumNames.clear();
+                         data.clear();
+                         collumNames.add("Id_Car");
+                         collumNames.add("Car_Name");
+                         collumNames.add("Reg_Plate");
+                         collumNames.add("Brand");
+                         collumNames.add("Type");
+                         collumNames.add("Client_Name");
+                         collumNames.add("Days");
+                         collumNames.add("Income");
+                         for(CarStat cs : carDetails){
+                             Vector<String> tmp = new Vector<>();
+                             tmp.add(""+cs.getId());
+                             tmp.add(cs.getName());
+                             tmp.add(cs.getRegPlate());
+                             tmp.add(cs.getBrand().getName());
+                             tmp.add(cs.getType().getName());
+                             tmp.add(cs.getClientName());
+                             tmp.add(""+cs.getTotalDay());
+                             tmp.add(""+cs.getAmount());
+                             data.add(tmp);
+                         }
+                         JTable jtable2 = new JTable(data,collumNames);
+                         jtable2.add(new JScrollPane());
+                         jPanel1.add(jtable2);
+                    }
+                
+                });
+            }
+        });
     }//GEN-LAST:event_VBTNActionPerformed
 
     /**
@@ -214,16 +340,96 @@ public class ViewStat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewStat().setVisible(true);
+                new ViewStat(user).setVisible(true);
             }
         });
     }
-    private JTable jTable ;
+
+    public static Staff getUser() {
+        return user;
+    }
+
+    public static void setUser(Staff user) {
+        ViewStat.user = user;
+    }
+
+    public JTable getJtable() {
+        return jtable;
+    }
+
+    public void setJtable(JTable jtable) {
+        this.jtable = jtable;
+    }
+
+    public JTextField getEDJTF() {
+        return EDJTF;
+    }
+
+    public void setEDJTF(JTextField EDJTF) {
+        this.EDJTF = EDJTF;
+    }
+
+    public JButton getExitBTN() {
+        return ExitBTN;
+    }
+
+    public void setExitBTN(JButton ExitBTN) {
+        this.ExitBTN = ExitBTN;
+    }
+
+    public JTextField getSDJTF() {
+        return SDJTF;
+    }
+
+    public void setSDJTF(JTextField SDJTF) {
+        this.SDJTF = SDJTF;
+    }
+
+    public JTextField getUserNameJTF() {
+        return UserNameJTF;
+    }
+
+    public void setUserNameJTF(JTextField UserNameJTF) {
+        this.UserNameJTF = UserNameJTF;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EDJTF;
     private javax.swing.JButton ExitBTN;
-    private javax.swing.JTextField NameJTF;
     private javax.swing.JTextField SDJTF;
+    private javax.swing.JTextField UserNameJTF;
     private javax.swing.JButton VBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

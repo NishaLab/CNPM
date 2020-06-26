@@ -26,8 +26,8 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="NameJTF" min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="UserNameJTF" min="-2" pref="144" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Component id="ExitBTN" min="-2" pref="69" max="-2" attributes="0"/>
           </Group>
@@ -61,7 +61,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="NameJTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="UserNameJTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="ExitBTN" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="Login as"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="NameJTF">
+    <Component class="javax.swing.JTextField" name="UserNameJTF">
     </Component>
     <Component class="javax.swing.JButton" name="VBTN">
       <Properties>
