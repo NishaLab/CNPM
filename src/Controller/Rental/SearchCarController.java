@@ -67,11 +67,13 @@ public class SearchCarController {
         CarClassificationDao classDao = new CarClassificationDao();
         JComboBox<String> typeCB = this.frame.getCarType();
         carType = typeDao.getAllCarType();
+        typeCB.addItem("");
         for (CarType carType1 : carType) {
             typeCB.addItem(carType1.getName());
         }
         carClass = classDao.getAllCarClass();
         JComboBox<String> classCB = this.frame.getCarClass();
+        classCB.addItem("");
         for (CarClassification carClas : carClass) {
             classCB.addItem(carClas.getName());
         }
@@ -121,18 +123,23 @@ public class SearchCarController {
                 String carClass = frame.getCarClass().getSelectedItem().toString();
                 int typeId = 0;
                 int classId = 0;
-                for (CarType carType1 : ct) {
-                    if (carType1.getName().equalsIgnoreCase(carType)) {
-                        typeId = carType1.getId();
-                        break;
+                if (!carType.isEmpty()) {
+                    for (CarType carType1 : ct) {
+                        if (carType1.getName().equalsIgnoreCase(carType)) {
+                            typeId = carType1.getId();
+                            break;
+                        }
                     }
                 }
-                for (CarClassification carClassification : cc) {
-                    if (carClassification.getName().equalsIgnoreCase(carClass)) {
-                        classId = carClassification.getId();
-                        break;
+                if (!carClass.isEmpty()) {
+                    for (CarClassification carClassification : cc) {
+                        if (carClassification.getName().equalsIgnoreCase(carClass)) {
+                            classId = carClassification.getId();
+                            break;
+                        }
                     }
                 }
+
                 CarDao dao = new CarDao();
                 try {
                     frame.setCar(dao.searchCar(receivedDate, returnDate, name, typeId, classId));

@@ -117,11 +117,11 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         classLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         classLabel.setText("Class");
 
-        carType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         carType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        carType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        carClass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         carClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        carClass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         nameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nameLabel.setText("Name");

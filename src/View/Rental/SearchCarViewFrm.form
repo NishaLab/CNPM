@@ -182,49 +182,46 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="titleLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Search Car "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Search Car "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="receivedDateLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Received Date"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Received Date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="returnDateLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Return Date"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Return Date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="typeLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Type"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Type"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="classLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Class"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Class"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="carType">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -232,6 +229,9 @@
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
               </Border>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="14" style="1"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -240,9 +240,6 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="carClass">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -251,6 +248,9 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="14" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -258,10 +258,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="nameLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Name"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameField">
@@ -273,34 +273,34 @@
         </Component>
         <Component class="javax.swing.JButton" name="confirmBtt">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Confirm"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Confirm"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="searchBtt">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Search"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="backLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Go Back"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Go Back"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="forwardBtt">
           <Properties>
+            <Property name="text" type="java.lang.String" value="&gt;"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="forwardBttActionPerformed"/>
@@ -308,27 +308,27 @@
         </Component>
         <Component class="javax.swing.JButton" name="backwardBtt">
           <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="pageLabel">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="0/0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="0/0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jumpBtt">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Jump"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Jump"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="pageField">
