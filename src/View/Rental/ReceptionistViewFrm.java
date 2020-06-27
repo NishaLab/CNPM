@@ -9,12 +9,15 @@ import DAO.BillDao;
 import Model.Staff;
 import Model.Contract;
 import Model.Bill;
+import Controller.Rental.ReceptionistController;
 import java.awt.HeadlessException;
 import DAO.ContractDao;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import keeptoo.Drag;
 
 /**
@@ -24,37 +27,27 @@ import keeptoo.Drag;
 public class ReceptionistViewFrm extends javax.swing.JFrame {
 
     private Staff staff;
+    private ArrayList<Contract> contract = new ArrayList<>();
+    private ArrayList<Bill> bill = new ArrayList<>();
 
     /**
      * Creates new form ReceptionistViewFrm
      */
     public ReceptionistViewFrm() {
         initComponents();
-        ContractDao dao = new ContractDao();
-        BillDao billdao = new BillDao();
-        ArrayList<Contract> con = dao.getContractByStaffId(1);
-        for (Contract contract : con) {
-            System.out.println(contract);
-        }
-        ArrayList<Bill> bill = billdao.getAllBillByStaffId(1);
-        for (Bill bill1 : bill) {
-            System.out.println(bill1);
-        }
+        
+        Staff staff = new Staff("hung", "hung", "hung", "receptionist");
+        staff.setId(1);
+        this.staff = staff;
+        ReceptionistController a = new ReceptionistController(this);
+        a.init();
     }
 
     public ReceptionistViewFrm(Staff staff) {
         initComponents();
         this.staff = staff;
-        ContractDao dao = new ContractDao();
-        BillDao billdao = new BillDao();
-        ArrayList<Contract> con = dao.getContractByStaffId(1);
-        for (Contract contract : con) {
-            System.out.println(contract);
-        }
-        ArrayList<Bill> bill = billdao.getAllBillByStaffId(1);
-        for (Bill bill1 : bill) {
-            System.out.println(bill1);
-        }
+        ReceptionistController a = new ReceptionistController(this);
+        a.init();
     }
 
     /**
@@ -70,19 +63,19 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         sidePanel = new javax.swing.JPanel();
         contractSide = new javax.swing.JPanel();
         icon = new javax.swing.JLabel();
-        text = new javax.swing.JLabel();
+        contractText = new javax.swing.JLabel();
         billSide = new javax.swing.JPanel();
         icon1 = new javax.swing.JLabel();
-        text1 = new javax.swing.JLabel();
+        billText = new javax.swing.JLabel();
         logo = new javax.swing.JPanel();
         logoLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        carSide = new javax.swing.JPanel();
+        logoImage = new javax.swing.JLabel();
+        rentalSide = new javax.swing.JPanel();
         icon2 = new javax.swing.JLabel();
-        text2 = new javax.swing.JLabel();
-        carSide1 = new javax.swing.JPanel();
+        rentText = new javax.swing.JLabel();
+        logoutSide = new javax.swing.JPanel();
         icon3 = new javax.swing.JLabel();
-        text3 = new javax.swing.JLabel();
+        logoutText = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -90,6 +83,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidePanel.setBackground(new java.awt.Color(47, 24, 107));
@@ -101,11 +95,11 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/contract_30px.png"))); // NOI18N
         contractSide.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
-        text.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        text.setForeground(new java.awt.Color(255, 255, 255));
-        text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text.setText("View Contract");
-        contractSide.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+        contractText.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        contractText.setForeground(new java.awt.Color(255, 255, 255));
+        contractText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contractText.setText("View Contract");
+        contractSide.add(contractText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
         billSide.setBackground(new java.awt.Color(85, 75, 158));
         billSide.setMinimumSize(new java.awt.Dimension(60, 60));
@@ -114,11 +108,11 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/bill_30px.png"))); // NOI18N
         billSide.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
-        text1.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        text1.setForeground(new java.awt.Color(255, 255, 255));
-        text1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text1.setText("View Bill");
-        billSide.add(text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+        billText.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        billText.setForeground(new java.awt.Color(255, 255, 255));
+        billText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        billText.setText("View Bill");
+        billSide.add(billText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
 
         logo.setBackground(new java.awt.Color(47, 24, 107));
         logo.setMinimumSize(new java.awt.Dimension(270, 170));
@@ -130,37 +124,37 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         logoLabel.setText("ALT F4 Rental");
         logo.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
-        jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
-        jLabel1.setPreferredSize(new java.awt.Dimension(60, 60));
-        logo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
+        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
+        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
+        logoImage.setPreferredSize(new java.awt.Dimension(60, 60));
+        logo.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        carSide.setBackground(new java.awt.Color(85, 75, 158));
-        carSide.setMinimumSize(new java.awt.Dimension(60, 60));
-        carSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        rentalSide.setBackground(new java.awt.Color(85, 75, 158));
+        rentalSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        rentalSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/car_30px.png"))); // NOI18N
-        carSide.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+        rentalSide.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
-        text2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        text2.setForeground(new java.awt.Color(255, 255, 255));
-        text2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text2.setText("Car Rental");
-        carSide.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+        rentText.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        rentText.setForeground(new java.awt.Color(255, 255, 255));
+        rentText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rentText.setText("Car Rental");
+        rentalSide.add(rentText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
 
-        carSide1.setBackground(new java.awt.Color(85, 75, 158));
-        carSide1.setMinimumSize(new java.awt.Dimension(60, 60));
-        carSide1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        logoutSide.setBackground(new java.awt.Color(85, 75, 158));
+        logoutSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        logoutSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/exit_30px.png"))); // NOI18N
-        carSide1.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+        logoutSide.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
-        text3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        text3.setForeground(new java.awt.Color(255, 255, 255));
-        text3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text3.setText("Back to Login");
-        carSide1.add(text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+        logoutText.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        logoutText.setForeground(new java.awt.Color(255, 255, 255));
+        logoutText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutText.setText("Back to Login");
+        logoutSide.add(logoutText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
@@ -168,9 +162,9 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(contractSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(billSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(carSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rentalSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(carSide1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +175,9 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(billSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(carSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rentalSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(carSide1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110))
         );
 
@@ -201,6 +195,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
 
         backgroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 140));
 
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         backgroundPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 710, 380));
 
@@ -244,25 +239,209 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         });
     }
 
+    public ArrayList<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(ArrayList<Contract> contract) {
+        this.contract = contract;
+    }
+
+    public ArrayList<Bill> getBill() {
+        return bill;
+    }
+
+    public void setBill(ArrayList<Bill> bill) {
+        this.bill = bill;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public JPanel getBackgroundPanel() {
+        return backgroundPanel;
+    }
+
+    public void setBackgroundPanel(JPanel backgroundPanel) {
+        this.backgroundPanel = backgroundPanel;
+    }
+
+    public JPanel getBillSide() {
+        return billSide;
+    }
+
+    public void setBillSide(JPanel billSide) {
+        this.billSide = billSide;
+    }
+
+    public JLabel getBillText() {
+        return billText;
+    }
+
+    public void setBillText(JLabel billText) {
+        this.billText = billText;
+    }
+
+    public JPanel getContractSide() {
+        return contractSide;
+    }
+
+    public void setContractSide(JPanel contractSide) {
+        this.contractSide = contractSide;
+    }
+
+    public JLabel getContractText() {
+        return contractText;
+    }
+
+    public void setContractText(JLabel contractText) {
+        this.contractText = contractText;
+    }
+
+    public JLabel getIcon() {
+        return icon;
+    }
+
+    public void setIcon(JLabel icon) {
+        this.icon = icon;
+    }
+
+    public JLabel getIcon1() {
+        return icon1;
+    }
+
+    public void setIcon1(JLabel icon1) {
+        this.icon1 = icon1;
+    }
+
+    public JLabel getIcon2() {
+        return icon2;
+    }
+
+    public void setIcon2(JLabel icon2) {
+        this.icon2 = icon2;
+    }
+
+    public JLabel getIcon3() {
+        return icon3;
+    }
+
+    public void setIcon3(JLabel icon3) {
+        this.icon3 = icon3;
+    }
+
+    public JPanel getLogo() {
+        return logo;
+    }
+
+    public void setLogo(JPanel logo) {
+        this.logo = logo;
+    }
+
+    public JLabel getLogoImage() {
+        return logoImage;
+    }
+
+    public void setLogoImage(JLabel logoImage) {
+        this.logoImage = logoImage;
+    }
+
+    public JLabel getLogoLabel() {
+        return logoLabel;
+    }
+
+    public void setLogoLabel(JLabel logoLabel) {
+        this.logoLabel = logoLabel;
+    }
+
+    public JPanel getLogoutSide() {
+        return logoutSide;
+    }
+
+    public void setLogoutSide(JPanel logoutSide) {
+        this.logoutSide = logoutSide;
+    }
+
+    public JLabel getLogoutText() {
+        return logoutText;
+    }
+
+    public void setLogoutText(JLabel logoutText) {
+        this.logoutText = logoutText;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void setMainPanel(JPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public JLabel getRentText() {
+        return rentText;
+    }
+
+    public void setRentText(JLabel rentText) {
+        this.rentText = rentText;
+    }
+
+    public JPanel getRentalSide() {
+        return rentalSide;
+    }
+
+    public void setRentalSide(JPanel rentalSide) {
+        this.rentalSide = rentalSide;
+    }
+
+    public JPanel getSidePanel() {
+        return sidePanel;
+    }
+
+    public void setSidePanel(JPanel sidePanel) {
+        this.sidePanel = sidePanel;
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public void setTitleLabel(JLabel titleLabel) {
+        this.titleLabel = titleLabel;
+    }
+
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JPanel billSide;
-    private javax.swing.JPanel carSide;
-    private javax.swing.JPanel carSide1;
+    private javax.swing.JLabel billText;
     private javax.swing.JPanel contractSide;
+    private javax.swing.JLabel contractText;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon1;
     private javax.swing.JLabel icon2;
     private javax.swing.JLabel icon3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel logo;
+    private javax.swing.JLabel logoImage;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JPanel logoutSide;
+    private javax.swing.JLabel logoutText;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel rentText;
+    private javax.swing.JPanel rentalSide;
     private javax.swing.JPanel sidePanel;
-    private javax.swing.JLabel text;
-    private javax.swing.JLabel text1;
-    private javax.swing.JLabel text2;
-    private javax.swing.JLabel text3;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables

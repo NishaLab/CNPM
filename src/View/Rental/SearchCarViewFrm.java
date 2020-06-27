@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -43,22 +44,25 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     private Client client;
     private Staff staff;
 
-    public SearchCarViewFrm() {
+    public SearchCarViewFrm() throws HeadlessException {
         initComponents();
-        SearchCarController ctrl = new SearchCarController(this);
-        ctrl.init();
-        staff = new Staff("Hung", "12435", "Nguyen Duc Hung", "Receptionist");
-        staff.setId(1);
+    }
+
+    public SearchCarViewFrm(Staff staff) {
+        initComponents();
+        this.staff = staff;
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         carCatalogPanel.setSize(851, 470);
+        SearchCarController ctrl = new SearchCarController(this);
+        ctrl.init();
     }
 
-    public SearchCarViewFrm(Staff staff,ArrayList<BookedCar> bc) {
+    public SearchCarViewFrm(Staff staff, ArrayList<BookedCar> bc) {
         initComponents();
         SearchCarController ctrl = new SearchCarController(this);
         this.staff = staff;
-        this.bookedCar =bc;
+        this.bookedCar = bc;
         ctrl.init();
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
