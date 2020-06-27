@@ -43,6 +43,7 @@ public class CarDao extends DAO {
                 car.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
                 car.setDesc(rs.getString("desc"));
                 car.setState(rs.getString("state"));
+                car.setRegPlate(rs.getString("reg_plate"));
                 car.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));
                 car.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
                 res.add(car);
@@ -78,25 +79,26 @@ public class CarDao extends DAO {
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
         CarBrandDao brandDao = new CarBrandDao();
-        String sql = "select * from tblcar where tblcar.id = ?";
+        String sql = "select * from tblcar where id = ?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Car car = new Car();
-                car.setId(rs.getInt("id"));
-                car.setName(rs.getString("name"));
-                car.setPrice(rs.getInt("price"));
-                car.setState(rs.getString("state"));
-                car.setDesc(rs.getString("desc"));
-                car.setRegPlate(rs.getString("reg_plate"));
-                car.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
-                car.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
-                car.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));
+                res.setId(rs.getInt("id"));
+                res.setName(rs.getString("name"));
+                res.setPrice(rs.getInt("price"));
+                res.setState(rs.getString("state"));
+                res.setDesc(rs.getString("desc"));
+                res.setRegPlate(rs.getString("reg_plate"));
+                res.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
+                res.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
+                res.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));
             }
         }catch(Exception e){
             e.printStackTrace();
         }
+//        System.out.println(res.getId()+" "+res.getName()+" "+res.getRegPlate());
         return res;
     }
 }

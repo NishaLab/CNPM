@@ -17,10 +17,10 @@ public class ChooseStatType extends javax.swing.JFrame {
     /**
      * Creates new form ChooseStatType
      */
-    public ChooseStatType(Staff user) {
+    public ChooseStatType() {
         initComponents();
-        this.user=user;
-        UserNameJTF.setText(user.getName());
+//        this.user=user;
+//        UserNameJTF.setText(user.getName());
     }
 
     /**
@@ -174,7 +174,7 @@ public class ChooseStatType extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChooseStatType(user).setVisible(true);
+                new ChooseStatType().setVisible(true);
             }
         });
     }

@@ -26,17 +26,17 @@ public class CarStatDao extends DAO{
 	public ArrayList<CarBrandStat> getCarBrandStat(Date startDate, Date endDate){
 		ArrayList<CarBrandStat> result = new ArrayList<CarBrandStat>();
                  CarBrandDao cbDao = new CarBrandDao();
-		String sql = "SELECT c.id, c.name, IFNULL(SUM(X.income),0) as totalIncome, IFNULL(SUM(X.days),0) as totalDays"
-                            +"FROM	(SELECT a.id AS carid, a.brand AS brandid,  "
-                            +"(SELECT DATEDIFF(LEAST(b.returnDate,?), GREATEST(b.receivedDate,?)) FROM tblBookedCar b"
-                            +"WHERE b.returnDate > ? AND b.receivedDate < ? AND b.tblCar_id = a.id  ) AS days,"
-                            +"(SELECT DATEDIFF(LEAST(b.returnDate,?),GREATEST(b.receivedDate,?))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
-                            +"WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ?) AS income"
-                            +"FROM tblCar a "
-                            +"ORDER BY income DESC ) AS X, tblcarbrand c"
-                            +"WHERE X.brandid = c.id"
-                            +"GROUP BY X.brandid"
-                            +"ORDER BY totalIncome DESC" ;
+		String sql = "SELECT c.id, c.name, IFNULL(SUM(X.income),0) AS totalIncome, IFNULL(SUM(X.days),0) AS totalDays"
+                            +" FROM (SELECT a.id AS carid, a.brand AS brandid,  "
+                            +"(SELECT DATEDIFF(LEAST(b.returnDate,?), GREATEST(b.receivedDate,?)) FROM tblbookedcar b"
+                            +" WHERE b.returnDate > ? AND b.receivedDate < ? AND b.tblCar_id = a.id  ) AS days,"
+                            +"(SELECT (DATEDIFF(LEAST(b.returnDate,?),GREATEST(b.receivedDate,?))/DATEDIFF(b.returnDate,b.receivedDate))*b.totalprice FROM tblbookedcar b"
+                            +" WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ?) AS income"
+                            +" FROM tblcar a "
+                            +" ORDER BY income DESC ) AS X, tblcarbrand c"
+                            +" WHERE X.brandid = c.id"
+                            +" GROUP BY X.brandid"
+                            +" ORDER BY totalIncome DESC" ;
                      
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -50,6 +50,7 @@ public class CarStatDao extends DAO{
 			ps.setString(6, sdf.format(startDate));
 			ps.setString(7, sdf.format(startDate));
 			ps.setString(8, sdf.format(endDate));
+//                           System.out.println(ps.toString());
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -65,7 +66,7 @@ public class CarStatDao extends DAO{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+//		          System.out.println(result.size());
 		return result;
 	}
         public ArrayList<CarStat> getDetailsBrandStat(Date startDate,Date endDate, int brandId){
@@ -73,29 +74,29 @@ public class CarStatDao extends DAO{
             CarBrandDao cb = new CarBrandDao();
             CarTypeDao ct = new CarTypeDao();
             CarDao cd = new CarDao();
-            String sql = "select 	X.carid,  c.id as brandid, d.name as typeid,  ifnull(sum(X.days),0) as totalDay, ifnull(sum(X.income),0) as totalIncome"
-                        +"from	(SELECT a.id as carid, a.brand as brandid, a.tblCarType_id as cartypeid,"
-                        +"		(SELECT DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate, ?)) FROM tblBookedCar b"
-                        +"			WHERE b.returnDate > ? AND b.receivedDate < ? AND b.tblCar_id = a.id  and b.tblCar_id = a.id ) as days,"
-                        +"		(SELECT datediff(least(b.returnDate, ?),greatest(b.receivedDate, ? ))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
-                        +"			WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ? and b.tblCar_id = a.id ) as income"
-                        +"from tblcar a, tblcarbrand c, tblcartype d"
-                        +"where a.brand = ? and  a.tblCarType_id = d.id and a.brand = c.id ) as X, tblcar a, tblcarbrand c, tblcartype d"
-                        +"where X.carid=a.id and X.brandid=c.id and X.cartypeid=d.id"
-                        +"group by X.carid"
-                        +"order by totalIncome desc" ;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String sql = "select 	X.carid,  c.id as brandid, d.id as typeid ,  ifnull(sum(X.days),0) as totalDay, ifnull(sum(X.income),0) as totalIncome "
+                        +" from	(SELECT a.id as carid, a.brand as brandid, a.tblCarType_id as cartypeid,"
+                        +" (SELECT DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate, ?)) FROM tblBookedCar b"
+                        +" WHERE b.returnDate > ? AND b.receivedDate < ? AND b.tblCar_id = a.id  ) as days,"
+                        +" (SELECT datediff(least(b.returnDate, ?),greatest(b.receivedDate, ?))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
+                        +" WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ? and b.tblCar_id = a.id ) as income"
+                        +" from tblcar a"
+                        +" where a.brand = ? ) as X, tblcar a, tblcarbrand c, tblcartype d"
+                        +" where X.carid=a.id and X.brandid=c.id and X.cartypeid=d.id"
+                        +" group by X.carid"
+                        +" order by totalIncome desc";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             try{
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1,sdf.format(endDate));
-                ps.setString(2,sdf.format(startDate));
-                ps.setString(3,sdf.format(startDate));
-                ps.setString(4,sdf.format(endDate));
-                ps.setString(5,sdf.format(endDate));
-                ps.setString(6,sdf.format(startDate));
-                ps.setString(7,sdf.format(startDate));
-                ps.setString(8,sdf.format(endDate));
-                ps.setString(9,""+brandId);
+                ps.setString(1, sdf.format(endDate));
+                ps.setString(2, sdf.format(startDate));
+                ps.setString(3, sdf.format(startDate));
+                ps.setString(4, sdf.format(endDate));
+                ps.setString(5, sdf.format(endDate));
+                ps.setString(6, sdf.format(startDate));
+                ps.setString(7, sdf.format(startDate));
+                ps.setString(8, sdf.format(endDate));
+                ps.setInt(9, brandId);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     CarStat cs = new CarStat();
@@ -103,7 +104,6 @@ public class CarStatDao extends DAO{
                     CarBrand brand = cb.getCarBrandById(rs.getInt("brandid"));
                     CarType type = ct.getCarTypeById(rs.getInt("typeid"));
                     Car car = cd.getCar(rs.getInt("carid"));
-                    
                     cs.setId(car.getId());
                     cs.setName(car.getName());
                     cs.setRegPlate(car.getRegPlate());
@@ -112,7 +112,6 @@ public class CarStatDao extends DAO{
                     cs.setType(type);
                     cs.setAmount(rs.getFloat("totalIncome"));
                     cs.setTotalDay(rs.getInt("totalDay"));
-                    
                     result.add(cs);
                 }
             }catch(Exception e){
@@ -128,15 +127,15 @@ public class CarStatDao extends DAO{
             CarDao cd = new CarDao();
             
             String sql = "select	distinct X.contractid, X.carid, X.brandid, X.cartypeid, e.name as clientname, ifnull(X.days,0) as days, ifnull(X.income,0) as income"
-                        +"from	(SELECT b.tblCar_id as carid, a.brand as brandid, a.tblCarType_id as cartypeid, b.tblContract_id as contractid,"
-                        +"		(SELECT DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate,?)) FROM tblBookedCar b"
-                        +"			WHERE b.returnDate > ? AND b.receivedDate < ? and b.tblCar_id=a.id  ) as days,"
-                        +"		(SELECT datediff(least(b.returnDate,?),greatest(b.receivedDate,?))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
-                        +"			WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ? ) as income"
-                        +"from tblcar a, tblbookedcar b"
-                        +"where b.tblCar_id=\"5\" and b.tblCar_id=a.id ) as X, tblcar a, tblbookedcar b, tblcontract d, tblclient e, tblcarbrand f, tblcartype g"
-                        +"where  X.carid=a.id and X.contractid=d.id and d.tblClient_id=e.id"
-                        +"order by income desc" ;
+                        +" from (SELECT b.tblCar_id as carid, a.brand as brandid, a.tblCarType_id as cartypeid, b.tblContract_id as contractid,"
+                        +" (SELECT DATEDIFF(LEAST(b.returnDate, ?), GREATEST(b.receivedDate,?)) FROM tblBookedCar b"
+                        +" WHERE b.returnDate > ? AND b.receivedDate < ? and b.tblCar_id=a.id  ) as days,"
+                        +" (SELECT datediff(least(b.returnDate,?),greatest(b.receivedDate,?))/DATEDIFF(b.returnDate,b.receivedDate)*b.totalprice FROM tblBookedCar b"
+                        +" WHERE b.tblCar_id = a.id AND b.returnDate > ? AND b.receivedDate < ? ) as income"
+                        +" from tblcar a, tblbookedcar b"
+                        +" where b.tblCar_id= ? and b.tblCar_id=a.id ) as X, tblcar a, tblbookedcar b, tblcontract d, tblclient e, tblcarbrand f, tblcartype g"
+                        +" where  X.carid=a.id and X.contractid=d.id and d.tblClient_id=e.id"
+                        +" order by income desc" ;
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try{
                 PreparedStatement ps = conn.prepareStatement(sql);
@@ -148,7 +147,7 @@ public class CarStatDao extends DAO{
                 ps.setString(6,sdf.format(startDate));
                 ps.setString(7,sdf.format(startDate));
                 ps.setString(8,sdf.format(endDate));
-                ps.setString(9,""+carid);
+                ps.setInt(9,carid);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     CarStat cs = new CarStat();
