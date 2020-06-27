@@ -51,9 +51,9 @@ public class CartComponent extends javax.swing.JPanel {
             ImageIcon real = new ImageIcon(newimg);
             this.imageLabel.setIcon(real);
         }
-        ImageIcon icon = new ImageIcon("src/View/Rental/Icon/x.png");
+        ImageIcon icon = new ImageIcon("src/View/Rental/Icon/delete_48px.png");
         Image image = icon.getImage();
-        Image newimg = image.getScaledInstance(40, 30, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = image.getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH);
         ImageIcon real = new ImageIcon(newimg);
         this.exitLabel.setIcon(real);
 

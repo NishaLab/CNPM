@@ -41,23 +41,22 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="kButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="kButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="kButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="kButton4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="kButton1" alignment="1" pref="271" max="32767" attributes="0"/>
+                      <Component id="kButton2" alignment="1" max="32767" attributes="0"/>
+                      <Component id="kButton3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="kButton4" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
-                  <Component id="kButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
+                  <Component id="kButton1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Component id="kButton2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="kButton3" min="-2" max="-2" attributes="0"/>
@@ -71,23 +70,34 @@
       <SubComponents>
         <Component class="keeptoo.KButton" name="kButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="kButton1"/>
+            <Property name="text" type="java.lang.String" value="View Contract"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="kBorderRadius" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="keeptoo.KButton" name="kButton2">
           <Properties>
             <Property name="text" type="java.lang.String" value="kButton2"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="keeptoo.KButton" name="kButton3">
           <Properties>
             <Property name="text" type="java.lang.String" value="kButton3"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="keeptoo.KButton" name="kButton4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="kButton4"/>
+            <Property name="text" type="java.lang.String" value="Logout"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kButton4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
