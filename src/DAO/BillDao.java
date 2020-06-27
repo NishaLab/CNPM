@@ -37,4 +37,29 @@ public class BillDao extends DAO {
         }
     }
 
+    public ArrayList<Bill> getAllBillByStaffId(int key) {
+        ArrayList<Bill> res = new ArrayList<>();
+        ContractDao contract = new ContractDao();
+        String billSql = "SELECT * FROM tblbill WHERE tblStaff_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(billSql);
+            ps.setInt(1, key);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Bill bill = new Bill();
+                bill.setId(rs.getInt("id"));
+                bill.setAmount(rs.getFloat("amount"));
+                bill.setPaymentType(rs.getString("paymentType"));
+                bill.setPaymentDate(rs.getString("paymentDate"));
+                bill.setNote(rs.getString("note"));
+                bill.setContract(contract.getContractById(rs.getInt("tblContract_id")));
+                res.add(bill);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+
+    }
+
 }

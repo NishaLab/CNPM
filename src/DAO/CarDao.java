@@ -22,27 +22,28 @@ public class CarDao extends DAO {
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
         CarBrandDao brandDao = new CarBrandDao();
-        String sql = "Select * from tblcar where tblCarType_id = ? AND tblCarClassification_id = ? AND NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
+        String sql = "Select * from tblcar where if(?<>0,tblCarType_id = ?,true) AND if(?<>0,tblCarClassification_id = ?,true) AND NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
                 + "Select tblcar_id from tblbookedcar\n"
-                + "WHERE (receivedDate > ? AND returnDate > ?) \n"
-                + "OR(receivedDate < ? AND returnDate < ?)\n"
-                + "OR(receivedDate > ? AND returnDate < ?)\n"
-                + "OR(receivedDate < ? AND returnDate > ?)) ";
+                + "WHERE (receivedDate < ? AND returnDate > ?) \n"
+                + "OR(receivedDate < ? AND returnDate > ?)\n"
+                + "OR(receivedDate > ? AND returnDate < ?))\n";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             java.sql.Timestamp sqlcheckin = new java.sql.Timestamp(receivedDate.getTime());
             java.sql.Timestamp sqlcheckout = new java.sql.Timestamp(returnDate.getTime());
             ps.setInt(1, type);
-            ps.setInt(2, brand);
-            ps.setString(3, "%" + key + "%");
-            ps.setTimestamp(4, sqlcheckin);
-            ps.setTimestamp(5, sqlcheckout);
+            ps.setInt(2, type);
+            ps.setInt(3, brand);
+            ps.setInt(4, type);
+            ps.setString(5, "%" + key + "%");
             ps.setTimestamp(6, sqlcheckin);
-            ps.setTimestamp(7, sqlcheckout);
-            ps.setTimestamp(8, sqlcheckin);
+            ps.setTimestamp(7, sqlcheckin);
+            ps.setTimestamp(8, sqlcheckout);
             ps.setTimestamp(9, sqlcheckout);
             ps.setTimestamp(10, sqlcheckin);
             ps.setTimestamp(11, sqlcheckout);
+//            ps.setTimestamp(12, sqlcheckin);
+//            ps.setTimestamp(13, sqlcheckout);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

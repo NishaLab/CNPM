@@ -10,7 +10,7 @@ import DAO.StaffDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-
+import View.Rental.ReceptionistViewFrm;
 /**
  *
  * @author Lemony
@@ -158,10 +158,11 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             } //            else if (s.getPositon().equalsIgnoreCase("manager")) {
             //                (new managerHomeFrm(s)).setVisible(true);
             //                this.dispose();
-            //            } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
-            //                (new receptionistHomeFrm(s)).setVisible(true);
-            //                this.dispose();
-            //            } 
+//                        }
+        else if (s.getPositon().equalsIgnoreCase("receptionist")) {
+            (new ReceptionistViewFrm(s)).setVisible(true);
+            this.dispose();
+        }
             else {
                 JOptionPane.showMessageDialog(this, "Function of the role" + s.getPositon() + "is under construction!");
             }
