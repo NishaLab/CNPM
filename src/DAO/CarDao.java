@@ -22,26 +22,7 @@ public class CarDao extends DAO {
         CarTypeDao typeDao = new CarTypeDao();
         CarClassificationDao classDao = new CarClassificationDao();
         CarBrandDao brandDao = new CarBrandDao();
-        int count = 0;
-        String typeSQL = "";
-        if (type != 0) {
-            typeSQL = " tblCarType_id = ? ";
-            count++;
-        }
-        String brandSQL = "";
-        if (brand != 0) {
-            brandSQL = " tblCarClassification_id = ? ";
-            count++;
-        }
-        String querry = "";
-        if (!typeSQL.isEmpty() && !brandSQL.isEmpty()) {
-            querry = typeSQL + " And " + brandSQL + " AND ";
-        } else if (typeSQL.isEmpty() && brandSQL.isEmpty()) {
-            querry = "";
-        } else {
-            querry = typeSQL + " " + brandSQL + " " + "AND ";
-        }
-        String sql = "Select * from tblcar where" + querry + " NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
+        String sql = "Select * from tblcar where if(?<>0,tblCarType_id = ?,true) AND if(?<>0,tblCarClassification_id = ?,true) AND NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
                 + "Select tblcar_id from tblbookedcar\n"
                 + "WHERE (receivedDate > ? AND returnDate > ?) \n"
                 + "OR(receivedDate < ? AND returnDate < ?)\n"
@@ -51,25 +32,19 @@ public class CarDao extends DAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             java.sql.Timestamp sqlcheckin = new java.sql.Timestamp(receivedDate.getTime());
             java.sql.Timestamp sqlcheckout = new java.sql.Timestamp(returnDate.getTime());
-            if (count == 2) {
-                ps.setInt(1, type);
-                ps.setInt(2, brand);
-            } else if (count == 1) {
-                if (brandSQL.isEmpty()) {
-                    ps.setInt(1, type);
-                } else {
-                    ps.setInt(1, brand);
-                }
-            }
-            ps.setString(count + 1, "%" + key + "%");
-            ps.setTimestamp(count + 2, sqlcheckin);
-            ps.setTimestamp(count + 3, sqlcheckout);
-            ps.setTimestamp(count + 4, sqlcheckin);
-            ps.setTimestamp(count + 5, sqlcheckout);
-            ps.setTimestamp(count + 6, sqlcheckin);
-            ps.setTimestamp(count + 7, sqlcheckout);
-            ps.setTimestamp(count + 8, sqlcheckin);
-            ps.setTimestamp(count + 9, sqlcheckout);
+            ps.setInt(1, type);
+            ps.setInt(2, type);
+            ps.setInt(3, brand);
+            ps.setInt(4, type);
+            ps.setString(5, "%" + key + "%");
+            ps.setTimestamp(6, sqlcheckin);
+            ps.setTimestamp(7, sqlcheckout);
+            ps.setTimestamp(8, sqlcheckin);
+            ps.setTimestamp(9, sqlcheckout);
+            ps.setTimestamp(10, sqlcheckin);
+            ps.setTimestamp(11, sqlcheckout);
+            ps.setTimestamp(12, sqlcheckin);
+            ps.setTimestamp(13, sqlcheckout);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
