@@ -226,7 +226,7 @@ public class SearchCarController {
                 String[] tmp = pageLabel.getText().split("/");
                 int totalpage = Integer.parseInt(tmp[1]);
                 if (pageNum < 1) {
-                    pageNum = 0;
+                    pageNum = 1;
                 } else if (pageNum > totalpage) {
                     pageNum = totalpage;
                 }
