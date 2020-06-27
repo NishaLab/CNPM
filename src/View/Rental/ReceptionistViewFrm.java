@@ -11,7 +11,11 @@ import Model.Contract;
 import Model.Bill;
 import java.awt.HeadlessException;
 import DAO.ContractDao;
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import keeptoo.Drag;
 
 /**
  *
@@ -62,94 +66,148 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        kButton1 = new keeptoo.KButton();
-        kButton2 = new keeptoo.KButton();
-        kButton3 = new keeptoo.KButton();
-        kButton4 = new keeptoo.KButton();
-        jPanel2 = new javax.swing.JPanel();
+        backgroundPanel = new javax.swing.JPanel();
+        sidePanel = new javax.swing.JPanel();
+        contractSide = new javax.swing.JPanel();
+        icon = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
+        billSide = new javax.swing.JPanel();
+        icon1 = new javax.swing.JLabel();
+        text1 = new javax.swing.JLabel();
+        logo = new javax.swing.JPanel();
+        logoLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        carSide = new javax.swing.JPanel();
+        icon2 = new javax.swing.JLabel();
+        text2 = new javax.swing.JLabel();
+        carSide1 = new javax.swing.JPanel();
+        icon3 = new javax.swing.JLabel();
+        text3 = new javax.swing.JLabel();
+        titlePanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kButton1.setText("View Contract");
-        kButton1.setBorderPainted(false);
-        kButton1.setkBorderRadius(0);
-        kButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton1ActionPerformed(evt);
-            }
-        });
+        sidePanel.setBackground(new java.awt.Color(47, 24, 107));
 
-        kButton2.setText("kButton2");
-        kButton2.setBorderPainted(false);
+        contractSide.setBackground(new java.awt.Color(85, 75, 158));
+        contractSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        contractSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kButton3.setText("kButton3");
-        kButton3.setBorderPainted(false);
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/contract_30px.png"))); // NOI18N
+        contractSide.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
-        kButton4.setText("Logout");
-        kButton4.setBorderPainted(false);
-        kButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton4ActionPerformed(evt);
-            }
-        });
+        text.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        text.setForeground(new java.awt.Color(255, 255, 255));
+        text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text.setText("View Contract");
+        contractSide.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(kButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        billSide.setBackground(new java.awt.Color(85, 75, 158));
+        billSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        billSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/bill_30px.png"))); // NOI18N
+        billSide.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        text1.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        text1.setForeground(new java.awt.Color(255, 255, 255));
+        text1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text1.setText("View Bill");
+        billSide.add(text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+
+        logo.setBackground(new java.awt.Color(47, 24, 107));
+        logo.setMinimumSize(new java.awt.Dimension(270, 170));
+        logo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setText("ALT F4 Rental");
+        logo.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
+        jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
+        jLabel1.setPreferredSize(new java.awt.Dimension(60, 60));
+        logo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        carSide.setBackground(new java.awt.Color(85, 75, 158));
+        carSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        carSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/car_30px.png"))); // NOI18N
+        carSide.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        text2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        text2.setForeground(new java.awt.Color(255, 255, 255));
+        text2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text2.setText("Car Rental");
+        carSide.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+
+        carSide1.setBackground(new java.awt.Color(85, 75, 158));
+        carSide1.setMinimumSize(new java.awt.Dimension(60, 60));
+        carSide1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/exit_30px.png"))); // NOI18N
+        carSide1.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        text3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        text3.setForeground(new java.awt.Color(255, 255, 255));
+        text3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text3.setText("Back to Login");
+        carSide1.add(text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 30));
+
+        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+        sidePanel.setLayout(sidePanelLayout);
+        sidePanelLayout.setHorizontalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contractSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(carSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(carSide1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+        sidePanelLayout.setVerticalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(contractSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(billSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(carSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(carSide1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        backgroundPanel.add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 580));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        titlePanel.setBackground(new java.awt.Color(93, 47, 208));
+        titlePanel.setPreferredSize(new java.awt.Dimension(710, 100));
+        titlePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-        );
+        titleLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Receptionist/Main Frame");
+        titlePanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 60));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 850, 610));
+        backgroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 140));
+
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        backgroundPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 710, 380));
+
+        getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void kButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kButton4ActionPerformed
-
-    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,11 +245,25 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private keeptoo.KButton kButton1;
-    private keeptoo.KButton kButton2;
-    private keeptoo.KButton kButton3;
-    private keeptoo.KButton kButton4;
+    private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JPanel billSide;
+    private javax.swing.JPanel carSide;
+    private javax.swing.JPanel carSide1;
+    private javax.swing.JPanel contractSide;
+    private javax.swing.JLabel icon;
+    private javax.swing.JLabel icon1;
+    private javax.swing.JLabel icon2;
+    private javax.swing.JLabel icon3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel logo;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel sidePanel;
+    private javax.swing.JLabel text;
+    private javax.swing.JLabel text1;
+    private javax.swing.JLabel text2;
+    private javax.swing.JLabel text3;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
 }
