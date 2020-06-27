@@ -61,6 +61,7 @@ public class ReceptionistController {
                 setColor(frame.getBillSide());
                 resetColor(frame.getContractSide());
                 ArrayList<Bill> bill = new ArrayList<>();
+                frame.getTitleLabel().setText("Receptionist/View Bill");
                 if (frame.getBill().isEmpty()) {
                     BillDao dao = new BillDao();
                     bill = dao.getAllBillByStaffId(frame.getStaff().getId());
@@ -91,6 +92,7 @@ public class ReceptionistController {
                 setColor(frame.getContractSide());
                 resetColor(frame.getBillSide());
                 ArrayList<Contract> contract = new ArrayList<>();
+                frame.getTitleLabel().setText("Receptionist/View Contract");
                 if (frame.getBill().isEmpty()) {
                     ContractDao dao = new ContractDao();
                     contract = dao.getContractByStaffId(frame.getStaff().getId());
@@ -118,9 +120,9 @@ public class ReceptionistController {
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               Login log = new Login();
-               frame.dispose();
-               log.setVisible(true);
+                Login log = new Login();
+                frame.dispose();
+                log.setVisible(true);
             }
         });
     }

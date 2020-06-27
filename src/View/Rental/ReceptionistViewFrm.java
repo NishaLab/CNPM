@@ -127,7 +127,6 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
         logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
         logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
-        logoImage.setPreferredSize(new java.awt.Dimension(60, 60));
         logo.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         rentalSide.setBackground(new java.awt.Color(85, 75, 158));
@@ -189,9 +188,8 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Receptionist/Main Frame");
-        titlePanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 60));
+        titlePanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 360, 60));
 
         backgroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 140));
 
