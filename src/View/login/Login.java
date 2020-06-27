@@ -10,6 +10,7 @@ import DAO.StaffDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import View.User.ClientStatFrm;
 
 /**
  *
@@ -155,10 +156,10 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             if (s.getPositon().equalsIgnoreCase("cashier")) {
                 (new CashierHomeFrm(s)).setVisible(true);
                 this.dispose();
-            } //            else if (s.getPositon().equalsIgnoreCase("manager")) {
-            //                (new managerHomeFrm(s)).setVisible(true);
-            //                this.dispose();
-            //            } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
+            } else if (s.getPositon().equalsIgnoreCase("manager")) {
+                (new ClientStatFrm()).setVisible(true);
+                this.dispose();
+            } //else if (s.getPositon().equalsIgnoreCase("receptionist")) {
             //                (new receptionistHomeFrm(s)).setVisible(true);
             //                this.dispose();
             //            } 
