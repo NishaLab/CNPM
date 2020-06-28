@@ -61,6 +61,7 @@ public class CarCatalogComponent extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.MatteBorder(null));
         setInheritsPopupMenu(true);
 

@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
+import keeptoo.*;
 /**
  *
  * @author LEGION
@@ -288,7 +288,7 @@ public class SearchCarController {
     }
 
     public void setBackLabelAction() {
-        JLabel back = this.frame.getBackLabel();
+        JLabel back = this.frame.getLogoutText();
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
