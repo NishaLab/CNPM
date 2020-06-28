@@ -23,6 +23,8 @@ import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -94,6 +96,13 @@ public class ContractController {
         DefaultTableModel cwtb = (DefaultTableModel) this.frame.getWarrantTable().getModel();
         Client client = this.frame.getClient();
         ArrayList<ContractWarrant> cw = this.frame.getCw();
+        ArrayList<BookedCar> bc = this.frame.getBc();
+        Collections.sort(bc, new Comparator<BookedCar>() {
+            @Override
+            public int compare(BookedCar o1, BookedCar o2) {
+                return o2.getReturnDate().compareTo(o1.getReturnDate());
+            }
+        });
         add.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -128,8 +137,8 @@ public class ContractController {
                         a.setDesc(wtb.getValueAt(row, 3).toString());
                         a.setClient(client);
                         con.setWarrant(a);
-                        con.setCheckIn(new Date());
-                        con.setCheckOut(new Date());
+                        con.setCheckIn(bc.get(0).getReturnDate());
+                        con.setCheckOut(bc.get(bc.size()-1).getReceivedDate());
                         cw.add(con);
                         Object[] tmp;
                         tmp = new Object[]{con.getCheckIn(), con.getCheckOut(), con.getWarrant().getType(),
