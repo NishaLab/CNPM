@@ -81,6 +81,7 @@ public class CartComponent extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         exitLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(32767, 470));
         setPreferredSize(new java.awt.Dimension(413, 60));
 
