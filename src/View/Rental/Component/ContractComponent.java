@@ -62,7 +62,7 @@ public class ContractComponent extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(710, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
