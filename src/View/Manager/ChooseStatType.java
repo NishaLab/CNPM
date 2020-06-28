@@ -40,7 +40,8 @@ public class ChooseStatType extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         UserNameJTF = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         ObjCBB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dòng xe", "Khách hàng" }));
         ObjCBB.addItemListener(new java.awt.event.ItemListener() {
@@ -53,14 +54,22 @@ public class ChooseStatType extends javax.swing.JFrame {
                 ObjCBBActionPerformed(evt);
             }
         });
+        getContentPane().add(ObjCBB);
+        ObjCBB.setBounds(244, 63, 79, 19);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Đối tượng thống kê");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(87, 62, 139, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Loại thống kê");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(87, 100, 98, 17);
 
         TypeCBB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo doanh thu", "Theo fillrate" }));
+        getContentPane().add(TypeCBB);
+        TypeCBB.setBounds(244, 101, 105, 19);
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,56 +77,14 @@ public class ChooseStatType extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(87, 161, 69, 21);
 
         jLabel3.setText("Login as");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                                .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(51, 51, 51))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jButton1)
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(251, 13, 41, 13);
+        getContentPane().add(UserNameJTF);
+        UserNameJTF.setBounds(302, 10, 80, 19);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,7 +107,7 @@ public class ChooseStatType extends javax.swing.JFrame {
         String obj = ObjCBB.getSelectedItem().toString();
         String type = TypeCBB.getSelectedItem().toString();
         if(obj=="Dòng xe" && type=="Theo doanh thu"){
-           new ViewStat(user).setVisible(true);
+           new ViewStat().setVisible(true);
         }         
     }//GEN-LAST:event_jButton1ActionPerformed
 

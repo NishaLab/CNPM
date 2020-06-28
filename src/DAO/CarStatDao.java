@@ -15,6 +15,7 @@ import Model.CarBrand;
 import Model.CarStat;
 import Model.Car;
 import Model.CarType;
+import java.time.LocalDate;
 /**
  *
  * @author Vu Minh Duc
@@ -50,7 +51,7 @@ public class CarStatDao extends DAO{
 			ps.setString(6, sdf.format(startDate));
 			ps.setString(7, sdf.format(startDate));
 			ps.setString(8, sdf.format(endDate));
-//                           System.out.println(ps.toString());
+                           System.out.println(ps.toString());
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
