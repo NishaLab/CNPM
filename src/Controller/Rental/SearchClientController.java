@@ -91,7 +91,7 @@ public class SearchClientController {
                 frame.setVisible(false);
                 AddClientViewFrm reg = new AddClientViewFrm();
                 reg.setVisible(true);
-                JButton ok = reg.getOkBtt();
+                JButton ok = reg.getAddBtt();
                 ClientDao dao = new ClientDao();
                 ok.addActionListener(new ActionListener() {
                     @Override
