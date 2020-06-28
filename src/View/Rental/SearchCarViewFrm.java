@@ -56,6 +56,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
         SearchCarController ctrl = new SearchCarController(this);
+        this.setLocationRelativeTo(null);
         ctrl.init();
     }
 
@@ -64,6 +65,7 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         SearchCarController ctrl = new SearchCarController(this);
         this.staff = staff;
         this.bookedCar = bc;
+        this.setLocationRelativeTo(null);
         ctrl.init();
         mainPanel.setLayout(new BorderLayout());
         carCatalogPanel.setLayout(new GridLayout(2, 4, 10, 10));
@@ -370,7 +372,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         this.mainPanel = mainPanel;
     }
 
-
     public KGradientPanel getBgPanel() {
         return bgPanel;
     }
@@ -434,7 +435,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     public void setConfirmBtt(KButton confirmBtt) {
         this.confirmBtt = confirmBtt;
     }
-
 
     public JLabel getIcon3() {
         return icon3;
@@ -547,12 +547,6 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
     public void setTitlePanel(KGradientPanel titlePanel) {
         this.titlePanel = titlePanel;
     }
-
-
-
-
-
-
 
     public JLabel getTypeLabel() {
         return typeLabel;
