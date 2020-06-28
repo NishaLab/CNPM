@@ -106,20 +106,20 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         titleLabel.setText("Search Car ");
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
-        receivedDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         receivedDateLabel.setText("Received Date");
+        receivedDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        returnDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         returnDateLabel.setText("Return Date");
+        returnDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        typeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         typeLabel.setText("Type");
+        typeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        classLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         classLabel.setText("Class");
+        classLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         carType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         carType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -127,37 +127,37 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         carClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         carClass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        nameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         nameLabel.setText("Name");
+        nameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         nameField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        confirmBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         confirmBtt.setText("Confirm");
+        confirmBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        searchBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         searchBtt.setText("Search");
+        searchBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backLabel.setText("Go Back");
+        backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        forwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         forwardBtt.setText(">");
+        forwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         forwardBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forwardBttActionPerformed(evt);
             }
         });
 
-        backwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         backwardBtt.setText("<");
+        backwardBtt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        pageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pageLabel.setText("0/0");
+        pageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        jumpBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jumpBtt.setText("Jump");
+        jumpBtt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         pageField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 

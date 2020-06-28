@@ -112,7 +112,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         billText.setForeground(new java.awt.Color(255, 255, 255));
         billText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         billText.setText("View Bill");
-        billSide.add(billText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
+        billSide.add(billText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
         logo.setBackground(new java.awt.Color(47, 24, 107));
         logo.setMinimumSize(new java.awt.Dimension(270, 170));
@@ -140,7 +140,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         rentText.setForeground(new java.awt.Color(255, 255, 255));
         rentText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rentText.setText("Car Rental");
-        rentalSide.add(rentText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
+        rentalSide.add(rentText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
         logoutSide.setBackground(new java.awt.Color(85, 75, 158));
         logoutSide.setMinimumSize(new java.awt.Dimension(60, 60));
@@ -153,7 +153,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         logoutText.setForeground(new java.awt.Color(255, 255, 255));
         logoutText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoutText.setText("Back to Login");
-        logoutSide.add(logoutText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
+        logoutSide.add(logoutText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
