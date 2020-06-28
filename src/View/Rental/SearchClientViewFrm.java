@@ -37,6 +37,7 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
     public SearchClientViewFrm() {
         initComponents();
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        this.setLocationRelativeTo(null);
         SearchClientController a = new SearchClientController(this);
         a.init();
     }

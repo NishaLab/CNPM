@@ -47,6 +47,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         initComponents();
         this.staff = staff;
         ReceptionistController a = new ReceptionistController(this);
+        this.setLocationRelativeTo(null);
         a.init();
     }
 

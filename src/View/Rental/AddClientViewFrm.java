@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import keeptoo.KButton;
+
 /**
  *
  * @author LEGION
@@ -19,7 +20,9 @@ public class AddClientViewFrm extends javax.swing.JFrame {
      * Creates new form AddClientViewFrm
      */
     public AddClientViewFrm() {
-        initComponents(); 
+        initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -290,8 +293,6 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         this.backBtt = backBtt;
     }
 
-
-
     public JTextField getPhoneNUM() {
         return phoneNUM;
     }
@@ -308,8 +309,6 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         this.tenkh = tenkh;
     }
 
-
-
     public JComboBox<String> getClientType() {
         return clientType;
     }
@@ -317,7 +316,6 @@ public class AddClientViewFrm extends javax.swing.JFrame {
     public void setClientType(JComboBox<String> clientType) {
         this.clientType = clientType;
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

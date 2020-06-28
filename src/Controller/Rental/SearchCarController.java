@@ -248,6 +248,10 @@ public class SearchCarController {
         confirmBtt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (frame.getBookedCar().size() == 0) {
+                    JOptionPane.showMessageDialog(null, "You have to pick a car", "Try Again", 1);
+                    return;
+                }
                 SearchClientViewFrm scvf = new SearchClientViewFrm();
                 JLabel confirm = scvf.getConfrimLabel();
                 JTable ctb = scvf.getjTable1();
@@ -266,10 +270,6 @@ public class SearchCarController {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         try {
-                            if (frame.getBookedCar().size() == 0) {
-                                JOptionPane.showMessageDialog(null, "You have to pick a car", "Try Again", 1);
-                                return;
-                            }
                             int row = ctb.getSelectedRow();
                             client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
                             client.setName(ctb.getValueAt(row, 1).toString());
