@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import keeptoo.*;
+
 /**
  *
  * @author LEGION
@@ -248,7 +249,7 @@ public class SearchCarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SearchClientViewFrm scvf = new SearchClientViewFrm();
-                JButton confirm = scvf.getConfirmButton();
+                JLabel confirm = scvf.getConfrimLabel();
                 JTable ctb = scvf.getjTable1();
                 Client client = new Client();
                 frame.setVisible(false);
@@ -261,10 +262,14 @@ public class SearchCarController {
                         scvf.dispose();
                     }
                 });
-                confirm.addActionListener(new ActionListener() {
+                confirm.addMouseListener(new MouseAdapter() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void mouseClicked(MouseEvent e) {
                         try {
+                            if (frame.getBookedCar().size() == 0) {
+                                JOptionPane.showMessageDialog(null, "You have to pick a car", "Try Again", 1);
+                                return;
+                            }
                             int row = ctb.getSelectedRow();
                             client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
                             client.setName(ctb.getValueAt(row, 1).toString());

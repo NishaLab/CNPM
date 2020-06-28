@@ -54,14 +54,14 @@ public class SearchClientController {
     }
 
     public void setActionSearch() {
-        JButton search = this.frame.getSearchButton();
+        JLabel search = this.frame.getSearchLabel();
         JTextField name = this.frame.getSearchField();
         JScrollPane tp = this.frame.getTablePanel();
         DefaultTableModel ctb = (DefaultTableModel) this.frame.getjTable1().getModel();
         ClientDao dao = new ClientDao();
-        search.addActionListener(new ActionListener() {
+        search.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 try {
                     ctb.setRowCount(0);
                     String client = name.getText().trim();
@@ -74,11 +74,10 @@ public class SearchClientController {
 
                 }
             }
+
         });
     }
-
-
-
+    
     public void setAddClientAction() {
         JLabel add = this.frame.getAddLabel();
         DefaultTableModel ctb = (DefaultTableModel) this.frame.getjTable1().getModel();
@@ -91,7 +90,7 @@ public class SearchClientController {
                 frame.setVisible(false);
                 AddClientViewFrm reg = new AddClientViewFrm();
                 reg.setVisible(true);
-                JButton ok = reg.getOkBtt();
+                JButton ok = reg.getAddBtt();
                 ClientDao dao = new ClientDao();
                 ok.addActionListener(new ActionListener() {
                     @Override
