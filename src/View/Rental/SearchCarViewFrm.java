@@ -159,10 +159,10 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         nameField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titlePanel.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 150, -1));
 
-        pageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        pageLabel.setForeground(new java.awt.Color(255, 255, 255));
         pageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pageLabel.setText("0/0");
+        pageLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pageLabel.setForeground(new java.awt.Color(255, 255, 255));
         titlePanel.add(pageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 156, 58, 31));
 
         pageField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -181,11 +181,16 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
         logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
         titlePanel.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 60));
 
-        forwardBtt.setBorder(null);
         forwardBtt.setText(">");
+        forwardBtt.setBorder(null);
         forwardBtt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         forwardBtt.setkBorderRadius(30);
-        forwardBtt.setkHoverForeGround(new java.awt.Color(255, 255, 0));
+        forwardBtt.setkEndColor(new java.awt.Color(255, 255, 255));
+        forwardBtt.setkForeGround(new java.awt.Color(47, 24, 107));
+        forwardBtt.setkHoverEndColor(new java.awt.Color(47, 24, 107));
+        forwardBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        forwardBtt.setkHoverStartColor(new java.awt.Color(0, 255, 255));
+        forwardBtt.setkStartColor(new java.awt.Color(255, 255, 255));
         forwardBtt.setMaximumSize(new java.awt.Dimension(49, 32));
         forwardBtt.setMinimumSize(new java.awt.Dimension(49, 32));
         forwardBtt.setPreferredSize(new java.awt.Dimension(49, 32));
@@ -206,32 +211,56 @@ public class SearchCarViewFrm extends javax.swing.JFrame {
 
         titlePanel.add(logoutSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, -1, -1));
 
-        backwardBtt.setBorder(null);
         backwardBtt.setText("<");
+        backwardBtt.setBorder(null);
         backwardBtt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         backwardBtt.setkBorderRadius(30);
+        backwardBtt.setkEndColor(new java.awt.Color(255, 255, 255));
+        backwardBtt.setkForeGround(new java.awt.Color(47, 24, 107));
+        backwardBtt.setkHoverEndColor(new java.awt.Color(47, 24, 107));
+        backwardBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        backwardBtt.setkHoverStartColor(new java.awt.Color(0, 255, 255));
+        backwardBtt.setkStartColor(new java.awt.Color(255, 255, 255));
         backwardBtt.setMaximumSize(new java.awt.Dimension(49, 32));
         backwardBtt.setMinimumSize(new java.awt.Dimension(49, 32));
         backwardBtt.setPreferredSize(new java.awt.Dimension(49, 32));
         titlePanel.add(backwardBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 70, 40));
 
-        jumpBtt.setBorder(null);
         jumpBtt.setText("Jump");
-        jumpBtt.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jumpBtt.setBorder(null);
+        jumpBtt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jumpBtt.setkBorderRadius(30);
+        jumpBtt.setkEndColor(new java.awt.Color(255, 255, 255));
+        jumpBtt.setkForeGround(new java.awt.Color(47, 24, 107));
+        jumpBtt.setkHoverEndColor(new java.awt.Color(47, 24, 107));
+        jumpBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        jumpBtt.setkHoverStartColor(new java.awt.Color(0, 255, 255));
+        jumpBtt.setkStartColor(new java.awt.Color(255, 255, 255));
         jumpBtt.setMaximumSize(new java.awt.Dimension(49, 32));
         jumpBtt.setMinimumSize(new java.awt.Dimension(49, 32));
         jumpBtt.setPreferredSize(new java.awt.Dimension(49, 32));
         titlePanel.add(jumpBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 70, 40));
 
-        searchBtt.setBorder(null);
         searchBtt.setText("Search");
+        searchBtt.setBorder(null);
         searchBtt.setkBorderRadius(30);
+        searchBtt.setkEndColor(new java.awt.Color(255, 255, 255));
+        searchBtt.setkForeGround(new java.awt.Color(47, 24, 107));
+        searchBtt.setkHoverEndColor(new java.awt.Color(47, 24, 107));
+        searchBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        searchBtt.setkHoverStartColor(new java.awt.Color(0, 255, 255));
+        searchBtt.setkStartColor(new java.awt.Color(255, 255, 255));
         titlePanel.add(searchBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 150, 130, -1));
 
-        confirmBtt.setBorder(null);
         confirmBtt.setText("Confirm");
+        confirmBtt.setBorder(null);
         confirmBtt.setkBorderRadius(30);
+        confirmBtt.setkEndColor(new java.awt.Color(255, 255, 255));
+        confirmBtt.setkForeGround(new java.awt.Color(47, 24, 107));
+        confirmBtt.setkHoverEndColor(new java.awt.Color(47, 24, 107));
+        confirmBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        confirmBtt.setkHoverStartColor(new java.awt.Color(0, 255, 255));
+        confirmBtt.setkStartColor(new java.awt.Color(255, 255, 255));
         confirmBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmBttActionPerformed(evt);

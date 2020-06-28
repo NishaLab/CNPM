@@ -8,10 +8,14 @@ package Controller.Rental;
 import Model.Warrant;
 import DAO.WarrantDao;
 import View.Rental.AddWarrantViewFrm;
+import View.Rental.AddNewWarrantFrm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +33,7 @@ public class AddWarrantController {
 
     public void init() {
         setUp();
-        addButtonAction();
+        setAddWarrantAction();
     }
 
     public void setUp() {
@@ -42,30 +46,50 @@ public class AddWarrantController {
         }
     }
 
-    public void addButtonAction() {
-        JButton add = this.frame.getAddBtt();
+    public void setAddWarrantAction() {
+        JLabel add = this.frame.getAddLabel();
         DefaultTableModel wtb = (DefaultTableModel) this.frame.getWarrantTable().getModel();
-        add.addActionListener(new ActionListener() {
+        add.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Warrant war = new Warrant();
-                war.setType(frame.getWarrantType().getSelectedItem().toString());
-                try {
-                    war.setValue(Integer.parseInt(frame.getValue().getText()));
-                } catch (NumberFormatException f) {
-                    JOptionPane.showMessageDialog(null, "Value Must Be Interger");
-                    return;
-                }
-                war.setDesc(frame.getDesc().getText());
-                war.setClient(frame.getClient());
-                try {
-                    WarrantDao dao = new WarrantDao();
-                    dao.addWarrant(war);
-                    wtb.addRow(war.toObject());
-                } catch (Exception f) {
-                    f.printStackTrace();
-                }
+            public void mouseClicked(MouseEvent e) {
+                AddNewWarrantFrm anwf = new AddNewWarrantFrm();
+                frame.setVisible(false);
+                anwf.setVisible(true);
+                JButton add = anwf.getAddBtt();
+                add.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Warrant war = new Warrant();
+                        war.setType(anwf.getWarrantType().getSelectedItem().toString());
+                        try {
+                            war.setValue(Integer.parseInt(anwf.getValue().getText()));
+                        } catch (NumberFormatException f) {
+                            JOptionPane.showMessageDialog(null, "Value Must Be Interger");
+                            return;
+                        }
+                        war.setDesc(anwf.getDesc().getText());
+                        war.setClient(frame.getClient());
+                        try {
+                            WarrantDao dao = new WarrantDao();
+                            dao.addWarrant(war);
+                            wtb.addRow(war.toObject());
+                            anwf.dispose();
+                            frame.setVisible(true);
+                        } catch (Exception f) {
+                            f.printStackTrace();
+                        }
+                    }
+                });
+                JButton back = anwf.getBackBtt();
+                back.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.setVisible(true);
+                        anwf.dispose();
+                    }
+                });
             }
         });
+
     }
 }
