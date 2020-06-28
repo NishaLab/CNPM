@@ -72,23 +72,23 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         cccd.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel3.setForeground(new java.awt.Color(12, 91, 160));
         jLabel3.setText("Add Client");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel5.setForeground(new java.awt.Color(12, 91, 160));
         jLabel5.setText("Name");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel6.setForeground(new java.awt.Color(12, 91, 160));
         jLabel6.setText("Address");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel7.setForeground(new java.awt.Color(12, 91, 160));
         jLabel7.setText("CCCD");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel8.setForeground(new java.awt.Color(12, 91, 160));
         jLabel8.setText("Phone");
 
         phoneNUM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -96,7 +96,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         phoneNUM.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel9.setForeground(new java.awt.Color(12, 91, 160));
         jLabel9.setText("License");
 
         license.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -104,7 +104,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         license.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel11.setForeground(new java.awt.Color(12, 91, 160));
         jLabel11.setText("Type");
 
         clientType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -115,7 +115,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         addBtt.setText("Continue");
         addBtt.setkBorderRadius(30);
         addBtt.setkEndColor(new java.awt.Color(255, 0, 255));
-        addBtt.setkHoverEndColor(new java.awt.Color(255, 0, 204));
+        addBtt.setkHoverEndColor(new java.awt.Color(255, 255, 255));
         addBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
         addBtt.setkHoverStartColor(new java.awt.Color(102, 255, 102));
         addBtt.setkStartColor(new java.awt.Color(12, 91, 160));
@@ -124,7 +124,7 @@ public class AddClientViewFrm extends javax.swing.JFrame {
         backBtt.setText("Back");
         backBtt.setkBorderRadius(30);
         backBtt.setkEndColor(new java.awt.Color(255, 0, 255));
-        backBtt.setkHoverEndColor(new java.awt.Color(255, 0, 204));
+        backBtt.setkHoverEndColor(new java.awt.Color(255, 255, 255));
         backBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
         backBtt.setkHoverStartColor(new java.awt.Color(102, 255, 102));
         backBtt.setkStartColor(new java.awt.Color(12, 91, 160));

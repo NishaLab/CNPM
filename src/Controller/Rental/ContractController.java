@@ -112,7 +112,7 @@ public class ContractController {
                 frame.setVisible(false);
                 AddWarrantViewFrm reg = new AddWarrantViewFrm(client);
                 reg.setVisible(true);
-                JLabel confirm = reg.getConfirmLabel();
+                JLabel confirm = reg.getConfrimLabel();
                 JLabel back = reg.getBackLabel();
                 back.addMouseListener(new MouseAdapter() {
                     @Override
@@ -133,7 +133,7 @@ public class ContractController {
                         Warrant a = new Warrant();
                         a.setId(Integer.parseInt(wtb.getValueAt(row, 0).toString()));
                         a.setType(wtb.getValueAt(row, 1).toString());
-                        a.setValue(Integer.parseInt(wtb.getValueAt(row, 3).toString().replaceAll(",", "")));
+                        a.setValue(Integer.parseInt(wtb.getValueAt(row, 2).toString().replaceAll(",", "")));
                         a.setDesc(wtb.getValueAt(row, 3).toString());
                         a.setClient(client);
                         con.setWarrant(a);
