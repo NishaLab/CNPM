@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 public class CarBrandDao extends DAO {
         public CarBrand getCarBrandById(int key) {
         CarBrand brand = new CarBrand();
-        String sql = "Select * from tblcarclassification where id = ?";
+        String sql = "Select * from tblcarbrand where id = ?";
         try {
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);

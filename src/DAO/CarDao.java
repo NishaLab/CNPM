@@ -84,6 +84,32 @@ public class CarDao extends DAO {
             return false;
         }
         return true;
-
+    }
+    public Car getCar(int id){
+        Car res = new Car();
+        CarTypeDao typeDao = new CarTypeDao();
+        CarClassificationDao classDao = new CarClassificationDao();
+        CarBrandDao brandDao = new CarBrandDao();
+        String sql = "select * from tblcar where id = ?";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                res.setId(rs.getInt("id"));
+                res.setName(rs.getString("name"));
+                res.setPrice(rs.getInt("price"));
+                res.setState(rs.getString("state"));
+                res.setDesc(rs.getString("desc"));
+                res.setRegPlate(rs.getString("reg_plate"));
+                res.setBrand(brandDao.getCarBrandById(rs.getInt("brand")));
+                res.setType(typeDao.getCarTypeById(rs.getInt("tblCarType_id")));
+                res.setClasss(classDao.getCarClassById(rs.getInt("tblCarClassification_id")));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+//        System.out.println(res.getId()+" "+res.getName()+" "+res.getRegPlate());
+        return res;
     }
 }
