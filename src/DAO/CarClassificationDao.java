@@ -8,6 +8,7 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Model.CarClassification;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,15 +29,42 @@ public class CarClassificationDao extends DAO {
                 classs.setDesc(rs.getString("desc"));
                 return classs;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
 
         return classs;
     }
 
+        public ArrayList<CarClassification> getAllCarClass() {
+        ArrayList<CarClassification> res = new ArrayList();
+        String sql = "Select * from tblcarclassification";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                CarClassification carClass = new CarClassification();
+                carClass.setId(rs.getInt("id"));
+                carClass.setName(rs.getString("name"));
+                carClass.setDesc(rs.getString("desc"));
+                res.add(carClass);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return res;
+
+    }
+    
     public boolean addCarClassification(CarClassification key) {
-        String warrant = "INSERT INTO tblcontract(name, desc) VALUES(?,?)";
+        String warrant = "INSERT INTO tblcarclassification(name, desc) VALUES(?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(warrant);
             ps.setString(1, key.getName());

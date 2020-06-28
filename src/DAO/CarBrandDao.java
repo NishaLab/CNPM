@@ -5,35 +5,40 @@
  */
 package DAO;
 
+import Model.CarBrand;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Model.CarBrand;
-
 /**
  *
  * @author LEGION
  */
 public class CarBrandDao extends DAO {
-
-    public CarBrand getCarBrandById(int key) {
+        public CarBrand getCarBrandById(int key) {
         CarBrand brand = new CarBrand();
-        String sql = "Select * from tblcarbrand where id = ?";
+        String sql = "Select * from tblcarclassification where id = ?";
         try {
+            conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, key);
             ResultSet rs = ps.executeQuery();
+            conn.commit();
             if (rs.next()) {
                 brand.setId(rs.getInt("id"));
                 brand.setName(rs.getString("name"));
                 brand.setDesc(rs.getString("desc"));
                 return brand;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
 
         return brand;
-
     }
 
     public boolean addCarBrand(CarBrand key) {

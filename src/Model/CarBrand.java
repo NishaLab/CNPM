@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Vu Minh Duc
+ * @author LEGION
  */
 public class CarBrand {
 
@@ -24,26 +24,31 @@ public class CarBrand {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
     public void setDesc(String desc) {
         this.desc = desc;
     }
-    
+
+    @Override
+    public String toString() {
+        return "CarBrand{" + "id=" + id + ", name=" + name + ", desc=" + desc + '}';
+    }
+
     private int id;
-    private String name,desc;
+    private String name, desc;
 }
