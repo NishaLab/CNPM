@@ -35,11 +35,12 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
      */
     public ReceptionistViewFrm() {
         initComponents();
-        
+
         Staff staff = new Staff("hung", "hung", "hung", "receptionist");
         staff.setId(1);
         this.staff = staff;
         ReceptionistController a = new ReceptionistController(this);
+        this.setLocationRelativeTo(null);
         a.init();
     }
 
@@ -238,6 +239,8 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
         });
     }
 
+
+
     public ArrayList<Contract> getContract() {
         return contract;
     }
@@ -421,6 +424,7 @@ public class ReceptionistViewFrm extends javax.swing.JFrame {
     public void setTitlePanel(JPanel titlePanel) {
         this.titlePanel = titlePanel;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;

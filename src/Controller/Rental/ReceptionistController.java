@@ -17,6 +17,7 @@ import View.Rental.SearchCarViewFrm;
 import View.login.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class ReceptionistController {
         setBillAction();
         setContractAction();
         setLogoutAction();
+
     }
 
     public void setRentCarAction() {
@@ -93,7 +95,7 @@ public class ReceptionistController {
                 resetColor(frame.getBillSide());
                 ArrayList<Contract> contract = new ArrayList<>();
                 frame.getTitleLabel().setText("Receptionist/View Contract");
-                if (frame.getBill().isEmpty()) {
+                if (frame.getContract().isEmpty()) {
                     ContractDao dao = new ContractDao();
                     contract = dao.getContractByStaffId(frame.getStaff().getId());
                     frame.getMainPanel().removeAll();

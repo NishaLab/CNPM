@@ -113,17 +113,6 @@ public class ContractController {
                 AddWarrantViewFrm reg = new AddWarrantViewFrm(client);
                 reg.setVisible(true);
                 JLabel confirm = reg.getConfrimLabel();
-                JLabel back = reg.getBackLabel();
-                back.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        if (JOptionPane.showConfirmDialog(null, "Do you want to go back to previous frame?\n Current Data will be lost ",
-                                "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
-                            frame.setVisible(true);
-                            reg.dispose();
-                        }
-                    }
-                });
                 confirm.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
