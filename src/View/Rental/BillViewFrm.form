@@ -115,8 +115,8 @@
                           <Component id="paymentType" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="totalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="total" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                                  <Component id="penaltyLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="penalty1" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                               </Group>
                               <Component id="penalty" min="-2" pref="295" max="-2" attributes="0"/>
                           </Group>
@@ -170,9 +170,9 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="penalty" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="penaltyLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="total" min="-2" max="-2" attributes="0"/>
+                      <Component id="penalty1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="paymentTypeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -203,6 +203,9 @@
                     </MatteColorBorder>
                   </Border>
                 </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="date">
@@ -219,6 +222,9 @@
                       <Color PropertyName="color" blue="a0" green="5b" red="c" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
+                </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -308,6 +314,9 @@
                       <Color PropertyName="color" blue="a0" green="5b" red="c" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
+                </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -416,7 +425,7 @@
                 <Property name="text" type="java.lang.String" value="ALT F4 Rental"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="totalLabel">
+            <Component class="javax.swing.JLabel" name="penaltyLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
@@ -427,7 +436,7 @@
                 <Property name="text" type="java.lang.String" value="Total"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="total">
+            <Component class="javax.swing.JTextField" name="penalty1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -441,6 +450,9 @@
                       <Color PropertyName="color" blue="a0" green="5b" red="c" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
+                </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -469,6 +481,9 @@
                       <Color PropertyName="color" blue="a0" green="5b" red="c" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
+                </Property>
+                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
             </Component>

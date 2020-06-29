@@ -65,8 +65,8 @@ public class BillViewFrm extends javax.swing.JFrame {
         backBtt = new keeptoo.KButton();
         logoImage = new javax.swing.JLabel();
         logoLabel = new javax.swing.JLabel();
-        totalLabel = new javax.swing.JLabel();
-        total = new javax.swing.JTextField();
+        penaltyLabel1 = new javax.swing.JLabel();
+        penalty1 = new javax.swing.JTextField();
         staffLabel = new javax.swing.JLabel();
         staffField = new javax.swing.JTextField();
 
@@ -79,10 +79,12 @@ public class BillViewFrm extends javax.swing.JFrame {
         clientName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clientName.setForeground(new java.awt.Color(102, 102, 102));
         clientName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        clientName.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         date.setForeground(new java.awt.Color(102, 102, 102));
         date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        date.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         note.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         note.setForeground(new java.awt.Color(102, 102, 102));
@@ -111,6 +113,7 @@ public class BillViewFrm extends javax.swing.JFrame {
         penalty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         penalty.setForeground(new java.awt.Color(102, 102, 102));
         penalty.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        penalty.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         paymentTypeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paymentTypeLabel.setForeground(new java.awt.Color(12, 91, 160));
@@ -147,13 +150,14 @@ public class BillViewFrm extends javax.swing.JFrame {
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoLabel.setText("ALT F4 Rental");
 
-        totalLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        totalLabel.setForeground(new java.awt.Color(12, 91, 160));
-        totalLabel.setText("Total");
+        penaltyLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        penaltyLabel1.setForeground(new java.awt.Color(12, 91, 160));
+        penaltyLabel1.setText("Total");
 
-        total.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        total.setForeground(new java.awt.Color(102, 102, 102));
-        total.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        penalty1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        penalty1.setForeground(new java.awt.Color(102, 102, 102));
+        penalty1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        penalty1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         staffLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         staffLabel.setForeground(new java.awt.Color(12, 91, 160));
@@ -162,6 +166,7 @@ public class BillViewFrm extends javax.swing.JFrame {
         staffField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         staffField.setForeground(new java.awt.Color(102, 102, 102));
         staffField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        staffField.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,8 +211,8 @@ public class BillViewFrm extends javax.swing.JFrame {
                     .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalLabel)
-                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(penaltyLabel1)
+                            .addComponent(penalty1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
@@ -250,9 +255,9 @@ public class BillViewFrm extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(totalLabel)
+                .addComponent(penaltyLabel1)
                 .addGap(10, 10, 10)
-                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(penalty1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(paymentTypeLabel)
                 .addGap(10, 10, 10)
@@ -453,19 +458,19 @@ public class BillViewFrm extends javax.swing.JFrame {
 
 
     public JTextField getTotal() {
-        return total;
+        return penalty1;
     }
 
     public void setTotal(JTextField total) {
-        this.total = total;
+        this.penalty1 = total;
     }
 
     public JLabel getTotalLabel() {
-        return totalLabel;
+        return penaltyLabel1;
     }
 
     public void setTotalLabel(JLabel totalLabel) {
-        this.totalLabel = totalLabel;
+        this.penaltyLabel1 = totalLabel;
     }
 
 
@@ -531,11 +536,11 @@ public class BillViewFrm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> paymentType;
     private javax.swing.JLabel paymentTypeLabel;
     private javax.swing.JTextField penalty;
+    private javax.swing.JTextField penalty1;
     private javax.swing.JLabel penaltyLabel;
+    private javax.swing.JLabel penaltyLabel1;
     private javax.swing.JTextField staffField;
     private javax.swing.JLabel staffLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JTextField total;
-    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

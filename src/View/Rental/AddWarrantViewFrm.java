@@ -7,6 +7,7 @@ package View.Rental;
 
 import Model.Client;
 import Controller.Rental.AddWarrantController;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,6 +34,7 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
     public AddWarrantViewFrm(Client client) {
         initComponents();
         this.client = client;
+        warrantTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         AddWarrantController a = new AddWarrantController(this);
         a.init();
     }
@@ -164,6 +166,7 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        warrantTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         warrantTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
