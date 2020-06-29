@@ -37,6 +37,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import keeptoo.*;
 
 /**
  *
@@ -67,11 +68,13 @@ public class SearchCarController {
         CarClassificationDao classDao = new CarClassificationDao();
         JComboBox<String> typeCB = this.frame.getCarType();
         carType = typeDao.getAllCarType();
+        typeCB.addItem("");
         for (CarType carType1 : carType) {
             typeCB.addItem(carType1.getName());
         }
         carClass = classDao.getAllCarClass();
         JComboBox<String> classCB = this.frame.getCarClass();
+        classCB.addItem("");
         for (CarClassification carClas : carClass) {
             classCB.addItem(carClas.getName());
         }
@@ -121,18 +124,23 @@ public class SearchCarController {
                 String carClass = frame.getCarClass().getSelectedItem().toString();
                 int typeId = 0;
                 int classId = 0;
-                for (CarType carType1 : ct) {
-                    if (carType1.getName().equalsIgnoreCase(carType)) {
-                        typeId = carType1.getId();
-                        break;
+                if (!carType.isEmpty()) {
+                    for (CarType carType1 : ct) {
+                        if (carType1.getName().equalsIgnoreCase(carType)) {
+                            typeId = carType1.getId();
+                            break;
+                        }
                     }
                 }
-                for (CarClassification carClassification : cc) {
-                    if (carClassification.getName().equalsIgnoreCase(carClass)) {
-                        classId = carClassification.getId();
-                        break;
+                if (!carClass.isEmpty()) {
+                    for (CarClassification carClassification : cc) {
+                        if (carClassification.getName().equalsIgnoreCase(carClass)) {
+                            classId = carClassification.getId();
+                            break;
+                        }
                     }
                 }
+
                 CarDao dao = new CarDao();
                 try {
                     frame.setCar(dao.searchCar(receivedDate, returnDate, name, typeId, classId));
@@ -219,7 +227,7 @@ public class SearchCarController {
                 String[] tmp = pageLabel.getText().split("/");
                 int totalpage = Integer.parseInt(tmp[1]);
                 if (pageNum < 1) {
-                    pageNum = 0;
+                    pageNum = 1;
                 } else if (pageNum > totalpage) {
                     pageNum = totalpage;
                 }
@@ -240,8 +248,12 @@ public class SearchCarController {
         confirmBtt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (frame.getBookedCar().size() == 0) {
+                    JOptionPane.showMessageDialog(null, "You have to pick a car", "Try Again", 1);
+                    return;
+                }
                 SearchClientViewFrm scvf = new SearchClientViewFrm();
-                JButton confirm = scvf.getConfirmButton();
+                JLabel confirm = scvf.getConfrimLabel();
                 JTable ctb = scvf.getjTable1();
                 Client client = new Client();
                 frame.setVisible(false);
@@ -254,9 +266,9 @@ public class SearchCarController {
                         scvf.dispose();
                     }
                 });
-                confirm.addActionListener(new ActionListener() {
+                confirm.addMouseListener(new MouseAdapter() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void mouseClicked(MouseEvent e) {
                         try {
                             int row = ctb.getSelectedRow();
                             client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
@@ -281,7 +293,7 @@ public class SearchCarController {
     }
 
     public void setBackLabelAction() {
-        JLabel back = this.frame.getBackLabel();
+        JLabel back = this.frame.getLogoutText();
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

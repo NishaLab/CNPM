@@ -44,4 +44,19 @@ public class ClientDaoTest {
         Assert.assertEquals(1, client.size());
         return;
     }
+
+//    @Test
+//    public void testInsertClientException1() {
+//        Client client = new Client("Hung Test", "12345", "Xuan Duc", "12345565", "B1", "Normal");
+//        Assert.assertTrue(dao.addClient(client));
+//        return;
+//    }
+
+    @Test
+    public void testInsertClientException2() {
+        Client client = new Client("Hung Test", "12345", "Xuan Duc", "12345565", "B1", "Normal");
+        Assert.assertTrue(dao.addClient(client));
+        Assert.assertFalse(dao.addClient(client));
+        return;
+    }
 }

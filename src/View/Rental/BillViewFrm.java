@@ -10,7 +10,10 @@ import Controller.Rental.BillController;
 import Model.Staff;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import keeptoo.KButton;
+import keeptoo.KGradientPanel;
 
 /**
  *
@@ -45,156 +48,245 @@ public class BillViewFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        confirmLabel = new javax.swing.JLabel();
-        paymentLabel = new javax.swing.JLabel();
-        payment = new javax.swing.JComboBox<>();
-        paymentDateLabel = new javax.swing.JLabel();
-        date = new javax.swing.JLabel();
-        clientLabel2 = new javax.swing.JLabel();
-        clientName = new javax.swing.JLabel();
-        staffLabel1 = new javax.swing.JLabel();
-        staffName = new javax.swing.JLabel();
-        noteLabel = new javax.swing.JLabel();
+        bgPanel = new keeptoo.KGradientPanel();
+        jPanel1 = new javax.swing.JPanel();
+        clientName = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
         note = new javax.swing.JTextField();
+        titleLabel = new javax.swing.JLabel();
+        clientLabel = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        noteLabel = new javax.swing.JLabel();
         penaltyLabel = new javax.swing.JLabel();
-        penalty = new javax.swing.JLabel();
-        totalLabel = new javax.swing.JLabel();
-        total = new javax.swing.JLabel();
+        penalty = new javax.swing.JTextField();
+        paymentTypeLabel = new javax.swing.JLabel();
+        paymentType = new javax.swing.JComboBox<>();
+        addBtt = new keeptoo.KButton();
+        backBtt = new keeptoo.KButton();
+        logoImage = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
+        penaltyLabel1 = new javax.swing.JLabel();
+        penalty1 = new javax.swing.JTextField();
+        staffLabel = new javax.swing.JLabel();
+        staffField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        titleLabel.setText("Draft Bill");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
-        confirmLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        confirmLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        confirmLabel.setText("Confirm");
+        clientName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        clientName.setForeground(new java.awt.Color(102, 102, 102));
+        clientName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        clientName.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
-        paymentLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        paymentLabel.setText("Paymen Type:");
+        date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        date.setForeground(new java.awt.Color(102, 102, 102));
+        date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        date.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
-        payment.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        payment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Debit", "Credit", "Payment Plan" }));
+        note.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        note.setForeground(new java.awt.Color(102, 102, 102));
+        note.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
 
-        paymentDateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        paymentDateLabel.setText("Payment Date:");
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(12, 91, 160));
+        titleLabel.setText("Bill");
 
-        date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        date.setText("Date");
+        clientLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        clientLabel.setForeground(new java.awt.Color(12, 91, 160));
+        clientLabel.setText("Client");
 
-        clientLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        clientLabel2.setText("Client:");
+        dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dateLabel.setForeground(new java.awt.Color(12, 91, 160));
+        dateLabel.setText("Payment Date");
 
-        clientName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        clientName.setText("Client Name");
+        noteLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        noteLabel.setForeground(new java.awt.Color(12, 91, 160));
+        noteLabel.setText("Note");
 
-        staffLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        staffLabel1.setText("Staff:");
+        penaltyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        penaltyLabel.setForeground(new java.awt.Color(12, 91, 160));
+        penaltyLabel.setText("Penalty");
 
-        staffName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        staffName.setText("Staff Name");
+        penalty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        penalty.setForeground(new java.awt.Color(102, 102, 102));
+        penalty.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        penalty.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
-        noteLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        noteLabel.setText("Note                 :");
+        paymentTypeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        paymentTypeLabel.setForeground(new java.awt.Color(12, 91, 160));
+        paymentTypeLabel.setText("Payment Type");
 
-        note.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        paymentType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        paymentType.setForeground(new java.awt.Color(102, 102, 255));
+        paymentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Debit", "Credit", "Payment Plan" }));
 
-        penaltyLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        penaltyLabel.setText("Penalty            :");
+        addBtt.setBorder(null);
+        addBtt.setText("Continue");
+        addBtt.setkBorderRadius(30);
+        addBtt.setkEndColor(new java.awt.Color(255, 0, 255));
+        addBtt.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        addBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        addBtt.setkHoverStartColor(new java.awt.Color(102, 255, 102));
+        addBtt.setkStartColor(new java.awt.Color(12, 91, 160));
 
-        penalty.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        backBtt.setBorder(null);
+        backBtt.setText("Cancel");
+        backBtt.setkBorderRadius(30);
+        backBtt.setkEndColor(new java.awt.Color(255, 0, 255));
+        backBtt.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        backBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        backBtt.setkHoverStartColor(new java.awt.Color(102, 255, 102));
+        backBtt.setkStartColor(new java.awt.Color(12, 91, 160));
 
-        totalLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        totalLabel.setText("Total:");
+        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px_black.png"))); // NOI18N
+        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
+        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
 
-        total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        total.setText("...");
+        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(0, 0, 0));
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setText("ALT F4 Rental");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(penaltyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(staffLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(staffName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(paymentLabel)
-                                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(noteLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(paymentDateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(clientLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paymentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paymentDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(penaltyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(staffLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staffName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+        penaltyLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        penaltyLabel1.setForeground(new java.awt.Color(12, 91, 160));
+        penaltyLabel1.setText("Total");
+
+        penalty1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        penalty1.setForeground(new java.awt.Color(102, 102, 102));
+        penalty1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        penalty1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+
+        staffLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        staffLabel.setForeground(new java.awt.Color(12, 91, 160));
+        staffLabel.setText("Staff");
+
+        staffField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        staffField.setForeground(new java.awt.Color(102, 102, 102));
+        staffField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        staffField.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(total)
-                    .addComponent(totalLabel))
-                .addGap(26, 26, 26))
+                .addComponent(titleLabel)
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(logoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(clientLabel))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(dateLabel))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(noteLabel))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(penaltyLabel))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(addBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(backBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(paymentTypeLabel)
+                    .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(penaltyLabel1)
+                            .addComponent(penalty1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(staffLabel)
+                        .addComponent(staffField, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(titleLabel))
+                    .addComponent(logoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addComponent(clientLabel)
+                .addGap(6, 6, 6)
+                .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(staffLabel)
+                .addGap(6, 6, 6)
+                .addComponent(staffField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(dateLabel)
+                .addGap(6, 6, 6)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(noteLabel)
+                .addGap(6, 6, 6)
+                .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(penaltyLabel)
+                .addGap(6, 6, 6)
+                .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(penaltyLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(penalty1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(paymentTypeLabel)
+                .addGap(10, 10, 10)
+                .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addBtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63))
+        );
+
+        javax.swing.GroupLayout bgPanelLayout = new javax.swing.GroupLayout(bgPanel);
+        bgPanel.setLayout(bgPanelLayout);
+        bgPanelLayout.setHorizontalGroup(
+            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgPanelLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
+        );
+        bgPanelLayout.setVerticalGroup(
+            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -250,39 +342,154 @@ public class BillViewFrm extends javax.swing.JFrame {
         this.contract = contract;
     }
 
-
-
-    public JLabel getClientLabel2() {
-        return clientLabel2;
+    public JLabel getTitleLabel() {
+        return titleLabel;
     }
 
-    public void setClientLabel2(JLabel clientLabel2) {
-        this.clientLabel2 = clientLabel2;
+    public void setTitleLabel(JLabel titleLabel) {
+        this.titleLabel = titleLabel;
     }
 
-    public JLabel getClientName() {
+
+
+    public KButton getAddBtt() {
+        return addBtt;
+    }
+
+    public void setAddBtt(KButton addBtt) {
+        this.addBtt = addBtt;
+    }
+
+    public KButton getBackBtt() {
+        return backBtt;
+    }
+
+    public void setBackBtt(KButton backBtt) {
+        this.backBtt = backBtt;
+    }
+
+    public KGradientPanel getBgPanel() {
+        return bgPanel;
+    }
+
+    public void setBgPanel(KGradientPanel bgPanel) {
+        this.bgPanel = bgPanel;
+    }
+
+    public JLabel getClientLabel() {
+        return clientLabel;
+    }
+
+    public void setClientLabel(JLabel clientLabel) {
+        this.clientLabel = clientLabel;
+    }
+
+    public JTextField getClientName() {
         return clientName;
     }
 
-    public void setClientName(JLabel clientName) {
+    public void setClientName(JTextField clientName) {
         this.clientName = clientName;
     }
 
-    public JLabel getConfirmLabel() {
-        return confirmLabel;
-    }
-
-    public void setConfirmLabel(JLabel confirmLabel) {
-        this.confirmLabel = confirmLabel;
-    }
-
-    public JLabel getDate() {
+    public JTextField getDate() {
         return date;
     }
 
-    public void setDate(JLabel date) {
+    public void setDate(JTextField date) {
         this.date = date;
     }
+
+    public JLabel getDateLabel() {
+        return dateLabel;
+    }
+
+    public void setDateLabel(JLabel dateLabel) {
+        this.dateLabel = dateLabel;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JLabel getLogoImage() {
+        return logoImage;
+    }
+
+    public void setLogoImage(JLabel logoImage) {
+        this.logoImage = logoImage;
+    }
+
+    public JLabel getLogoLabel() {
+        return logoLabel;
+    }
+
+    public void setLogoLabel(JLabel logoLabel) {
+        this.logoLabel = logoLabel;
+    }
+
+    public JComboBox<String> getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(JComboBox<String> paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public JLabel getPaymentTypeLabel() {
+        return paymentTypeLabel;
+    }
+
+    public void setPaymentTypeLabel(JLabel paymentTypeLabel) {
+        this.paymentTypeLabel = paymentTypeLabel;
+    }
+
+    public JTextField getPenalty() {
+        return penalty;
+    }
+
+    public void setPenalty(JTextField penalty) {
+        this.penalty = penalty;
+    }
+
+
+    public JTextField getTotal() {
+        return penalty1;
+    }
+
+    public void setTotal(JTextField total) {
+        this.penalty1 = total;
+    }
+
+    public JLabel getTotalLabel() {
+        return penaltyLabel1;
+    }
+
+    public void setTotalLabel(JLabel totalLabel) {
+        this.penaltyLabel1 = totalLabel;
+    }
+
+
+    public JTextField getStaffField() {
+        return staffField;
+    }
+
+    public void setStaffField(JTextField staffField) {
+        this.staffField = staffField;
+    }
+
+    public JLabel getStaffLabel() {
+        return staffLabel;
+    }
+
+    public void setStaffLabel(JLabel staffLabel) {
+        this.staffLabel = staffLabel;
+    }
+
 
     public JTextField getNote() {
         return note;
@@ -300,37 +507,6 @@ public class BillViewFrm extends javax.swing.JFrame {
         this.noteLabel = noteLabel;
     }
 
-    public JComboBox<String> getPayment() {
-        return payment;
-    }
-
-    public void setPayment(JComboBox<String> payment) {
-        this.payment = payment;
-    }
-
-    public JLabel getPaymentDateLabel() {
-        return paymentDateLabel;
-    }
-
-    public void setPaymentDateLabel(JLabel paymentDateLabel) {
-        this.paymentDateLabel = paymentDateLabel;
-    }
-
-    public JLabel getPaymentLabel() {
-        return paymentLabel;
-    }
-
-    public void setPaymentLabel(JLabel paymentLabel) {
-        this.paymentLabel = paymentLabel;
-    }
-
-    public JLabel getPenalty() {
-        return penalty;
-    }
-
-    public void setPenalty(JLabel penalty) {
-        this.penalty = penalty;
-    }
 
     public JLabel getPenaltyLabel() {
         return penaltyLabel;
@@ -340,62 +516,31 @@ public class BillViewFrm extends javax.swing.JFrame {
         this.penaltyLabel = penaltyLabel;
     }
 
-    public JLabel getStaffLabel1() {
-        return staffLabel1;
-    }
 
-    public void setStaffLabel1(JLabel staffLabel1) {
-        this.staffLabel1 = staffLabel1;
-    }
 
-    public JLabel getStaffName() {
-        return staffName;
-    }
 
-    public void setStaffName(JLabel staffName) {
-        this.staffName = staffName;
-    }
-
-    public JLabel getTitleLabel() {
-        return titleLabel;
-    }
-
-    public void setTitleLabel(JLabel titleLabel) {
-        this.titleLabel = titleLabel;
-    }
-
-    public JLabel getTotal() {
-        return total;
-    }
-
-    public void setTotal(JLabel total) {
-        this.total = total;
-    }
-
-    public JLabel getTotalLabel() {
-        return totalLabel;
-    }
-
-    public void setTotalLabel(JLabel totalLabel) {
-        this.totalLabel = totalLabel;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel clientLabel2;
-    private javax.swing.JLabel clientName;
-    private javax.swing.JLabel confirmLabel;
-    private javax.swing.JLabel date;
+    private keeptoo.KButton addBtt;
+    private keeptoo.KButton backBtt;
+    private keeptoo.KGradientPanel bgPanel;
+    private javax.swing.JLabel clientLabel;
+    private javax.swing.JTextField clientName;
+    private javax.swing.JTextField date;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel logoImage;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JTextField note;
     private javax.swing.JLabel noteLabel;
-    private javax.swing.JComboBox<String> payment;
-    private javax.swing.JLabel paymentDateLabel;
-    private javax.swing.JLabel paymentLabel;
-    private javax.swing.JLabel penalty;
+    private javax.swing.JComboBox<String> paymentType;
+    private javax.swing.JLabel paymentTypeLabel;
+    private javax.swing.JTextField penalty;
+    private javax.swing.JTextField penalty1;
     private javax.swing.JLabel penaltyLabel;
-    private javax.swing.JLabel staffLabel1;
-    private javax.swing.JLabel staffName;
+    private javax.swing.JLabel penaltyLabel1;
+    private javax.swing.JTextField staffField;
+    private javax.swing.JLabel staffLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel total;
-    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

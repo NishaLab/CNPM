@@ -23,6 +23,7 @@ public class DAO {
         String password = "0963063105";
         try {
             conn = DriverManager.getConnection(url, username, password);
+//            conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
