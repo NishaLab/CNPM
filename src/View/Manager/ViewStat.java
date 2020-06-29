@@ -30,7 +30,10 @@ import javax.swing.event.ListSelectionListener;
 import DAO.CarStatDao;
 import DAO.CarTypeDao;
 import Model.CarBrand;
+import com.github.lgooddatepicker.components.DatePicker;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -51,6 +54,7 @@ public class ViewStat extends javax.swing.JFrame {
     public ViewStat() {
         initComponents();
         jTable1.setFillsViewportHeight(true);
+        this.getContentPane().setBackground(Color.LIGHT_GRAY);
 
 //        UserNameJTF.setText(user.getName());
     }
@@ -67,7 +71,6 @@ public class ViewStat extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         UserNameJTF = new javax.swing.JTextField();
-        VBTN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -75,19 +78,14 @@ public class ViewStat extends javax.swing.JFrame {
         edPicker = new com.github.lgooddatepicker.components.DatePicker();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        viewBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 0, 51));
 
         jLabel1.setText("Start Date");
 
         jLabel2.setText("End Date");
-
-        VBTN.setText("View Stat");
-        VBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VBTNActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,6 +113,13 @@ public class ViewStat extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vu Minh Duc\\Pictures\\CNPM\\icon team.png")); // NOI18N
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
 
+        viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,10 +128,15 @@ public class ViewStat extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 54, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
@@ -135,79 +145,68 @@ public class ViewStat extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(edPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sdPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64)
-                                .addComponent(VBTN))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))))
+                                .addGap(61, 61, 61)
+                                .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(95, 95, 95)
-                        .addComponent(VBTN))
+                        .addContainerGap()
+                        .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(sdPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(edPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(sdPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(edPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(51, 51, 51)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(viewBtn)))))
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getVBTN() {
-        return VBTN;
-    }
-
-    public void setVBTN(JButton VBTN) {
-        this.VBTN = VBTN;
-    }
-
-    private void VBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VBTNActionPerformed
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
         CarStatDao csd = new CarStatDao();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         Date startDate = new Date();
         Date endDate = new Date();
         try {
             startDate = sdf.parse(sdPicker.getDate().toString());
             endDate = sdf.parse(edPicker.getDate().toString());
-        } catch (Exception e) {
+        } catch (Exception ex) {
 //            e.printStackTrace();
         }
-        
-        if(startDate.after(endDate)){
-            JOptionPane.showMessageDialog(null,"Ngày bắt đầu phải trước ngày kết thúc ! ");
+
+        if (startDate.after(endDate)) {
+            JOptionPane.showMessageDialog(null, "Ngày bắt đầu phải trước ngày kết thúc ! ");
             return;
         }
-        if(sdPicker.getDate()==null){
-            JOptionPane.showMessageDialog(null,"Mời nhập ngày bắt đầu !");
+        if (sdPicker.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Mời nhập ngày bắt đầu !");
             return;
         }
-        if(edPicker.getDate()==null){
+        if (edPicker.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Mời nhập ngày kết thúc !");
             return;
         }
-                      
+
         ArrayList<CarBrandStat> result = new ArrayList<CarBrandStat>();
         result = csd.getCarBrandStat(startDate, endDate);
         Vector<String> collumNames = new Vector<String>();
@@ -218,10 +217,10 @@ public class ViewStat extends javax.swing.JFrame {
         collumNames.add("Income");
         collumNames.add("Days");
         Vector<Vector<String>> data = new Vector<Vector<String>>();
-        int stt=1;
+        int stt = 1;
         for (CarBrandStat cbs : result) {
             Vector<String> tmp = new Vector<String>();
-            tmp.add(""+stt);
+            tmp.add("" + stt);
             tmp.add("" + cbs.getId());
             tmp.add(cbs.getName());
             tmp.add(cbs.getDesc());
@@ -238,7 +237,7 @@ public class ViewStat extends javax.swing.JFrame {
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 int brandid = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-                Date startDate = new Date();
+                Date startDate = Date.from(sdPicker.getDate().atStartOfDay().toInstant(ZoneOffset.UTC));
                 Date endDate = new Date();
                 try {
                     startDate = sdf.parse(sdPicker.getDate().toString());
@@ -246,12 +245,11 @@ public class ViewStat extends javax.swing.JFrame {
                 } catch (Exception f) {
                     f.printStackTrace();
                 }
-                
+
 //                if(startDate.after(endDate)==false){
 //                    JOptionPane.showMessageDialog(null,"Nhap sai ngay");
 //                    return;
 //                }
-                
                 ArrayList<CarStat> brandDetails = csd.getDetailsBrandStat(startDate, endDate, brandid);
 
                 Vector<String> collumNames1 = new Vector<>();
@@ -263,10 +261,10 @@ public class ViewStat extends javax.swing.JFrame {
                 collumNames1.add("regplate");
                 collumNames1.add("days");
                 collumNames1.add("income");
-                int stt=1;
+                int stt = 1;
                 for (CarStat cs : brandDetails) {
                     Vector<String> tmp = new Vector<>();
-                    tmp.add(""+stt);
+                    tmp.add("" + stt);
                     tmp.add("" + cs.getId());
                     tmp.add(cs.getName());
                     tmp.add(cs.getBrand().getName());
@@ -307,10 +305,10 @@ public class ViewStat extends javax.swing.JFrame {
                         collumNames.add("Client_Name");
                         collumNames.add("Days");
                         collumNames.add("Income");
-                        int stt=1;
+                        int stt = 1;
                         for (CarStat cs : carDetails) {
                             Vector<String> tmp = new Vector<>();
-                            tmp.add(""+stt);
+                            tmp.add("" + stt);
                             tmp.add("" + cs.getId());
                             tmp.add(cs.getName());
                             tmp.add(cs.getRegPlate());
@@ -333,8 +331,9 @@ public class ViewStat extends javax.swing.JFrame {
                         jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
                         jTable1.getColumnModel().getColumn(6).setPreferredWidth(150);
                         jTable1.getColumnModel().getColumn(7).setPreferredWidth(30);
-                        
+
                         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+
                         jScrollPane1.setViewportView(jTable1);
                         jPanel1.revalidate();
                         jPanel1.repaint();
@@ -343,8 +342,9 @@ public class ViewStat extends javax.swing.JFrame {
                 });
             }
         });
-    }//GEN-LAST:event_VBTNActionPerformed
+    }//GEN-LAST:event_viewBtnActionPerformed
 
+    /*
     /**
      * @param args the command line arguments
      */
@@ -383,7 +383,6 @@ public class ViewStat extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField UserNameJTF;
-    private javax.swing.JButton VBTN;
     private com.github.lgooddatepicker.components.DatePicker edPicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -393,5 +392,6 @@ public class ViewStat extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private com.github.lgooddatepicker.components.DatePicker sdPicker;
+    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }
