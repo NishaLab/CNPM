@@ -16,6 +16,7 @@ import Model.Car;
 import Model.Warrant;
 import Model.Client;
 import Model.Staff;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -62,14 +63,17 @@ public class ContractController {
         ArrayList<ContractWarrant> cw = this.frame.getCw();
         Client client = this.frame.getClient();
         Staff staff = this.frame.getStaff();
-        JLabel clientName = this.frame.getClientName();
+        JTextField clientName = this.frame.getClientName();
         clientName.setText(client.getName());
-        JLabel staffName = this.frame.getStaffName();
+        clientName.setEditable(false);
+        JTextField staffName = this.frame.getStaffName();
         staffName.setText(staff.getName());
+        staffName.setEditable(false);
         long deposit = 1000000 * bc.size();
         this.frame.getDeposit().setText(formatter.format(deposit));
+        this.frame.getDeposit().setEditable(false);
         long total = 0;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         for (BookedCar bookedCar : bc) {
             long amount = 0;
             amount += bookedCar.getTotalPrice();
@@ -81,14 +85,19 @@ public class ContractController {
         }
         for (ContractWarrant warrant : cw) {
             Object[] tmp;
-            tmp = new Object[]{warrant.getCheckIn(), warrant.getCheckOut(), warrant.getWarrant().getType(),
+            tmp = new Object[]{sdf.format(warrant.getCheckIn()), sdf.format(warrant.getCheckOut()), warrant.getWarrant().getType(),
                 warrant.getWarrant().getValue(), warrant.getWarrant().getDesc()};
             wtb.addRow(tmp);
         }
         total += deposit;
         this.frame.getTotal().setText(formatter.format(total));
+        this.frame.getTotal().setEditable(false);
         Date date = new Date();
         this.frame.getDate().setText(date.toString());
+        this.frame.getDate().setEditable(false);
+        this.frame.getCarTable().getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        this.frame.getWarrantTable().getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+
     }
 
     public void addWarrantAction() {
@@ -127,10 +136,11 @@ public class ContractController {
                         a.setClient(client);
                         con.setWarrant(a);
                         con.setCheckIn(bc.get(0).getReturnDate());
-                        con.setCheckOut(bc.get(bc.size()-1).getReceivedDate());
+                        con.setCheckOut(bc.get(bc.size() - 1).getReceivedDate());
                         cw.add(con);
                         Object[] tmp;
-                        tmp = new Object[]{con.getCheckIn(), con.getCheckOut(), con.getWarrant().getType(),
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        tmp = new Object[]{sdf.format(con.getCheckIn()), sdf.format(con.getCheckOut()), con.getWarrant().getType(),
                             con.getWarrant().getValue(), con.getWarrant().getDesc()};
                         cwtb.addRow(tmp);
                         reg.setVisible(false);
@@ -143,7 +153,7 @@ public class ContractController {
     }
 
     public void addConfirmLabelAction() {
-        JLabel confirm = this.frame.getConfirmLabel();
+        JLabel confirm = this.frame.getConfrimLabel1();
         confirm.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -167,7 +177,7 @@ public class ContractController {
     }
 
     public void setBackLabelAction() {
-        JLabel back = this.frame.getBackLabel();
+        JLabel back = this.frame.getBackLabel1();
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
