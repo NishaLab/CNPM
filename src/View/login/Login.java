@@ -7,6 +7,7 @@ package View.login;
 
 import Model.Staff;
 import DAO.StaffDao;
+import View.Manager.ChooseStatType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -162,6 +163,9 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         else if (s.getPositon().equalsIgnoreCase("receptionist")) {
             (new ReceptionistViewFrm(s)).setVisible(true);
             this.dispose();
+        }
+        else if(s.getPositon().equalsIgnoreCase("manager")){
+            (new ChooseStatType(s)).setVisible(true);
         }
             else {
                 JOptionPane.showMessageDialog(this, "Function of the role" + s.getPositon() + "is under construction!");
