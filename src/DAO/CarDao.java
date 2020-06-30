@@ -24,9 +24,9 @@ public class CarDao extends DAO {
         CarBrandDao brandDao = new CarBrandDao();
         String sql = "Select * from tblcar where if(?<>0,tblCarType_id = ?,true) AND if(?<>0,tblCarClassification_id = ?,true) AND NOT (state = 'Maintained') AND name LIKE ? AND id NOT IN(\n"
                 + "Select tblcar_id from tblbookedcar\n"
-                + "WHERE (receivedDate < ? AND returnDate > ?) \n"
-                + "OR(receivedDate < ? AND returnDate > ?)\n"
-                + "OR(receivedDate > ? AND returnDate < ?))\n";
+                + "WHERE (receivedDate <= ? AND returnDate >= ?) \n"
+                + "OR(receivedDate < ? AND returnDate >= ?)\n"
+                + "OR(receivedDate >= ? AND returnDate <= ?))\n";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             java.sql.Timestamp sqlcheckin = new java.sql.Timestamp(receivedDate.getTime());
