@@ -73,7 +73,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
 
         usernametf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         usernametf.setForeground(new java.awt.Color(102, 102, 102));
-        usernametf.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(12, 91, 160)));
+        usernametf.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
         bgPanel.add(usernametf, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 260, 295, -1));
 
         passwordlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

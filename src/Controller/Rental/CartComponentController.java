@@ -38,7 +38,7 @@ public class CartComponentController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 SearchCarViewFrm frame = panel.getFrame();
-                if (JOptionPane.showConfirmDialog(null, "Do you delete " + panel.getCar().getName(),
+                if (JOptionPane.showConfirmDialog(null, "Do you want to delete " + panel.getCar().getName(),
                         "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
                     frame.getCartPanel().remove(panel);
                     frame.getCartPanel().revalidate();
