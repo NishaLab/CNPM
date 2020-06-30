@@ -18,10 +18,12 @@ public class CarStat extends Car implements Serializable {
         super();
     }
 
-    public CarStat(int totalDay, int contractId, float amount, String clientName) {
+    public CarStat(int totalDay, int contractId, int rentTime, float income, float penAmount, String clientName) {
         this.totalDay = totalDay;
         this.contractId = contractId;
-        this.amount = amount;
+        this.rentTime = rentTime;
+        this.income = income;
+        this.penAmount = penAmount;
         this.clientName = clientName;
     }
 
@@ -33,8 +35,16 @@ public class CarStat extends Car implements Serializable {
         this.contractId = contractId;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setRentTime(int rentTime) {
+        this.rentTime = rentTime;
+    }
+
+    public void setIncome(float income) {
+        this.income = income;
+    }
+
+    public void setPenAmount(float penAmount) {
+        this.penAmount = penAmount;
     }
 
     public void setClientName(String clientName) {
@@ -49,16 +59,24 @@ public class CarStat extends Car implements Serializable {
         return contractId;
     }
 
-    public float getAmount() {
-        return amount;
+    public int getRentTime() {
+        return rentTime;
+    }
+
+    public float getIncome() {
+        return income;
+    }
+
+    public float getPenAmount() {
+        return penAmount;
     }
 
     public String getClientName() {
         return clientName;
     }
-   
     
-    private int totalDay,contractId;
-    private float amount;
+    private int totalDay,contractId,rentTime;
+    private float income;
+    private float penAmount;
     private String clientName;
 }

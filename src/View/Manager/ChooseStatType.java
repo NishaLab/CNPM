@@ -7,6 +7,7 @@ package View.Manager;
 
 import java.awt.event.ItemEvent;
 import Model.Staff;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,10 +18,10 @@ public class ChooseStatType extends javax.swing.JFrame {
     /**
      * Creates new form ChooseStatType
      */
-    public ChooseStatType() {
+    public ChooseStatType(Staff user) {
         initComponents();
-//        this.user=user;
-//        UserNameJTF.setText(user.getName());
+        this.user=user;
+        UserNameJTF.setText(user.getName());
     }
 
     /**
@@ -88,17 +89,18 @@ public class ChooseStatType extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -143,8 +145,11 @@ public class ChooseStatType extends javax.swing.JFrame {
         String obj = ObjCBB.getSelectedItem().toString();
         String type = TypeCBB.getSelectedItem().toString();
         if(obj=="Dòng xe" && type=="Theo doanh thu"){
-           new ViewStat().setVisible(true);
-        }         
+           new ViewStat(this.user).setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Tính năng chưa phát triển !");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -177,7 +182,7 @@ public class ChooseStatType extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChooseStatType().setVisible(true);
+                new ChooseStatType(user).setVisible(true);
             }
         });
     }
