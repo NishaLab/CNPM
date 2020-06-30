@@ -35,7 +35,7 @@ public class ContractDao extends DAO {
             PreparedStatement ps = conn.prepareStatement(contract, Statement.RETURN_GENERATED_KEYS);
             java.sql.Date sqldate = new Date(c.getBookingDate().getTime());
             ps.setDate(1, sqldate);
-            ps.setBoolean(2, c.isState());
+            ps.setBoolean(2, true);
             ps.setInt(3, c.getStaff().getId());
             ps.setInt(4, c.getClient().getId());
             ps.executeUpdate();
@@ -44,9 +44,21 @@ public class ContractDao extends DAO {
                 c.setId(generatedKeys.getInt(1));
                 for (BookedCar bc : c.getCar()) {
                     try {
-                        ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
+                        String select = "select * from `tblbookedcar`  where receivedDate = ? and returnDate =?  "
+                                + "and penAmount = ? and totalprice = ? and tblCar_id = ?";
                         java.sql.Timestamp sqlreceived = new java.sql.Timestamp(bc.getReceivedDate().getTime());
                         java.sql.Timestamp sqlreturn = new java.sql.Timestamp(bc.getReturnDate().getTime());
+                        PreparedStatement sps = conn.prepareStatement(select);
+                        sps.setTimestamp(1, sqlreceived);
+                        sps.setTimestamp(2, sqlreturn);
+                        sps.setFloat(3, bc.getPenAmount());
+                        sps.setFloat(4, bc.getTotalPrice());
+                        sps.setInt(5, bc.getCar().getId());
+                        ResultSet crs = sps.executeQuery();
+                        if(crs.next()){
+                            return false;
+                        }
+                        ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
                         ps.setTimestamp(1, sqlreceived);
                         ps.setTimestamp(2, sqlreturn);
                         ps.setFloat(3, bc.getPenAmount());
@@ -131,6 +143,7 @@ public class ContractDao extends DAO {
                 c = new Contract();
                 c.setId(rs.getInt("id"));
                 c.setBookingDate(rs.getTimestamp("bookingDate"));
+                System.out.println(rs.getTimestamp("bookingDate"));
                 c.setState(Boolean.parseBoolean(rs.getString("state")));
 
                 ps = conn.prepareStatement(staff);
