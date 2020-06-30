@@ -110,11 +110,10 @@ public class SearchCarController {
                     return;
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date receivedDate = Date.from(received.toInstant(ZoneOffset.UTC));
-                Date returnDate = Date.from(returnn.toInstant(ZoneOffset.UTC));
+                Date receivedDate = Date.from(received.toInstant(ZoneOffset.ofHours(7)));
+                Date returnDate = Date.from(returnn.toInstant(ZoneOffset.ofHours(7)));
                 java.sql.Timestamp sqlreceived = new java.sql.Timestamp(receivedDate.getTime());
                 java.sql.Timestamp sqlreturn = new java.sql.Timestamp(returnDate.getTime());
-
                 if (receivedDate.compareTo(returnDate) != -1) {
                     JOptionPane.showMessageDialog(null, "Return date must be greater than Received date", "Try Again", 1);
                     return;
