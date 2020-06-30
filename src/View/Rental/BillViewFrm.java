@@ -23,13 +23,22 @@ public class BillViewFrm extends javax.swing.JFrame {
 
     private Contract contract;
     private Staff staff;
-
-    public BillViewFrm(Contract contract,Staff staff) {
+    private float deposit;
+    public BillViewFrm(Contract contract,Staff staff,float deposit) {
         initComponents();
         this.contract = contract;
         this.staff = staff;
+        this.deposit = deposit;
         BillController a = new BillController(this);
         a.init();
+    }
+
+    public float getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(float deposit) {
+        this.deposit = deposit;
     }
 
     /**

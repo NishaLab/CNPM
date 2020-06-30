@@ -52,7 +52,7 @@ public class BillController {
         staff.setText(contract.getStaff().getName());
         staff.setEditable(false);
         JTextField amount = this.frame.getTotal();
-        amount.setText(formatter.format(contract.getAmount()));
+        amount.setText(formatter.format(this.frame.getDeposit()));
         amount.setEditable(false);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         JTextField date = this.frame.getDate();
