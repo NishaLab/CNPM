@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,7 +56,8 @@ public class ContractDao extends DAO {
                         sps.setFloat(4, bc.getTotalPrice());
                         sps.setInt(5, bc.getCar().getId());
                         ResultSet crs = sps.executeQuery();
-                        if(crs.next()){
+                        if (crs.next()) {
+                            JOptionPane.showMessageDialog(null, "Car " + bc.getCar().getId() + " " + bc.getCar().getName() + " have been booked");
                             return false;
                         }
                         ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
@@ -284,9 +286,6 @@ public class ContractDao extends DAO {
 
     public ArrayList<Contract> getContractByStaffId(int key) {
         ArrayList<Contract> res = new ArrayList<>();
-        ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
-        ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
-        ArrayList<Penalty> listpen = new ArrayList<Penalty>();
 
         String contract = "SELECT * FROM tblcontract WHERE tblStaff_id = ?";
         String bookedcar = "SELECT * FROM tblbookedcar WHERE tblcontract_id = ?";
@@ -304,6 +303,9 @@ public class ContractDao extends DAO {
             ps.setInt(1, key);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
+                ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
+                ArrayList<Penalty> listpen = new ArrayList<Penalty>();
                 Contract c = new Contract();
                 c.setId(rs.getInt("id"));
                 c.setBookingDate(rs.getTimestamp("bookingDate"));

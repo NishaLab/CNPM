@@ -69,7 +69,7 @@ public class ContractController {
         JTextField staffName = this.frame.getStaffName();
         staffName.setText(staff.getName());
         staffName.setEditable(false);
-        long deposit = 1000000 * bc.size();
+        long deposit = 10000 * bc.size();
         this.frame.getDeposit().setText(formatter.format(deposit));
         this.frame.getDeposit().setEditable(false);
         long total = 0;
@@ -168,7 +168,7 @@ public class ContractController {
                     contract.setClient(frame.getClient());
                     contract.setStaff(frame.getStaff());
                     frame.dispose();
-                    BillViewFrm bill = new BillViewFrm(contract, frame.getStaff());
+                    BillViewFrm bill = new BillViewFrm(contract, frame.getStaff(),Float.parseFloat(frame.getDeposit().getText().replaceAll(",", "")));
                     bill.setVisible(true);
                 }
 

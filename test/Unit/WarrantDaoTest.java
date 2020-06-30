@@ -44,15 +44,24 @@ public class WarrantDaoTest {
     public void tearDown() {
     }
 
+//    @Test
+//    public void testAddWarrant() {
+//        Client client = new Client("hung", "1", "2", "3", "B", "Vip");
+//        client.setId(1);
+//        Warrant warrant = new Warrant("MotorBike", "Wave A Trang", 20000, client);
+//        Assert.assertTrue(dao.addWarrant(warrant));
+//        return;
+//    }
+
     @Test
-    public void testAddWarrant() {
-        Client client = new Client("hung","1","2","3","B","Vip");
+    public void testAddWarrant2() {
+        Client client = new Client("hung", "1", "2", "3", "B", "Vip");
         client.setId(1);
         Warrant warrant = new Warrant("MotorBike", "Wave A Trang", 20000, client);
         Assert.assertTrue(dao.addWarrant(warrant));
+        Assert.assertFalse(dao.addWarrant(warrant));
         return;
     }
-
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

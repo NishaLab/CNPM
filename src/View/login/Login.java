@@ -38,18 +38,30 @@ public class Login extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         bgPanel = new javax.swing.JPanel();
+        logoImage = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         loginbtn = new keeptoo.KButton();
         userLabel = new javax.swing.JLabel();
         usernametf = new javax.swing.JTextField();
         passwordlbl = new javax.swing.JLabel();
         passwordpf = new javax.swing.JPasswordField();
-        logoImage = new javax.swing.JLabel();
-        logoLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
+        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
+        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
+        bgPanel.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, 100));
+
+        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setText("ALT F4 Rental");
+        bgPanel.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 310, 100));
 
         loginbtn.setBorder(null);
         loginbtn.setText("Log In");
@@ -69,31 +81,23 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         userLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(12, 91, 160));
         userLabel.setText("Name");
-        bgPanel.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 260, -1, -1));
+        bgPanel.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         usernametf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         usernametf.setForeground(new java.awt.Color(102, 102, 102));
-        usernametf.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(12, 91, 160)));
-        bgPanel.add(usernametf, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 260, 295, -1));
+        usernametf.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
+        bgPanel.add(usernametf, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 295, -1));
 
         passwordlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         passwordlbl.setForeground(new java.awt.Color(12, 91, 160));
         passwordlbl.setText("Password");
-        bgPanel.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 327, -1, -1));
+        bgPanel.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
         passwordpf.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(12, 91, 160)));
-        bgPanel.add(passwordpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 330, 295, -1));
+        bgPanel.add(passwordpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 295, -1));
 
-        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px_black.png"))); // NOI18N
-        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
-        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
-        bgPanel.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 20, -1, -1));
-
-        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
-        logoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setText("ALT F4 Rental");
-        bgPanel.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 50, 280, 60));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/login.png"))); // NOI18N
+        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,6 +175,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel jLabel1;
     private keeptoo.KButton loginbtn;
     private javax.swing.JLabel logoImage;
     private javax.swing.JLabel logoLabel;

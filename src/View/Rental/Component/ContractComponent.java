@@ -122,19 +122,17 @@ public class ContractComponent extends javax.swing.JPanel {
     private void detailsBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsBttActionPerformed
         // TODO add your handling code here:
         try {
-            System.out.println("Here");
-            System.out.println(jTable1.getSelectedRow());
             Contract contract = list.get(jTable1.getSelectedRow());
             ContractViewAuxFrm a = new ContractViewAuxFrm(contract);
             this.setVisible(false);
             a.setVisible(true);
             a.addWindowListener(new WindowAdapter() {
                 @Override
-                public void windowClosed(WindowEvent e) {
-                    a.dispose();
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
                     setVisible(true);
+                    a.dispose();
                 }
-
             });
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "You must choose a contract");
