@@ -37,7 +37,7 @@ public class BillComponent extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(Color.WHITE);
         for (Bill bill1 : bill) {
             Object[] tmp;
-            tmp = new Object[]{bill1.getId(),bill1.getContract().getClient().getName(), formatter.format(bill1.getAmount()),
+            tmp = new Object[]{bill1.getId(),bill1.getContract().getId(), formatter.format(bill1.getAmount()),
                 bill1.getPaymentType(), bill1.getPaymentDate(), bill1.getNote()};
             btb.addRow(tmp);
         }
@@ -66,7 +66,7 @@ public class BillComponent extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Client", "Amount", "Payment Type", "Payment Date", "Note"
+                "ID", "Contract", "Amount", "Payment Type", "Payment Date", "Note"
             }
         ) {
             boolean[] canEdit = new boolean [] {
