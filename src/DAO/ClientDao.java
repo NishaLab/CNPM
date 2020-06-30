@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Model.Client;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,7 +91,7 @@ public class ClientDao extends DAO {
             }
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Client " + client.getCCCD() +  " "+client.getName()+ " Already Exists");
             return false;
         }
     }

@@ -18,13 +18,14 @@ import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LEGION
  */
 public class ContractDao extends DAO {
-
+    
     public boolean addContract(Contract c) {
         String contract = "INSERT INTO tblcontract(bookingDate, state, tblStaff_id, tblClient_id) VALUES(?,?,?,?)";
         String bookedRoom = "INSERT INTO tblbookedcar(receivedDate,returnDate,penAmount,totalprice,tblCar_id,tblContract_id)VALUES(?,?,?,?,?,?)";
@@ -55,7 +56,8 @@ public class ContractDao extends DAO {
                         sps.setFloat(4, bc.getTotalPrice());
                         sps.setInt(5, bc.getCar().getId());
                         ResultSet crs = sps.executeQuery();
-                        if(crs.next()){
+                        if (crs.next()) {
+                            JOptionPane.showMessageDialog(null, "Car " + bc.getCar().getId() + " " + bc.getCar().getName() + " have been booked");
                             return false;
                         }
                         ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
@@ -82,7 +84,7 @@ public class ContractDao extends DAO {
                             return false;
                         }
                     }
-
+                    
                 }
                 for (ContractWarrant cw : c.getConWarrant()) {
                     try {
@@ -117,13 +119,13 @@ public class ContractDao extends DAO {
         }
         return true;
     }
-
+    
     public Contract getContractById(int key) {
         Contract c = null;
         ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
         ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
         ArrayList<Penalty> listpen = new ArrayList<Penalty>();
-
+        
         String contract = "SELECT * FROM tblcontract WHERE id = ?";
         String bookedcar = "SELECT * FROM tblbookedcar WHERE tblcontract_id = ?";
         String contractW = "SELECT * FROM tblcontractwarrant WHERE tblcontract_id = ?";
@@ -145,7 +147,7 @@ public class ContractDao extends DAO {
                 c.setBookingDate(rs.getTimestamp("bookingDate"));
                 System.out.println(rs.getTimestamp("bookingDate"));
                 c.setState(Boolean.parseBoolean(rs.getString("state")));
-
+                
                 ps = conn.prepareStatement(staff);
                 ps.setInt(1, rs.getInt("tblstaff_id"));
                 ResultSet staffrs = ps.executeQuery();
@@ -158,7 +160,7 @@ public class ContractDao extends DAO {
                     s.setPassword(staffrs.getString("password"));
                     c.setStaff(s);
                 }
-
+                
                 ps = conn.prepareStatement(client);
                 ps.setInt(1, rs.getInt("tblclient_id"));
                 ResultSet clientrs = ps.executeQuery();
@@ -173,7 +175,7 @@ public class ContractDao extends DAO {
                     cl.setType(clientrs.getString("type"));
                     c.setClient(cl);
                 }
-
+                
                 ps = conn.prepareStatement(bookedcar);
                 ps.setInt(1, c.getId());
                 ResultSet bookedcarRs = ps.executeQuery();
@@ -182,7 +184,7 @@ public class ContractDao extends DAO {
                     bc.setId(bookedcarRs.getInt("id"));
                     bc.setReceivedDate(bookedcarRs.getTimestamp("receivedDate"));
                     bc.setReturnDate(bookedcarRs.getTimestamp("returnDate"));
-
+                    
                     int car_id = bookedcarRs.getInt("tblcar_id");
                     ps = conn.prepareStatement(car);
                     ps.setInt(1, car_id);
@@ -195,7 +197,7 @@ public class ContractDao extends DAO {
                         x.setDesc(carRs.getString("desc"));
                         x.setState(carRs.getString("state"));
                         x.setRegPlate(carRs.getString("reg_plate"));
-
+                        
                         ps = conn.prepareStatement(type);
                         ps.setInt(1, carRs.getInt("tblcartype_id"));
                         ResultSet typeRs = ps.executeQuery();
@@ -206,7 +208,7 @@ public class ContractDao extends DAO {
                             ct.setDesc(typeRs.getString("desc"));
                             x.setType(ct);
                         }
-
+                        
                         ps = conn.prepareStatement(classs);
                         ps.setInt(1, carRs.getInt("tblcarclassification_id"));
                         ResultSet classRs = ps.executeQuery();
@@ -217,17 +219,17 @@ public class ContractDao extends DAO {
                             ct.setDesc(classRs.getString("desc"));
                             x.setClasss(ct);
                         }
-
+                        
                         bc.setCar(x);
                     }
-
+                    
                     ps = conn.prepareStatement(penalty);
                     ps.setInt(1, bc.getId());
                     ResultSet penrs = ps.executeQuery();
                     while (penrs.next()) {
                         Penalty p = new Penalty();
                         p.setQuantity(penrs.getInt("quantity"));
-
+                        
                         ps = conn.prepareStatement(catalog);
                         ps.setInt(1, penrs.getInt("tbldamagecatalog_id"));
                         ResultSet dcRs = ps.executeQuery();
@@ -251,7 +253,7 @@ public class ContractDao extends DAO {
                     listbc.add(bc);
                 }
                 c.setCar(listbc);
-
+                
                 ps = conn.prepareStatement(contractW);
                 ps.setInt(1, c.getId());
                 ResultSet cwRs = ps.executeQuery();
@@ -259,7 +261,7 @@ public class ContractDao extends DAO {
                     ContractWarrant cw = new ContractWarrant();
                     cw.setCheckIn(cwRs.getTimestamp("checkin"));
                     cw.setCheckOut(cwRs.getTimestamp("checkout"));
-
+                    
                     ps = conn.prepareStatement(warrant);
                     ps.setInt(1, cwRs.getInt("tblwarrant_id"));
                     ResultSet wRs = ps.executeQuery();
@@ -281,13 +283,13 @@ public class ContractDao extends DAO {
         }
         return c;
     }
-
+    
     public ArrayList<Contract> getContractByStaffId(int key) {
         ArrayList<Contract> res = new ArrayList<>();
         ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
         ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
         ArrayList<Penalty> listpen = new ArrayList<Penalty>();
-
+        
         String contract = "SELECT * FROM tblcontract WHERE tblStaff_id = ?";
         String bookedcar = "SELECT * FROM tblbookedcar WHERE tblcontract_id = ?";
         String contractW = "SELECT * FROM tblcontractwarrant WHERE tblcontract_id = ?";
@@ -308,7 +310,7 @@ public class ContractDao extends DAO {
                 c.setId(rs.getInt("id"));
                 c.setBookingDate(rs.getTimestamp("bookingDate"));
                 c.setState(Boolean.parseBoolean(rs.getString("state")));
-
+                
                 ps = conn.prepareStatement(staff);
                 ps.setInt(1, rs.getInt("tblstaff_id"));
                 ResultSet staffrs = ps.executeQuery();
@@ -321,7 +323,7 @@ public class ContractDao extends DAO {
                     s.setPassword(staffrs.getString("password"));
                     c.setStaff(s);
                 }
-
+                
                 ps = conn.prepareStatement(client);
                 ps.setInt(1, rs.getInt("tblclient_id"));
                 ResultSet clientrs = ps.executeQuery();
@@ -336,7 +338,7 @@ public class ContractDao extends DAO {
                     cl.setType(clientrs.getString("type"));
                     c.setClient(cl);
                 }
-
+                
                 ps = conn.prepareStatement(bookedcar);
                 ps.setInt(1, c.getId());
                 ResultSet bookedcarRs = ps.executeQuery();
@@ -345,7 +347,7 @@ public class ContractDao extends DAO {
                     bc.setId(bookedcarRs.getInt("id"));
                     bc.setReceivedDate(bookedcarRs.getTimestamp("receivedDate"));
                     bc.setReturnDate(bookedcarRs.getTimestamp("returnDate"));
-
+                    
                     int car_id = bookedcarRs.getInt("tblcar_id");
                     ps = conn.prepareStatement(car);
                     ps.setInt(1, car_id);
@@ -358,7 +360,7 @@ public class ContractDao extends DAO {
                         x.setDesc(carRs.getString("desc"));
                         x.setState(carRs.getString("state"));
                         x.setRegPlate(carRs.getString("reg_plate"));
-
+                        
                         ps = conn.prepareStatement(type);
                         ps.setInt(1, carRs.getInt("tblcartype_id"));
                         ResultSet typeRs = ps.executeQuery();
@@ -369,7 +371,7 @@ public class ContractDao extends DAO {
                             ct.setDesc(typeRs.getString("desc"));
                             x.setType(ct);
                         }
-
+                        
                         ps = conn.prepareStatement(classs);
                         ps.setInt(1, carRs.getInt("tblcarclassification_id"));
                         ResultSet classRs = ps.executeQuery();
@@ -380,17 +382,17 @@ public class ContractDao extends DAO {
                             ct.setDesc(classRs.getString("desc"));
                             x.setClasss(ct);
                         }
-
+                        
                         bc.setCar(x);
                     }
-
+                    
                     ps = conn.prepareStatement(penalty);
                     ps.setInt(1, bc.getId());
                     ResultSet penrs = ps.executeQuery();
                     while (penrs.next()) {
                         Penalty p = new Penalty();
                         p.setQuantity(penrs.getInt("quantity"));
-
+                        
                         ps = conn.prepareStatement(catalog);
                         ps.setInt(1, penrs.getInt("tbldamagecatalog_id"));
                         ResultSet dcRs = ps.executeQuery();
@@ -414,7 +416,7 @@ public class ContractDao extends DAO {
                     listbc.add(bc);
                 }
                 c.setCar(listbc);
-
+                
                 ps = conn.prepareStatement(contractW);
                 ps.setInt(1, c.getId());
                 ResultSet cwRs = ps.executeQuery();
@@ -422,7 +424,7 @@ public class ContractDao extends DAO {
                     ContractWarrant cw = new ContractWarrant();
                     cw.setCheckIn(cwRs.getTimestamp("checkin"));
                     cw.setCheckOut(cwRs.getTimestamp("checkout"));
-
+                    
                     ps = conn.prepareStatement(warrant);
                     ps.setInt(1, cwRs.getInt("tblwarrant_id"));
                     ResultSet wRs = ps.executeQuery();
