@@ -12,11 +12,12 @@ import java.io.Serializable;
  * @author LEGION
  */
 public class ClientStat extends Client implements Serializable {
-    private int totalPayment, totalContract;    
-
-    public ClientStat(int totalPayment, int totalContract) {
-        this.totalPayment = totalPayment;
-        this.totalContract = totalContract;
+    private int totalPayment, totalContract, totalDay;
+    private float price, pen;
+    private String CName;
+    
+    public ClientStat() {
+        super();
     }
 
     public int getTotalPayment() {
@@ -35,11 +36,38 @@ public class ClientStat extends Client implements Serializable {
         this.totalContract = totalContract;
     }
 
-    @Override
-    public String toString() {
-        return "ClientStat{" + "totalPayment=" + totalPayment + ", totalContract=" + totalContract + '}';
+    public int getTotalDay() {
+        return totalDay;
     }
 
-    public ClientStat() {
+    public void setTotalDay(int totalDay) {
+        this.totalDay = totalDay;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getPen() {
+        return pen;
+    }
+
+    public void setPen(float pen) {
+        this.pen = pen;
+    }
+
+    public String getCName() {
+        return CName;
+    }
+
+    public void setCName(String CName) {
+        this.CName = CName;
+    }
+  
+    
+    
 }
