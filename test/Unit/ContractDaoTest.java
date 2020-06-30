@@ -66,17 +66,8 @@ public class ContractDaoTest {
     //
     // @Test
     // public void hello() {}
-//    @Test
-//    public void testAddContract1() {
-//        Contract contract = new Contract();
-//        contract = dao.getContractById(24);
-//        System.out.println(contract);
-//        Assert.assertFalse(dao.addContract(contract));
-//        return;
-//    }
-
     @Test
-    public void testAddContract2() throws SQLException {
+    public void testAddContract1() throws SQLException {
         ClientDao clientdao = new ClientDao();
         StaffDao staffdao = new StaffDao();
         CarTypeDao typeDao = new CarTypeDao();
