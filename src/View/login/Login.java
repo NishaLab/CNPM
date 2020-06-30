@@ -156,10 +156,10 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             if (s.getPositon().equalsIgnoreCase("cashier")) {
                 (new CashierHomeFrm(s)).setVisible(true);
                 this.dispose();
-            } else if (s.getPositon().equalsIgnoreCase("manager")) {
-                (new ClientStatFrm()).setVisible(true);
-                this.dispose();
-            } //else if (s.getPositon().equalsIgnoreCase("receptionist")) {
+            } //else if (s.getPositon().equalsIgnoreCase("manager")) {
+               // (new ClientStatFrm()).setVisible(true);
+                //this.dispose();
+         // } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
             //                (new receptionistHomeFrm(s)).setVisible(true);
             //                this.dispose();
             //            } 

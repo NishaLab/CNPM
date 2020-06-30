@@ -432,4 +432,21 @@ public class ContractDao extends DAO {
         }
         return res;
     }
+    
+    public ArrayList<Integer> getAllContractIdByClientid(int key){
+        ArrayList<Integer> res = new ArrayList<>();
+        String sql = "Selecet id from tblcontract where tblClient_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, key);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                res.add(id);
+            }
+        } catch (Exception e) {
+        }
+        return res;
+        
+    }
 }

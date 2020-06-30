@@ -43,4 +43,6 @@ public class CarStat extends Car implements Serializable {
     
     private int totalDay;
     private float amount;
+
+    
 }
