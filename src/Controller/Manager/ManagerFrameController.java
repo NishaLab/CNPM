@@ -7,6 +7,7 @@ package Controller.Manager;
 
 import View.Manager.ManagerFrm;
 import View.Manager.*;
+import View.User.ClientStatFrm;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -46,9 +47,9 @@ public class ManagerFrameController {
         clientStat.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ChooseStatType cst = new ChooseStatType();
+                ClientStatFrm csf = new ClientStatFrm();
                 frame.dispose();
-                cst.setVisible(true);
+                csf.setVisible(true);
             }
         });
     }
