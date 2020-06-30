@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import View.Rental.ReceptionistViewFrm;
+import View.Manager.ManagerFrm;
 
 /**
  *
@@ -119,11 +120,10 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             if (s.getPositon().equalsIgnoreCase("cashier")) {
                 (new CashierHomeFrm(s)).setVisible(true);
                 this.dispose();
-            } //            else if (s.getPositon().equalsIgnoreCase("manager")) {
-            //                (new managerHomeFrm(s)).setVisible(true);
-            //                this.dispose();
-            //                        }
-            else if (s.getPositon().equalsIgnoreCase("receptionist")) {
+            } else if (s.getPositon().equalsIgnoreCase("manager")) {
+                (new ManagerFrm(s)).setVisible(true);
+                this.dispose();
+            } else if (s.getPositon().equalsIgnoreCase("receptionist")) {
                 (new ReceptionistViewFrm(s)).setVisible(true);
                 this.dispose();
             } else {
