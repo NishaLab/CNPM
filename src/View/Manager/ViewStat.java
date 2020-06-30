@@ -57,7 +57,11 @@ public class ViewStat extends javax.swing.JFrame {
         this.user = user;
         UserNameJTF.setText(user.getName());
     }
+    public ViewStat(){
+        initComponents();
+        jTable1.setFillsViewportHeight(true);
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -405,7 +409,7 @@ public class ViewStat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewStat(user).setVisible(true);
+                new ViewStat().setVisible(true);
             }
         });
     }
