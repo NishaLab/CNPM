@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ContractDao extends DAO {
             PreparedStatement ps = conn.prepareStatement(contract, Statement.RETURN_GENERATED_KEYS);
             java.sql.Date sqldate = new Date(c.getBookingDate().getTime());
             ps.setDate(1, sqldate);
-            ps.setBoolean(2, c.isState());
+            ps.setBoolean(2, true);
             ps.setInt(3, c.getStaff().getId());
             ps.setInt(4, c.getClient().getId());
             ps.executeUpdate();
@@ -44,9 +45,22 @@ public class ContractDao extends DAO {
                 c.setId(generatedKeys.getInt(1));
                 for (BookedCar bc : c.getCar()) {
                     try {
-                        ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
+                        String select = "select * from `tblbookedcar`  where receivedDate = ? and returnDate =?  "
+                                + "and penAmount = ? and totalprice = ? and tblCar_id = ?";
                         java.sql.Timestamp sqlreceived = new java.sql.Timestamp(bc.getReceivedDate().getTime());
                         java.sql.Timestamp sqlreturn = new java.sql.Timestamp(bc.getReturnDate().getTime());
+                        PreparedStatement sps = conn.prepareStatement(select);
+                        sps.setTimestamp(1, sqlreceived);
+                        sps.setTimestamp(2, sqlreturn);
+                        sps.setFloat(3, bc.getPenAmount());
+                        sps.setFloat(4, bc.getTotalPrice());
+                        sps.setInt(5, bc.getCar().getId());
+                        ResultSet crs = sps.executeQuery();
+                        if (crs.next()) {
+                            JOptionPane.showMessageDialog(null, "Car " + bc.getCar().getId() + " " + bc.getCar().getName() + " have been booked");
+                            return false;
+                        }
+                        ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
                         ps.setTimestamp(1, sqlreceived);
                         ps.setTimestamp(2, sqlreturn);
                         ps.setFloat(3, bc.getPenAmount());
@@ -131,6 +145,7 @@ public class ContractDao extends DAO {
                 c = new Contract();
                 c.setId(rs.getInt("id"));
                 c.setBookingDate(rs.getTimestamp("bookingDate"));
+                System.out.println(rs.getTimestamp("bookingDate"));
                 c.setState(Boolean.parseBoolean(rs.getString("state")));
 
                 ps = conn.prepareStatement(staff);
@@ -271,9 +286,6 @@ public class ContractDao extends DAO {
 
     public ArrayList<Contract> getContractByStaffId(int key) {
         ArrayList<Contract> res = new ArrayList<>();
-        ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
-        ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
-        ArrayList<Penalty> listpen = new ArrayList<Penalty>();
 
         String contract = "SELECT * FROM tblcontract WHERE tblStaff_id = ?";
         String bookedcar = "SELECT * FROM tblbookedcar WHERE tblcontract_id = ?";
@@ -291,6 +303,9 @@ public class ContractDao extends DAO {
             ps.setInt(1, key);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                ArrayList<BookedCar> listbc = new ArrayList<BookedCar>();
+                ArrayList<ContractWarrant> listcw = new ArrayList<ContractWarrant>();
+                ArrayList<Penalty> listpen = new ArrayList<Penalty>();
                 Contract c = new Contract();
                 c.setId(rs.getInt("id"));
                 c.setBookingDate(rs.getTimestamp("bookingDate"));
@@ -431,5 +446,21 @@ public class ContractDao extends DAO {
             e.printStackTrace();
         }
         return res;
+    }
+    public ArrayList<Integer> getAllContractIdByClientid(int key){
+        ArrayList<Integer> res = new ArrayList<>();
+        String sql = "Selecet id from tblcontract where tblClient_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, key);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                res.add(id);
+            }
+        } catch (Exception e) {
+        }
+        return res;
+        
     }
 }

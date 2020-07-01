@@ -12,13 +12,17 @@ import DAO.BillDao;
 import View.Rental.BillViewFrm;
 import View.Rental.SearchCarViewFrm;
 import View.Rental.ReceptionistViewFrm;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,35 +39,41 @@ public class BillController {
     public void init() {
         setUp();
         setConfirmAction();
+        setCancelAction();
     }
 
     public void setUp() {
         DecimalFormat formatter = new DecimalFormat("#,###");
         Contract contract = this.frame.getContract();
-        JLabel client = this.frame.getClientName();
+        JTextField client = this.frame.getClientName();
         client.setText(contract.getClient().getName());
-        JLabel staff = this.frame.getStaffName();
+        client.setEditable(false);
+        JTextField staff = this.frame.getStaffField();
         staff.setText(contract.getStaff().getName());
-        JLabel amount = this.frame.getTotal();
-        amount.setText(formatter.format(contract.getAmount()));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        JLabel date = this.frame.getDate();
+        staff.setEditable(false);
+        JTextField amount = this.frame.getTotal();
+        amount.setText(formatter.format(this.frame.getDeposit()));
+        amount.setEditable(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        JTextField date = this.frame.getDate();
         date.setText(sdf.format(new Date()));
+        date.setEditable(false);
+        this.frame.getPenalty().setEditable(false);
     }
 
     public void setConfirmAction() {
-        JLabel confirm = this.frame.getConfirmLabel();
+        JButton confirm = this.frame.getAddBtt();
         Contract contract = this.frame.getContract();
-        confirm.addMouseListener(new MouseAdapter() {
+        confirm.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 try {
                     BillDao billDao = new BillDao();
                     Bill bill = new Bill();
                     bill.setContract(contract);
                     bill.setNote(frame.getNote().getText().trim());
                     bill.setPaymentDate(frame.getDate().getText());
-                    bill.setPaymentType(frame.getPayment().getSelectedItem().toString());
+                    bill.setPaymentType(frame.getPaymentType().getSelectedItem().toString());
                     bill.setAmount(Float.parseFloat(frame.getTotal().getText().replaceAll(",", "")));
                     bill.setPenaltyAmount(0);
                     bill.setStaff(frame.getStaff());
@@ -80,7 +90,21 @@ public class BillController {
                 } catch (Exception f) {
                     f.printStackTrace();
                 }
+            }
+        });
+    }
 
+    public void setCancelAction() {
+        JButton cancel = this.frame.getBackBtt();
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Do you want to cancel current contract,all data will be lost?",
+                        "Pick", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION) {
+                }
+                ReceptionistViewFrm rep = new ReceptionistViewFrm(frame.getStaff());
+                frame.dispose();
+                rep.setVisible(true);
             }
         });
     }

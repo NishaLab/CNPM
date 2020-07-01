@@ -33,11 +33,11 @@ public class BillComponent extends javax.swing.JPanel {
         this.bill = bill;
         DecimalFormat formatter = new DecimalFormat("#,###");
         DefaultTableModel btb = (DefaultTableModel) this.jTable1.getModel();
-        jTable1.getTableHeader().setFont(new Font("Segoe Print", Font.BOLD, 14));
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         jTable1.getTableHeader().setBackground(Color.WHITE);
         for (Bill bill1 : bill) {
             Object[] tmp;
-            tmp = new Object[]{bill1.getId(),bill1.getContract().getClient().getName(), formatter.format(bill1.getAmount()),
+            tmp = new Object[]{bill1.getId(),bill1.getContract().getId(), formatter.format(bill1.getAmount()),
                 bill1.getPaymentType(), bill1.getPaymentDate(), bill1.getNote()};
             btb.addRow(tmp);
         }
@@ -60,13 +60,13 @@ public class BillComponent extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Client", "Amount", "Payment Type", "Payment Date", "Note"
+                "ID", "Contract", "Amount", "Payment Type", "Payment Date", "Note"
             }
         ) {
             boolean[] canEdit = new boolean [] {

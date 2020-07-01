@@ -20,8 +20,18 @@ import java.util.ArrayList;
 public class WarrantDao extends DAO {
 
     public boolean addWarrant(Warrant warrant) {
+        String select = "select * from `tblwarrant` as a  where a.type = ? and a.value = ? and a.desc = ? and a.tblClient_id = ?";
         String sql = "INSERT INTO `tblwarrant` (`type`, `value`, `desc`, `tblClient_id`) VALUES (?, ?, ?, ?);";
         try {
+            PreparedStatement sps = conn.prepareStatement(select);
+            sps.setString(1, warrant.getType());
+            sps.setInt(2, warrant.getValue());
+            sps.setString(3, warrant.getDesc());
+            sps.setInt(4, warrant.getClient().getId());
+            ResultSet hasRecord = sps.executeQuery();
+            if (hasRecord.next()) {
+                return false;
+            }
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, warrant.getType());
             ps.setInt(2, warrant.getValue());
@@ -32,6 +42,7 @@ public class WarrantDao extends DAO {
 
             //get id of the new inserted client
             ResultSet generatedKeys = ps.getGeneratedKeys();
+//            System.out.println(generatedKeys);
             if (generatedKeys.next()) {
                 warrant.setId(generatedKeys.getInt(1));
             }

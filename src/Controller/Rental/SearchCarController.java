@@ -37,6 +37,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import keeptoo.*;
 
 /**
  *
@@ -109,11 +110,10 @@ public class SearchCarController {
                     return;
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date receivedDate = Date.from(received.toInstant(ZoneOffset.UTC));
-                Date returnDate = Date.from(returnn.toInstant(ZoneOffset.UTC));
+                Date receivedDate = Date.from(received.toInstant(ZoneOffset.ofHours(7)));
+                Date returnDate = Date.from(returnn.toInstant(ZoneOffset.ofHours(7)));
                 java.sql.Timestamp sqlreceived = new java.sql.Timestamp(receivedDate.getTime());
                 java.sql.Timestamp sqlreturn = new java.sql.Timestamp(returnDate.getTime());
-
                 if (receivedDate.compareTo(returnDate) != -1) {
                     JOptionPane.showMessageDialog(null, "Return date must be greater than Received date", "Try Again", 1);
                     return;
@@ -247,8 +247,12 @@ public class SearchCarController {
         confirmBtt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (frame.getBookedCar().size() == 0) {
+                    JOptionPane.showMessageDialog(null, "You have to pick a car", "Try Again", 1);
+                    return;
+                }
                 SearchClientViewFrm scvf = new SearchClientViewFrm();
-                JButton confirm = scvf.getConfirmButton();
+                JLabel confirm = scvf.getConfrimLabel();
                 JTable ctb = scvf.getjTable1();
                 Client client = new Client();
                 frame.setVisible(false);
@@ -261,9 +265,9 @@ public class SearchCarController {
                         scvf.dispose();
                     }
                 });
-                confirm.addActionListener(new ActionListener() {
+                confirm.addMouseListener(new MouseAdapter() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void mouseClicked(MouseEvent e) {
                         try {
                             int row = ctb.getSelectedRow();
                             client.setId(Integer.parseInt(ctb.getValueAt(row, 0).toString()));
@@ -288,7 +292,7 @@ public class SearchCarController {
     }
 
     public void setBackLabelAction() {
-        JLabel back = this.frame.getBackLabel();
+        JLabel back = this.frame.getLogoutText();
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

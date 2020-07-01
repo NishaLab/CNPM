@@ -13,12 +13,18 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import View.Rental.ContractViewAuxFrm;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LEGION
  */
 public class ContractComponent extends javax.swing.JPanel {
+
+    private ArrayList<Contract> list;
 
     /**
      * Creates new form ContractComponent
@@ -29,9 +35,10 @@ public class ContractComponent extends javax.swing.JPanel {
 
     public ContractComponent(ArrayList<Contract> contract) {
         initComponents();
+        this.list = contract;
         DecimalFormat formatter = new DecimalFormat("#,###");
         DefaultTableModel ctb = (DefaultTableModel) this.jTable1.getModel();
-        jTable1.getTableHeader().setFont(new Font("Segoe Print", Font.BOLD, 14));
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         jTable1.getTableHeader().setBackground(Color.WHITE);
         for (Contract contract1 : contract) {
             Object[] tmp;
@@ -39,7 +46,7 @@ public class ContractComponent extends javax.swing.JPanel {
             for (BookedCar bookedCar : contract1.getCar()) {
                 amount += bookedCar.getTotalPrice();
             }
-            tmp = new Object[]{contract1.getId(),contract1.getClient().getName(),formatter.format(amount),contract1.getBookingDate().toString()};
+            tmp = new Object[]{contract1.getId(), contract1.getClient().getName(), formatter.format(amount), contract1.getBookingDate().toString()};
             ctb.addRow(tmp);
         }
     }
@@ -62,7 +69,7 @@ public class ContractComponent extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(710, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -99,6 +106,11 @@ public class ContractComponent extends javax.swing.JPanel {
         detailsBtt.setFocusPainted(false);
         detailsBtt.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         detailsBtt.setkBorderRadius(50);
+        detailsBtt.setkEndColor(new java.awt.Color(255, 0, 255));
+        detailsBtt.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        detailsBtt.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        detailsBtt.setkHoverStartColor(new java.awt.Color(102, 255, 102));
+        detailsBtt.setkStartColor(new java.awt.Color(12, 91, 160));
         detailsBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detailsBttActionPerformed(evt);
@@ -109,6 +121,24 @@ public class ContractComponent extends javax.swing.JPanel {
 
     private void detailsBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsBttActionPerformed
         // TODO add your handling code here:
+        try {
+            Contract contract = list.get(jTable1.getSelectedRow());
+            ContractViewAuxFrm a = new ContractViewAuxFrm(contract);
+            this.setVisible(false);
+            a.setVisible(true);
+            a.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
+                    setVisible(true);
+                    a.dispose();
+                }
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "You must choose a contract");
+        }
+
+
     }//GEN-LAST:event_detailsBttActionPerformed
 
 

@@ -12,11 +12,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import Controller.Rental.SearchClientController;
 import Model.Client;
+import java.awt.Font;
+import javax.swing.JPanel;
+
 /**
  *
  * @author LEGION
  */
 public class SearchClientViewFrm extends javax.swing.JFrame {
+
     private Client client = new Client();
 
     public Client getClient() {
@@ -26,11 +30,14 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
     public void setClient(Client client) {
         this.client = client;
     }
+
     /**
      * Creates new form NewJFrame
      */
     public SearchClientViewFrm() {
         initComponents();
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        this.setLocationRelativeTo(null);
         SearchClientController a = new SearchClientController(this);
         a.init();
     }
@@ -44,23 +51,156 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backgroundPanel = new javax.swing.JPanel();
+        sidePanel = new javax.swing.JPanel();
+        contractSide = new javax.swing.JPanel();
+        icon = new javax.swing.JLabel();
+        addLabel = new javax.swing.JLabel();
+        billSide = new javax.swing.JPanel();
+        icon1 = new javax.swing.JLabel();
+        confrimLabel = new javax.swing.JLabel();
+        logo = new javax.swing.JPanel();
+        logoLabel = new javax.swing.JLabel();
+        logoImage = new javax.swing.JLabel();
+        logoutSide = new javax.swing.JPanel();
+        icon3 = new javax.swing.JLabel();
+        backLabel = new javax.swing.JLabel();
+        rentalSide = new javax.swing.JPanel();
+        icon2 = new javax.swing.JLabel();
+        searchLabel = new javax.swing.JLabel();
+        titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        searchField = new javax.swing.JTextField();
+        mainPanel = new javax.swing.JPanel();
         tablePanel = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        addLabel = new javax.swing.JLabel();
-        backLabel = new javax.swing.JLabel();
-        searchField = new javax.swing.JTextField();
-        nameLabel = new javax.swing.JLabel();
-        SearchButton = new javax.swing.JButton();
-        confirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Choose Client");
-        titleLabel.setToolTipText("");
+        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        sidePanel.setBackground(new java.awt.Color(47, 24, 107));
+
+        contractSide.setBackground(new java.awt.Color(85, 75, 158));
+        contractSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        contractSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/client_management_30px.png"))); // NOI18N
+        contractSide.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        addLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        addLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addLabel.setText("Add Client");
+        contractSide.add(addLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        billSide.setBackground(new java.awt.Color(85, 75, 158));
+        billSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        billSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/checked_30px.png"))); // NOI18N
+        billSide.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        confrimLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        confrimLabel.setForeground(new java.awt.Color(255, 255, 255));
+        confrimLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        confrimLabel.setText("Confirm");
+        billSide.add(confrimLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        logo.setBackground(new java.awt.Color(47, 24, 107));
+        logo.setMinimumSize(new java.awt.Dimension(270, 170));
+        logo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setText("ALT F4 Rental");
+        logo.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, 60));
+
+        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
+        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
+        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
+        logo.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        logoutSide.setBackground(new java.awt.Color(85, 75, 158));
+        logoutSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        logoutSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/exit_30px.png"))); // NOI18N
+        logoutSide.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        backLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        backLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backLabel.setText("Back to search car");
+        logoutSide.add(backLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        rentalSide.setBackground(new java.awt.Color(85, 75, 158));
+        rentalSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        rentalSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/search_26px.png"))); // NOI18N
+        rentalSide.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        searchLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        searchLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        searchLabel.setText("Search Client");
+        rentalSide.add(searchLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+        sidePanel.setLayout(sidePanelLayout);
+        sidePanelLayout.setHorizontalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contractSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rentalSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        sidePanelLayout.setVerticalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addComponent(contractSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rentalSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(billSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(logoutSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
+        );
+
+        backgroundPanel.add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 580));
+
+        titlePanel.setBackground(new java.awt.Color(93, 47, 208));
+        titlePanel.setPreferredSize(new java.awt.Dimension(710, 100));
+        titlePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        titleLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Receptionist/Seach Client");
+        titlePanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 360, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/search_26px.png"))); // NOI18N
+        titlePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 40, 40));
+
+        searchField.setBackground(new java.awt.Color(93, 47, 208));
+        searchField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchField.setForeground(new java.awt.Color(255, 255, 255));
+        searchField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        titlePanel.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 72, 420, 40));
+
+        backgroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 140));
+
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -71,116 +211,33 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
         ));
         tablePanel.setViewportView(jTable1);
 
-        addLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        addLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addLabel.setText("Add Client");
+        mainPanel.add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 710, 330));
 
-        backLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        backLabel.setText("Go Back");
-
-        searchField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        searchField.setText("Client Name...");
-        searchField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchFieldFocusLost(evt);
-            }
-        });
-        searchField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchFieldActionPerformed(evt);
-            }
-        });
-
-        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nameLabel.setText("Name");
-
-        SearchButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        SearchButton.setText("Search");
-
-        confirmButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        confirmButton.setText("Confirm");
+        backgroundPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 710, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addLabel)
-                        .addGap(75, 75, 75)
-                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(SearchButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(confirmButton)))
-                                .addGap(58, 58, 58)
-                                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGap(0, 990, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SearchButton)
-                            .addComponent(confirmButton)))
-                    .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void searchFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusGained
-        if (searchField.getText().trim().equals("Client Name...")) {
-            searchField.setText("");
-        }
-    }//GEN-LAST:event_searchFieldFocusGained
-
-    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchFieldActionPerformed
-
-    private void searchFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusLost
-        if (searchField.getText().trim().toLowerCase().equals("Client Name...")
-                || searchField.getText().trim().toLowerCase().equals("")) {
-            searchField.setText("Client Name...");
-        }
-    }//GEN-LAST:event_searchFieldFocusLost
-
-    public JButton getConfirmButton() {
-        return confirmButton;
-    }
-
-    public void setConfirmButton(JButton confirmButton) {
-        this.confirmButton = confirmButton;
-    }
 
     /**
      * @param args the command line arguments
@@ -220,14 +277,6 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
         });
     }
 
-    public JButton getSearchButton() {
-        return SearchButton;
-    }
-
-    public void setSearchButton(JButton SearchButton) {
-        this.SearchButton = SearchButton;
-    }
-
     public JLabel getAddLabel() {
         return addLabel;
     }
@@ -252,12 +301,148 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
         this.jTable1 = jTable1;
     }
 
-    public JLabel getNameLabel() {
-        return nameLabel;
+    public JPanel getBackgroundPanel() {
+        return backgroundPanel;
     }
 
-    public void setNameLabel(JLabel nameLabel) {
-        this.nameLabel = nameLabel;
+    public void setBackgroundPanel(JPanel backgroundPanel) {
+        this.backgroundPanel = backgroundPanel;
+    }
+
+    public JPanel getBillSide() {
+        return billSide;
+    }
+
+    public void setBillSide(JPanel billSide) {
+        this.billSide = billSide;
+    }
+
+    public JLabel getConfrimLabel() {
+        return confrimLabel;
+    }
+
+    public void setConfrimLabel(JLabel confrimLabel) {
+        this.confrimLabel = confrimLabel;
+    }
+
+    public JPanel getContractSide() {
+        return contractSide;
+    }
+
+    public void setContractSide(JPanel contractSide) {
+        this.contractSide = contractSide;
+    }
+
+    public JLabel getIcon() {
+        return icon;
+    }
+
+    public void setIcon(JLabel icon) {
+        this.icon = icon;
+    }
+
+    public JLabel getIcon1() {
+        return icon1;
+    }
+
+    public void setIcon1(JLabel icon1) {
+        this.icon1 = icon1;
+    }
+
+    public JLabel getIcon3() {
+        return icon3;
+    }
+
+    public void setIcon3(JLabel icon3) {
+        this.icon3 = icon3;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JPanel getLogo() {
+        return logo;
+    }
+
+    public void setLogo(JPanel logo) {
+        this.logo = logo;
+    }
+
+    public JLabel getLogoImage() {
+        return logoImage;
+    }
+
+    public void setLogoImage(JLabel logoImage) {
+        this.logoImage = logoImage;
+    }
+
+    public JLabel getLogoLabel() {
+        return logoLabel;
+    }
+
+    public void setLogoLabel(JLabel logoLabel) {
+        this.logoLabel = logoLabel;
+    }
+
+    public JPanel getLogoutSide() {
+        return logoutSide;
+    }
+
+    public void setLogoutSide(JPanel logoutSide) {
+        this.logoutSide = logoutSide;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void setMainPanel(JPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public JPanel getSidePanel() {
+        return sidePanel;
+    }
+
+    public void setSidePanel(JPanel sidePanel) {
+        this.sidePanel = sidePanel;
+    }
+
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
+
+    public JLabel getIcon2() {
+        return icon2;
+    }
+
+    public void setIcon2(JLabel icon2) {
+        this.icon2 = icon2;
+    }
+
+    public JPanel getRentalSide() {
+        return rentalSide;
+    }
+
+    public void setRentalSide(JPanel rentalSide) {
+        this.rentalSide = rentalSide;
+    }
+
+    public JLabel getSearchLabel() {
+        return searchLabel;
+    }
+
+    public void setSearchLabel(JLabel searchLabel) {
+        this.searchLabel = searchLabel;
     }
 
     public JTextField getSearchField() {
@@ -285,14 +470,29 @@ public class SearchClientViewFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SearchButton;
     private javax.swing.JLabel addLabel;
     private javax.swing.JLabel backLabel;
-    private javax.swing.JButton confirmButton;
+    private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JPanel billSide;
+    private javax.swing.JLabel confrimLabel;
+    private javax.swing.JPanel contractSide;
+    private javax.swing.JLabel icon;
+    private javax.swing.JLabel icon1;
+    private javax.swing.JLabel icon2;
+    private javax.swing.JLabel icon3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel nameLabel;
+    private javax.swing.JPanel logo;
+    private javax.swing.JLabel logoImage;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JPanel logoutSide;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel rentalSide;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel searchLabel;
+    private javax.swing.JPanel sidePanel;
     private javax.swing.JScrollPane tablePanel;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,9 +7,11 @@ package View.Rental;
 
 import Model.Client;
 import Controller.Rental.AddWarrantController;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -32,6 +34,7 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
     public AddWarrantViewFrm(Client client) {
         initComponents();
         this.client = client;
+        warrantTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         AddWarrantController a = new AddWarrantController(this);
         a.init();
     }
@@ -45,31 +48,125 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        confirmLabel = new javax.swing.JLabel();
+        backgroundPanel = new javax.swing.JPanel();
+        sidePanel = new javax.swing.JPanel();
+        contractSide = new javax.swing.JPanel();
+        icon = new javax.swing.JLabel();
+        addLabel = new javax.swing.JLabel();
+        billSide = new javax.swing.JPanel();
+        icon1 = new javax.swing.JLabel();
+        confrimLabel = new javax.swing.JLabel();
+        logo = new javax.swing.JPanel();
+        logoLabel = new javax.swing.JLabel();
+        logoImage = new javax.swing.JLabel();
+        logoutSide = new javax.swing.JPanel();
+        icon3 = new javax.swing.JLabel();
         backLabel = new javax.swing.JLabel();
+        titlePanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         warrantTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        warrantType = new javax.swing.JComboBox<>();
-        value = new javax.swing.JTextField();
-        desc = new javax.swing.JTextField();
-        addBtt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Add Warrant");
+        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        confirmLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        confirmLabel.setText("Confirm");
+        sidePanel.setBackground(new java.awt.Color(47, 24, 107));
 
-        backLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        backLabel.setText("Go Back");
+        contractSide.setBackground(new java.awt.Color(85, 75, 158));
+        contractSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        contractSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/client_management_30px.png"))); // NOI18N
+        contractSide.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        addLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        addLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addLabel.setText("Add Warrant");
+        contractSide.add(addLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        billSide.setBackground(new java.awt.Color(85, 75, 158));
+        billSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        billSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/checked_30px.png"))); // NOI18N
+        billSide.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        confrimLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        confrimLabel.setForeground(new java.awt.Color(255, 255, 255));
+        confrimLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        confrimLabel.setText("Confirm");
+        billSide.add(confrimLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        logo.setBackground(new java.awt.Color(47, 24, 107));
+        logo.setMinimumSize(new java.awt.Dimension(270, 170));
+        logo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logoLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setText("ALT F4 Rental");
+        logo.add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, 60));
+
+        logoImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/f1_car_60px.png"))); // NOI18N
+        logoImage.setMaximumSize(new java.awt.Dimension(50, 50));
+        logoImage.setMinimumSize(new java.awt.Dimension(50, 50));
+        logo.add(logoImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        logoutSide.setBackground(new java.awt.Color(85, 75, 158));
+        logoutSide.setMinimumSize(new java.awt.Dimension(60, 60));
+        logoutSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Rental/Icon/exit_30px.png"))); // NOI18N
+        logoutSide.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        backLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        backLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backLabel.setText("Back to contract");
+        logoutSide.add(backLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+
+        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+        sidePanel.setLayout(sidePanelLayout);
+        sidePanelLayout.setHorizontalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contractSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        sidePanelLayout.setVerticalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148)
+                .addComponent(contractSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(billSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(logoutSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+
+        backgroundPanel.add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 580));
+
+        titlePanel.setBackground(new java.awt.Color(93, 47, 208));
+        titlePanel.setPreferredSize(new java.awt.Dimension(710, 100));
+        titlePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        titleLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Receptionist/Add Warrant");
+        titlePanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 360, 60));
+
+        backgroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 140));
+
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        warrantTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         warrantTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -80,99 +177,44 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(warrantTable);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel4.setText("Value");
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setText("Description");
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel6.setText("Type");
-
-        warrantType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        warrantType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MotorBike", "Money", "Jewelry" }));
-
-        desc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descActionPerformed(evt);
-            }
-        });
-
-        addBtt.setText("Add");
-        addBtt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        backgroundPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 710, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(174, 174, 174)
-                        .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(52, 52, 52)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(value)
-                                            .addComponent(warrantType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(desc, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(124, 124, 124))))))
+            .addGap(0, 990, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmLabel)
-                    .addComponent(backLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(warrantType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addComponent(addBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,21 +251,126 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
         });
     }
 
-    public JButton getAddBtt() {
-        return addBtt;
+    public JLabel getAddLabel() {
+        return addLabel;
     }
 
-    public void setAddBtt(JButton addBtt) {
-        this.addBtt = addBtt;
+    public void setAddLabel(JLabel addLabel) {
+        this.addLabel = addLabel;
     }
 
-    public JTextField getDesc() {
-        return desc;
+    public JPanel getBackgroundPanel() {
+        return backgroundPanel;
     }
 
-    public void setDesc(JTextField desc) {
-        this.desc = desc;
+    public void setBackgroundPanel(JPanel backgroundPanel) {
+        this.backgroundPanel = backgroundPanel;
     }
+
+    public JPanel getBillSide() {
+        return billSide;
+    }
+
+    public void setBillSide(JPanel billSide) {
+        this.billSide = billSide;
+    }
+
+    public JLabel getConfrimLabel() {
+        return confrimLabel;
+    }
+
+    public void setConfrimLabel(JLabel confrimLabel) {
+        this.confrimLabel = confrimLabel;
+    }
+
+    public JPanel getContractSide() {
+        return contractSide;
+    }
+
+    public void setContractSide(JPanel contractSide) {
+        this.contractSide = contractSide;
+    }
+
+    public JLabel getIcon() {
+        return icon;
+    }
+
+    public void setIcon(JLabel icon) {
+        this.icon = icon;
+    }
+
+    public JLabel getIcon1() {
+        return icon1;
+    }
+
+    public void setIcon1(JLabel icon1) {
+        this.icon1 = icon1;
+    }
+
+    public JLabel getIcon3() {
+        return icon3;
+    }
+
+    public void setIcon3(JLabel icon3) {
+        this.icon3 = icon3;
+    }
+
+    public JPanel getLogo() {
+        return logo;
+    }
+
+    public void setLogo(JPanel logo) {
+        this.logo = logo;
+    }
+
+    public JLabel getLogoImage() {
+        return logoImage;
+    }
+
+    public void setLogoImage(JLabel logoImage) {
+        this.logoImage = logoImage;
+    }
+
+    public JLabel getLogoLabel() {
+        return logoLabel;
+    }
+
+    public void setLogoLabel(JLabel logoLabel) {
+        this.logoLabel = logoLabel;
+    }
+
+    public JPanel getLogoutSide() {
+        return logoutSide;
+    }
+
+    public void setLogoutSide(JPanel logoutSide) {
+        this.logoutSide = logoutSide;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void setMainPanel(JPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public JPanel getSidePanel() {
+        return sidePanel;
+    }
+
+    public void setSidePanel(JPanel sidePanel) {
+        this.sidePanel = sidePanel;
+    }
+
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
+
 
     public JLabel getBackLabel() {
         return backLabel;
@@ -233,13 +380,7 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
         this.backLabel = backLabel;
     }
 
-    public JLabel getConfirmLabel() {
-        return confirmLabel;
-    }
 
-    public void setConfirmLabel(JLabel confirmLabel) {
-        this.confirmLabel = confirmLabel;
-    }
 
     public JLabel getTitleLabel() {
         return titleLabel;
@@ -247,31 +388,6 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
 
     public void setTitleLabel(JLabel titleLabel) {
         this.titleLabel = titleLabel;
-    }
-
-
-    public JLabel getjLabel4() {
-        return jLabel4;
-    }
-
-    public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
-    }
-
-    public JLabel getjLabel5() {
-        return jLabel5;
-    }
-
-    public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
-    }
-
-    public JLabel getjLabel6() {
-        return jLabel6;
-    }
-
-    public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
     }
 
     public JScrollPane getjScrollPane1() {
@@ -300,34 +416,27 @@ public class AddWarrantViewFrm extends javax.swing.JFrame {
 
 
 
-    public JComboBox<String> getWarrantType() {
-        return warrantType;
-    }
 
-    public void setWarrantType(JComboBox<String> warrantType) {
-        this.warrantType = warrantType;
-    }
-
-    public JTextField getValue() {
-        return value;
-    }
-
-    public void setValue(JTextField value) {
-        this.value = value;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBtt;
+    private javax.swing.JLabel addLabel;
     private javax.swing.JLabel backLabel;
-    private javax.swing.JLabel confirmLabel;
-    private javax.swing.JTextField desc;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JPanel billSide;
+    private javax.swing.JLabel confrimLabel;
+    private javax.swing.JPanel contractSide;
+    private javax.swing.JLabel icon;
+    private javax.swing.JLabel icon1;
+    private javax.swing.JLabel icon3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel logo;
+    private javax.swing.JLabel logoImage;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JPanel logoutSide;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JTextField value;
+    private javax.swing.JPanel titlePanel;
     private javax.swing.JTable warrantTable;
-    private javax.swing.JComboBox<String> warrantType;
     // End of variables declaration//GEN-END:variables
 }
