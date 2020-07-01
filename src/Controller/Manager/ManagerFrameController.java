@@ -34,7 +34,7 @@ public class ManagerFrameController {
         carStat.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ChooseStatType cst = new ChooseStatType();
+                ChooseStatType cst = new ChooseStatType(frame.getStaff());
                 frame.dispose();
                 cst.setVisible(true);
                 cst.setLocationRelativeTo(null);

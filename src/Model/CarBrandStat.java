@@ -17,10 +17,22 @@ public class CarBrandStat extends CarBrand implements Serializable {
         super();
     }
 
-    public CarBrandStat(int totalDay, float income) {
-        super();
+    public CarBrandStat(int totalDay, float income, int rentTime) {
         this.totalDay = totalDay;
         this.income = income;
+        this.rentTime = rentTime;
+    }
+
+    public void setTotalDay(int totalDay) {
+        this.totalDay = totalDay;
+    }
+
+    public void setIncome(float income) {
+        this.income = income;
+    }
+
+    public void setRentTime(int rentTime) {
+        this.rentTime = rentTime;
     }
 
     public int getTotalDay() {
@@ -31,14 +43,13 @@ public class CarBrandStat extends CarBrand implements Serializable {
         return income;
     }
 
-    public void setTotalDay(int totalDay) {
-        this.totalDay = totalDay;
+    public int getRentTime() {
+        return rentTime;
     }
 
-    public void setIncome(float income) {
-        this.income = income;
-    }
+  
     
     private int totalDay;
     private float income;
+    private int rentTime;
 }

@@ -1,0 +1,7 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "mysql-connector-java-8.0.20.jar"
+    ]
+}
