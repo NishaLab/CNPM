@@ -233,6 +233,11 @@ public class ContractViewAuxFrm extends javax.swing.JFrame {
         carTable.setShowGrid(true);
         carTable.setShowHorizontalLines(false);
         carScrollPane.setViewportView(carTable);
+        if (carTable.getColumnModel().getColumnCount() > 0) {
+            carTable.getColumnModel().getColumn(0).setMinWidth(30);
+            carTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+            carTable.getColumnModel().getColumn(0).setMaxWidth(30);
+        }
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(12, 91, 160));
