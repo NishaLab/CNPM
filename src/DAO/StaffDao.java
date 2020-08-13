@@ -21,13 +21,14 @@ public class StaffDao extends DAO {
 
     public boolean checkLogin(Staff s) {
         boolean result = false;
-        String sql = "SELECT name, position FROM tblstaff WHERE username = ? AND password = ?";
+        String sql = "SELECT id, name, position FROM tblstaff WHERE username = ? AND password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s.getUserName());
             ps.setString(2, s.getPassword());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
                 s.setPositon(rs.getString("position"));
                 result = true;

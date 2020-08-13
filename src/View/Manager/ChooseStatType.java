@@ -7,6 +7,7 @@ package View.Manager;
 
 import java.awt.event.ItemEvent;
 import Model.Staff;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,10 +18,10 @@ public class ChooseStatType extends javax.swing.JFrame {
     /**
      * Creates new form ChooseStatType
      */
-    public ChooseStatType() {
+    public ChooseStatType(Staff user) {
         initComponents();
-//        this.user=user;
-//        UserNameJTF.setText(user.getName());
+        this.user=user;
+        UserNameJTF.setText(user.getName());
     }
 
     /**
@@ -41,7 +42,9 @@ public class ChooseStatType extends javax.swing.JFrame {
         UserNameJTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setBackground(new java.awt.Color(0, 0, 204));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(255, 153, 51));
 
         ObjCBB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dòng xe", "Khách hàng" }));
         ObjCBB.addItemListener(new java.awt.event.ItemListener() {
@@ -54,22 +57,14 @@ public class ChooseStatType extends javax.swing.JFrame {
                 ObjCBBActionPerformed(evt);
             }
         });
-        getContentPane().add(ObjCBB);
-        ObjCBB.setBounds(244, 63, 79, 19);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Đối tượng thống kê");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(87, 62, 139, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Loại thống kê");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(87, 100, 98, 17);
 
         TypeCBB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo doanh thu", "Theo fillrate" }));
-        getContentPane().add(TypeCBB);
-        TypeCBB.setBounds(244, 101, 105, 19);
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,16 +72,57 @@ public class ChooseStatType extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(87, 161, 69, 21);
 
         jLabel3.setText("Login as");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(251, 13, 41, 13);
-        getContentPane().add(UserNameJTF);
-        UserNameJTF.setBounds(302, 10, 80, 19);
+
+        UserNameJTF.setEditable(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserNameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(ObjCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(TypeCBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(jButton1)
+                .addGap(65, 65, 65))
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ObjCBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObjCBBActionPerformed
@@ -107,8 +143,11 @@ public class ChooseStatType extends javax.swing.JFrame {
         String obj = ObjCBB.getSelectedItem().toString();
         String type = TypeCBB.getSelectedItem().toString();
         if(obj=="Dòng xe" && type=="Theo doanh thu"){
-           new ViewStat().setVisible(true);
-        }         
+           new ViewStat(this.user).setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Tính năng chưa phát triển !");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -141,7 +180,7 @@ public class ChooseStatType extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChooseStatType().setVisible(true);
+                new ChooseStatType(user).setVisible(true);
             }
         });
     }

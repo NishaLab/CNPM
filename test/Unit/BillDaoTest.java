@@ -7,8 +7,11 @@ package Unit;
 
 import DAO.BillDao;
 import DAO.ContractDao;
+import Model.Bill;
 import Model.Client;
 import Model.Contract;
+import Model.Staff;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -49,9 +52,18 @@ public class BillDaoTest {
     // public void hello() {}
     @Test
     public void testInsertBill() {
-        Client client = new Client("Hung Test 2", "12345999", "Xuan Duc", "12345565", "B1", "Normal");
+        Staff staff = new Staff("hung", "hung", "hung", "Receptionist");
+        staff.setId(1);
         ContractDao contractDao = new ContractDao();
-
+        Contract contract = contractDao.getContractById(37);
+        Bill bill = new Bill();
+        bill.setContract(contract);
+        bill.setAmount(20000);
+        bill.setNote("Foo");
+        bill.setPaymentDate("2020-03-04");
+        bill.setPaymentType("Cash");
+        bill.setStaff(staff);
+        Assert.assertTrue(dao.addBill(bill));;
         return;
     }
 }
