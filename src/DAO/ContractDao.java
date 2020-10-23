@@ -58,6 +58,7 @@ public class ContractDao extends DAO {
                         ResultSet crs = sps.executeQuery();
                         if (crs.next()) {
                             JOptionPane.showMessageDialog(null, "Car " + bc.getCar().getId() + " " + bc.getCar().getName() + " have been booked");
+                            conn.rollback();
                             return false;
                         }
                         ps = conn.prepareStatement(bookedRoom, Statement.RETURN_GENERATED_KEYS);
